@@ -1,0 +1,6 @@
+@Web_CV_Hosting.CV_Recognizing_Service_HostAddress = http://localhost:5204
+
+GET {{Web_CV_Hosting.CV_Recognizing_Service_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
