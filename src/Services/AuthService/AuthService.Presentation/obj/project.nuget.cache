@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "t39VasQvr5+TSm54a+vdTSm1qDqM/FrY6kPKYD2oIA1kd7h6G5IZYjI38mBgzYfWiTNMFMD27Zq/EaFp19U3cQ==",
+  "success": true,
+  "projectFilePath": "D:\\Web CV Hosting\\src\\Services\\AuthService\\AuthService.Presentation\\AuthService.Presentation.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.19.5\\microsoft.visualstudio.azure.containers.tools.targets.1.19.5.nupkg.sha512",
+    "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
+    "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
+    "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
+    "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.4.0\\swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512"
+  ],
+  "logs": []
+}
