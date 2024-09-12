@@ -1,11 +1,31 @@
+using CVRecognizingService.Infrastructure.DataAccess;
+using DotnetGeminiSDK;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
+var mongoConnectionString = builder.Configuration.GetConnectionString("MongoDb")!;
+
+builder.Services.AddDbContext<CVRecDBContext>(x => x
+    .EnableSensitiveDataLogging()
+    .UseMongoDB(mongoConnectionString, "Documents")
+);
+
+
+builder.Services.AddGeminiClient(config =>
+{
+    config.ApiKey = builder.Configuration.GetSection("API_KEY").Value;
+});
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
+
+
+
 
 var app = builder.Build();
 

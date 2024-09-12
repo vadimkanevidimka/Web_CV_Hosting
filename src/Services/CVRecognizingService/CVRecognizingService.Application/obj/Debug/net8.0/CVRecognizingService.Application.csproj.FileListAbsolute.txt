@@ -1,0 +1,13 @@
+D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Application\bin\Debug\net8.0\CVRecognizingService.Application.deps.json
+D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Application\bin\Debug\net8.0\CVRecognizingService.Application.dll
+D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Application\bin\Debug\net8.0\CVRecognizingService.Application.pdb
+D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Application\obj\Debug\net8.0\CVRecognizingService.Application.csproj.AssemblyReference.cache
+D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Application\obj\Debug\net8.0\CVRecognizingService.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Application\obj\Debug\net8.0\CVRecognizingService.Application.AssemblyInfoInputs.cache
+D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Application\obj\Debug\net8.0\CVRecognizingService.Application.AssemblyInfo.cs
+D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Application\obj\Debug\net8.0\CVRecognizingService.Application.csproj.CoreCompileInputs.cache
+D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Application\obj\Debug\net8.0\CVRecognizingService.Application.sourcelink.json
+D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Application\obj\Debug\net8.0\CVRecognizingService.Application.dll
+D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Application\obj\Debug\net8.0\refint\CVRecognizingService.Application.dll
+D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Application\obj\Debug\net8.0\CVRecognizingService.Application.pdb
+D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Application\obj\Debug\net8.0\ref\CVRecognizingService.Application.dll

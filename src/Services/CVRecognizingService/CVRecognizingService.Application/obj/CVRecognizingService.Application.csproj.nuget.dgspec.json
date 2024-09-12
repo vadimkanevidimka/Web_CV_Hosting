@@ -39,6 +39,20 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "DotnetGeminiSDK": {
+              "target": "Package",
+              "version": "[1.0.14, )"
+            },
+            "MongoDB.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.1.1, )"
+            },
+            "PdfPig": {
+              "target": "Package",
+              "version": "[0.1.9-alpha-20240910-4845f, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

@@ -3,13 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CVRecognizingService.API", "CVRecognizingService.API.csproj", "{64D9353A-D09B-4D28-A24D-3BFFD47B12DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CVRecognizingService.API", "CVRecognizingService.API.csproj", "{64D9353A-D09B-4D28-A24D-3BFFD47B12DA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A7BD23A6-A7E8-433F-AE77-26772A3E4319} = {A7BD23A6-A7E8-433F-AE77-26772A3E4319}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CVRecognizingService.Application", "..\CVRecognizingService.Application\CVRecognizingService.Application.csproj", "{BA4823FF-13C3-4257-825A-888AA2C7C38F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CVRecognizingService.Application", "..\CVRecognizingService.Application\CVRecognizingService.Application.csproj", "{BA4823FF-13C3-4257-825A-888AA2C7C38F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CVRecognizingService.Domain", "..\CVRecognizingService.Domain\CVRecognizingService.Domain.csproj", "{A7BD23A6-A7E8-433F-AE77-26772A3E4319}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CVRecognizingService.Domain", "..\CVRecognizingService.Domain\CVRecognizingService.Domain.csproj", "{A7BD23A6-A7E8-433F-AE77-26772A3E4319}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CVRecognizingService.Infrastructure", "..\CVRecognizingService.Infrastructure\CVRecognizingService.Infrastructure.csproj", "{7ED6E583-118A-4219-A376-36A49B5337D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CVRecognizingService.Infrastructure", "..\CVRecognizingService.Infrastructure\CVRecognizingService.Infrastructure.csproj", "{7ED6E583-118A-4219-A376-36A49B5337D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

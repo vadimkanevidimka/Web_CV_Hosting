@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+    volumes:
+      - ./docker_data/mongodb:/data/db
+    ports:
+      - "27017:27017"
+    restart: always
+    networks:
+      - docker-web
+
+networks:
+  docker-web:
+    driver: bridge

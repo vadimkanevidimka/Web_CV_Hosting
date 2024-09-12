@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "upxZHNyPliyrjFDTyCQOdXFOhNkeGn9FDMvgJCLZqgM=",
+  "Source": "CVRecognizingService.API",
+  "BasePath": "_content/CVRecognizingService.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

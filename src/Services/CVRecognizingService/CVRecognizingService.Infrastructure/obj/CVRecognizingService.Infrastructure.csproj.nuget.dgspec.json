@@ -4,14 +4,14 @@
     "D:\\Web CV Hosting\\src\\Services\\CVRecognizingService\\CVRecognizingService.Infrastructure\\CVRecognizingService.Infrastructure.csproj": {}
   },
   "projects": {
-    "D:\\Web CV Hosting\\src\\Services\\CVRecognizingService\\CVRecognizingService.Infrastructure\\CVRecognizingService.Infrastructure.csproj": {
+    "D:\\Web CV Hosting\\src\\Services\\CVRecognizingService\\CVRecognizingService.Domain\\CVRecognizingService.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Web CV Hosting\\src\\Services\\CVRecognizingService\\CVRecognizingService.Infrastructure\\CVRecognizingService.Infrastructure.csproj",
-        "projectName": "CVRecognizingService.Infrastructure",
-        "projectPath": "D:\\Web CV Hosting\\src\\Services\\CVRecognizingService\\CVRecognizingService.Infrastructure\\CVRecognizingService.Infrastructure.csproj",
+        "projectUniqueName": "D:\\Web CV Hosting\\src\\Services\\CVRecognizingService\\CVRecognizingService.Domain\\CVRecognizingService.Domain.csproj",
+        "projectName": "CVRecognizingService.Domain",
+        "projectPath": "D:\\Web CV Hosting\\src\\Services\\CVRecognizingService\\CVRecognizingService.Domain\\CVRecognizingService.Domain.csproj",
         "packagesPath": "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\",
-        "outputPath": "D:\\Web CV Hosting\\src\\Services\\CVRecognizingService\\CVRecognizingService.Infrastructure\\obj\\",
+        "outputPath": "D:\\Web CV Hosting\\src\\Services\\CVRecognizingService\\CVRecognizingService.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\VadimkaNevidimka\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -39,6 +39,81 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "CSharpFunctionalExtensions": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "MongoDB.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.1.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Web CV Hosting\\src\\Services\\CVRecognizingService\\CVRecognizingService.Infrastructure\\CVRecognizingService.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Web CV Hosting\\src\\Services\\CVRecognizingService\\CVRecognizingService.Infrastructure\\CVRecognizingService.Infrastructure.csproj",
+        "projectName": "CVRecognizingService.Infrastructure",
+        "projectPath": "D:\\Web CV Hosting\\src\\Services\\CVRecognizingService\\CVRecognizingService.Infrastructure\\CVRecognizingService.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\",
+        "outputPath": "D:\\Web CV Hosting\\src\\Services\\CVRecognizingService\\CVRecognizingService.Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\VadimkaNevidimka\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "D:\\Web CV Hosting\\src\\Services\\CVRecognizingService\\CVRecognizingService.Domain\\CVRecognizingService.Domain.csproj": {
+                "projectPath": "D:\\Web CV Hosting\\src\\Services\\CVRecognizingService\\CVRecognizingService.Domain\\CVRecognizingService.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "MongoDB.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.1.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
