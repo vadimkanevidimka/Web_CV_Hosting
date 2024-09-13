@@ -11,3 +11,8 @@ D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Applica
 D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Application\obj\Debug\net8.0\refint\CVRecognizingService.Application.dll
 D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Application\obj\Debug\net8.0\CVRecognizingService.Application.pdb
 D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Application\obj\Debug\net8.0\ref\CVRecognizingService.Application.dll
+D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Application\bin\Debug\net8.0\CVRecognizingService.Domain.dll
+D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Application\bin\Debug\net8.0\CVRecognizingService.Domain.pdb
+D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Application\obj\Debug\net8.0\CVRecognizingService.Application.csproj.CopyComplete
+D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Application\bin\Debug\net8.0\CVRecognizingService.Infrastructure.dll
+D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Application\bin\Debug\net8.0\CVRecognizingService.Infrastructure.pdb

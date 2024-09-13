@@ -1,29 +1,41 @@
-using CVRecognizingService.Infrastructure.DataAccess;
 using DotnetGeminiSDK;
-using Microsoft.EntityFrameworkCore;
+using CVRecognizingService.Domain.Entities;
+using CVRecognizingService.Domain.Abstracts.Repo;
+using CVRecognizingService.Infrastructure.DataAccess.Repositories;
+using CVRecognizingService.Application.ServiceExctensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
+///Config database service with Repositories
 
-var mongoConnectionString = builder.Configuration.GetConnectionString("MongoDb")!;
+var mongoConnectionString = builder.Configuration.GetConnectionString("MongoDb");
+builder.Services.AddTransient<IRepository<BaseDocument>, DocumentRepository>();
 
-builder.Services.AddDbContext<CVRecDBContext>(x => x
-    .EnableSensitiveDataLogging()
-    .UseMongoDB(mongoConnectionString, "Documents")
-);
+if(!string.IsNullOrEmpty(mongoConnectionString))
+    builder.Services.AddMongoDB(mongoConnectionString);
 
 
+
+///Config AI service
+///
 builder.Services.AddGeminiClient(config =>
 {
     config.ApiKey = builder.Configuration.GetSection("API_KEY").Value;
 });
 
+
+///Confin validation services
+///
+builder.Services.AddValidation();
+
+
+///Config Controllers Services
+///
+builder.Services.AddServices();
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-
-
 
 
 

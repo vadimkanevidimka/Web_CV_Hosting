@@ -2,21 +2,21 @@
 using UglyToad.PdfPig.DocumentLayoutAnalysis.TextExtractor;
 using UglyToad.PdfPig;
 
-namespace CVRecognizingService.Application.PDFRecognizing
+namespace CVRecognizingService.Application.Helpers.PDFRecognizing
 {
     public class PDFRecognizer
     {
         private string _recognizedText;
         public string RecognizedText { get => _recognizedText; }
 
-        public PDFRecognizer(byte[] filebytes) 
+        public PDFRecognizer(byte[] filebytes)
         {
             using (var pdf = PdfDocument.Open(filebytes))
             {
                 foreach (var page in pdf.GetPages())
                 {
                     // Either extract based on order in the underlying document with newlines and spaces.
-                    _recognizedText += ContentOrderTextExtractor.GetText(page, new Options() 
+                    _recognizedText += GetText(page, new Options()
                     {
                         ReplaceWhitespaceWithSpace = true,
                         SeparateParagraphsWithDoubleNewline = false,

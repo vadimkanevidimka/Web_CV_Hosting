@@ -46,12 +46,9 @@ D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.API\bin
 D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.API\bin\Debug\net8.0\AWSSDK.SecurityToken.dll
 D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.API\bin\Debug\net8.0\CSharpFunctionalExtensions.dll
 D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.API\bin\Debug\net8.0\DnsClient.dll
-D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.API\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
-D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.API\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
 D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.API\bin\Debug\net8.0\MongoDB.Bson.dll
 D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.API\bin\Debug\net8.0\MongoDB.Driver.dll
 D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.API\bin\Debug\net8.0\MongoDB.Driver.Core.dll
-D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.API\bin\Debug\net8.0\MongoDB.EntityFrameworkCore.dll
 D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.API\bin\Debug\net8.0\MongoDB.Libmongocrypt.dll
 D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.API\bin\Debug\net8.0\SharpCompress.dll
 D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.API\bin\Debug\net8.0\Snappier.dll
@@ -63,3 +60,8 @@ D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.API\bin
 D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.API\bin\Debug\net8.0\CVRecognizingService.Infrastructure.dll
 D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.API\bin\Debug\net8.0\CVRecognizingService.Infrastructure.pdb
 D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.API\bin\Debug\net8.0\CVRecognizingService.Domain.pdb
+D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.API\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.API\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.API\bin\Debug\net8.0\FluentValidation.dll
+D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.API\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
+D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.API\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll
