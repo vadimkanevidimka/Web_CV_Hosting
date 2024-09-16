@@ -1,7 +1,5 @@
 ﻿using MongoDB.Bson;
-using System.Text.Json.Serialization;
 using CVRecognizingService.Domain.Abstracts;
-using MongoDB.Bson.Serialization.Attributes;
 
 namespace CVRecognizingService.Domain.Entities
 {

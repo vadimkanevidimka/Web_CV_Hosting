@@ -1,35 +1,27 @@
-﻿using static UglyToad.PdfPig.DocumentLayoutAnalysis.TextExtractor.ContentOrderTextExtractor;
-using UglyToad.PdfPig.DocumentLayoutAnalysis.TextExtractor;
-using UglyToad.PdfPig;
+﻿using UglyToad.PdfPig;
+using static UglyToad.PdfPig.DocumentLayoutAnalysis.TextExtractor.ContentOrderTextExtractor;
 
-namespace CVRecognizingService.Application.Helpers.PDFRecognizing
+namespace CVRecognizingService.Application.Helpers.PDFRecognizing;
+public class PDFRecognizer
 {
-    public class PDFRecognizer
+    private string? _recognizedText;
+    public string? RecognizedText { get => _recognizedText; }
+
+    public PDFRecognizer(byte[] filebytes)
     {
-        private string _recognizedText;
-        public string RecognizedText { get => _recognizedText; }
-
-        public PDFRecognizer(byte[] filebytes)
+        using (var pdf = PdfDocument.Open(filebytes))
         {
-            using (var pdf = PdfDocument.Open(filebytes))
+            foreach (var page in pdf.GetPages())
             {
-                foreach (var page in pdf.GetPages())
+                _recognizedText += GetText(page, new Options()
                 {
-                    // Either extract based on order in the underlying document with newlines and spaces.
-                    _recognizedText += GetText(page, new Options()
-                    {
-                        ReplaceWhitespaceWithSpace = true,
-                        SeparateParagraphsWithDoubleNewline = false,
-                    });
+                    ReplaceWhitespaceWithSpace = true,
+                    SeparateParagraphsWithDoubleNewline = false,
+                });
 
-                    // Or based on grouping letters into words.
-                    var otherText = string.Join(" ", page.GetWords());
-
-                    // Or the raw text of the page's content stream.
-                    var rawText = page.Text;
-                }
-
+                var rawText = page.Text;
             }
+
         }
     }
 }

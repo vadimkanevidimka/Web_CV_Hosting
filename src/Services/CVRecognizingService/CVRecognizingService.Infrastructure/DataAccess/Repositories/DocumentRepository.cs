@@ -2,10 +2,9 @@
 using CVRecognizingService.Domain.Entities;
 using MongoDB.Driver;
 
-namespace CVRecognizingService.Infrastructure.DataAccess.Repositories
+namespace CVRecognizingService.Infrastructure.DataAccess.Repositories;
+
+public class DocumentRepository : GenericRepository<BaseDocument>, IRepository<BaseDocument>
 {
-    public class DocumentRepository : GenericRepository<BaseDocument>, IRepository<BaseDocument>
-    {
-        public DocumentRepository(IMongoClient client) : base(client) { }
-    }
+    public DocumentRepository(IMongoClient client) : base(client) { }
 }

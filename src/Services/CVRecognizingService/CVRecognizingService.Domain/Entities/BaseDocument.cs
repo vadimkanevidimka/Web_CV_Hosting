@@ -1,5 +1,4 @@
 ﻿using CVRecognizingService.Domain.Abstracts;
-using CVRecognizingService.Domain.ValueObjects.VODerivatives;
 
 namespace CVRecognizingService.Domain.Entities
 {
@@ -20,11 +19,6 @@ namespace CVRecognizingService.Domain.Entities
         public long FileSize { get; private set; }               // Размер файла в байтах
         public DateTime UploadedAt { get; private set; } = DateTime.Now; // Время загрузки файла
         public User? User { get; private set; }
-        public DateTime UploadedUntil { get; set; }
-
-        // Навигационные свойства для связи с результатом обработки
-        public ProcessedData? ProcessedData { get; set; }
-        public ProcessingStatus? ProcessingStatus { get; set; }
-        public ProcessingLog? ProcessingLogs { get; set; }
+        public DateTime UploadedUntil { get; set; } // Время окончания обработки файла
     }
 }

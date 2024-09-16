@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "dgcOsBC0MNxWsFkZn4SlBgrJTS1cntOVpea1N7xlnBSGvRUPfv6B5MRdT4UAmk/oP8f+ODqXcB5yIFXM79v/ZA==",
+  "dgSpecHash": "6xydKnAhHacF9L4V44DpwwgHB4/MS3y1O1YYFeG94xwhszvlgcd+gs/8nIoLQoNVuJc2HGKbJ5g0Mhi6eUJTSA==",
   "success": true,
   "projectFilePath": "D:\\Web CV Hosting\\src\\Services\\CVRecognizingService\\CVRecognizingService.Application\\CVRecognizingService.Application.csproj",
   "expectedPackageFiles": [
@@ -12,6 +12,8 @@
     "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\fluentvalidation\\11.5.1\\fluentvalidation.11.5.1.nupkg.sha512",
     "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.0\\fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
     "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.5.1\\fluentvalidation.dependencyinjectionextensions.11.5.1.nupkg.sha512",
+    "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\mediatr\\12.4.1\\mediatr.12.4.1.nupkg.sha512",
+    "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
     "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\9.0.0-rc.1.24431.7\\microsoft.extensions.dependencyinjection.9.0.0-rc.1.24431.7.nupkg.sha512",
     "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\9.0.0-rc.1.24431.7\\microsoft.extensions.dependencyinjection.abstractions.9.0.0-rc.1.24431.7.nupkg.sha512",
     "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\2.0.0\\microsoft.extensions.logging.abstractions.2.0.0.nupkg.sha512",

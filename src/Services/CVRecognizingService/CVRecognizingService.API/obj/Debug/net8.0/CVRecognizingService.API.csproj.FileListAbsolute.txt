@@ -65,3 +65,5 @@ D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.API\bin
 D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.API\bin\Debug\net8.0\FluentValidation.dll
 D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.API\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
 D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.API\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll
+D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.API\bin\Debug\net8.0\MediatR.dll
+D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.API\bin\Debug\net8.0\MediatR.Contracts.dll

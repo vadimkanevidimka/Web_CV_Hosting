@@ -7,8 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ValueObjects\**" />
+    <EmbeddedResource Remove="ValueObjects\**" />
+    <None Remove="ValueObjects\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="CSharpFunctionalExtensions" Version="3.0.0" />
     <PackageReference Include="MongoDB.Driver" Version="2.28.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DTOs\Incoming\" />
   </ItemGroup>
 
 </Project>

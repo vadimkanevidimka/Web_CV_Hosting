@@ -1,15 +1,15 @@
 using DotnetGeminiSDK;
-using CVRecognizingService.Domain.Entities;
-using CVRecognizingService.Domain.Abstracts.Repo;
-using CVRecognizingService.Infrastructure.DataAccess.Repositories;
 using CVRecognizingService.Application.ServiceExctensions;
+using CVRecognizingService.Infrastructure.DataAccess.ServiceExctensions;
+using CVRecognizingService.API.Midleware.Exceptions;
+using CVRecognizingService.Application.Commands.Document.Create;
 
 var builder = WebApplication.CreateBuilder(args);
 
 ///Config database service with Repositories
+builder.Services.AddRepositories();
 
 var mongoConnectionString = builder.Configuration.GetConnectionString("MongoDb");
-builder.Services.AddTransient<IRepository<BaseDocument>, DocumentRepository>();
 
 if(!string.IsNullOrEmpty(mongoConnectionString))
     builder.Services.AddMongoDB(mongoConnectionString);
@@ -33,6 +33,13 @@ builder.Services.AddValidation();
 ///
 builder.Services.AddServices();
 
+
+
+///Config CQRS
+///
+builder.Services.AddMediatR(config => 
+    config.RegisterServicesFromAssembly(typeof(CreateDocumentCommandHandler).Assembly));
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -47,6 +54,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseExceptionHandlerMiddleware();
 
 app.UseHttpsRedirection();
 

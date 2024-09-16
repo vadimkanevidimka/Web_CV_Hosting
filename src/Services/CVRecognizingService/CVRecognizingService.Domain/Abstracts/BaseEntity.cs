@@ -5,6 +5,8 @@ namespace CVRecognizingService.Domain.Abstracts
 {
     public class BaseEntity 
     {
-        [BsonId] public ObjectId Id { get; private set; } = ObjectId.GenerateNewId();
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public ObjectId Id { get; set; } = ObjectId.GenerateNewId();
     }
 }
