@@ -1,3 +1,17 @@
+db.ProcessedData.find()
+db.ProcessedStatus.remove({})
+db.ProcessingLog.remove({})
+db.ProcessedData.remove({})
+db.Documents.remove({})
+db.Documents.remove([])
+db.Documents.find()
+db.ProcessedData.find()
+db.Documents.find()
+use Documents
+db.ProcessedData.find()
+use Documents
+db.Documents.find()
+use Documents
 db.Documents.find()
 db.Documents.find({_id:ObjectId('66e84e309c394fabafbd75bb')})
 db.Documents.find({"_id":"ObjectId('66e84e309c394fabafbd75bb')"})

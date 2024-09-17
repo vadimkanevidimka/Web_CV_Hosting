@@ -1,42 +1,43 @@
 ﻿using Newtonsoft.Json;
 using System.Net;
 
-namespace CVRecognizingService.API.Midleware.Exceptions
+namespace CVRecognizingService.API.Midleware.Exceptions;
+
+public class ExceptionHandlerMiddleware
 {
-    public class ExceptionHandlerMiddleware
+    private readonly RequestDelegate _next;
+
+    public ExceptionHandlerMiddleware(RequestDelegate next)
     {
-        private readonly RequestDelegate _next;
+        _next = next;
+    }
 
-        public ExceptionHandlerMiddleware(RequestDelegate next)
+    public async Task Invoke(HttpContext context)
+    {
+        try
         {
-            _next = next;
+            await _next.Invoke(context);
         }
-
-        public async Task Invoke(HttpContext context)
+        catch (Exception ex)
         {
-            try
-            {
-                await _next.Invoke(context);
-            }
-            catch (Exception ex)
-            {
-                await HandleExceptionMessageAsync(context, ex).ConfigureAwait(false);
-            }
+            await HandleExceptionMessageAsync(context, ex).ConfigureAwait(false);
         }
-        private static Task HandleExceptionMessageAsync(HttpContext context, Exception exception)
+    }
+    private static Task HandleExceptionMessageAsync(
+        HttpContext context, 
+        Exception exception)
+    {
+        context.Response.ContentType = "application/json";
+        int statusCode = (int)HttpStatusCode.InternalServerError;
+
+        var result = JsonConvert.SerializeObject(new
         {
-            context.Response.ContentType = "application/json";
-            int statusCode = (int)HttpStatusCode.InternalServerError;
+            StatusCode = statusCode,
+            ErrorMessage = exception.Message
+        });
 
-            var result = JsonConvert.SerializeObject(new
-            {
-                StatusCode = statusCode,
-                ErrorMessage = exception.Message
-            });
-
-            context.Response.ContentType = "application/json";
-            context.Response.StatusCode = statusCode;
-            return context.Response.WriteAsync(result);
-        }
+        context.Response.ContentType = "application/json";
+        context.Response.StatusCode = statusCode;
+        return context.Response.WriteAsync(result);
     }
 }

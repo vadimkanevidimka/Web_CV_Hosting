@@ -1,4 +1,4 @@
-﻿using CVRecognizingService.Domain.Abstracts;
+﻿using CVRecognizingService.Domain.Exeptions;
 
 namespace Events_Web_application.Application.Services.Exceptions
 {

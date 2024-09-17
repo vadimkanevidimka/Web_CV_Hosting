@@ -15,6 +15,8 @@ using CVRecognizingService.Domain.Enums;
 using CVRecognizingService.Domain.Exeptions;
 using CVRecognizingService.Infrastructure.DataAccess.Repositories;
 using Events_Web_application.Application.Services.Exceptions;
+using System.Text.Json;
+using CVRecognizingService.Domain.DTOs.Incoming;
 
 namespace CVRecognizingService.Application.Services.Implementation
 {
@@ -133,16 +135,7 @@ namespace CVRecognizingService.Application.Services.Implementation
         /// <exception cref="ServiceException"></exception>
         public async Task<BaseDocument> AddDocument(IFormFile file, CancellationToken cancellationToken)
         {
-            _document = new BaseDocument
-                    (
-                        file.ContentType,
-                        file.FileName,
-                        file.Name,
-                        file.Length,
-                        DateTime.Now,
-                       //new User("Vadim", "vadimdd5@gmail.com", "Admin")
-                       new User()
-                    );
+            _document = new BaseDocument(file.ContentType, file.FileName, file.Name, file.Length, DateTime.Now, new User());
             _docstatus = new ProcessingStatus(_document.Id, DateTime.Now);
 
             try
@@ -178,22 +171,41 @@ namespace CVRecognizingService.Application.Services.Implementation
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
         /// <exception cref="ServiceException"></exception>
-        public async Task<BaseDocument> GetById(ObjectId id, CancellationToken cancellationToken){
+        public async Task<BaseDocument> GetById(ObjectId id, CancellationToken cancellationToken)
+        {
             if (id == ObjectId.Empty) throw new ServiceException(nameof(GetById), id, "Id is not correct or not found");
             return await _documentRepository.Get(id, cancellationToken);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        /// <exception cref="ServiceException"></exception>
         public async Task<long> Delete(ObjectId id, CancellationToken cancellationToken)
         {
             if (id == ObjectId.Empty) throw new ServiceException(nameof(GetById), id, "Id is not correct or not found");
             return await _documentRepository.Delete(id, cancellationToken);
         }
 
-        public async Task<IEnumerable<BaseDocument>> GetDocuments(CancellationToken cancellationToken){
+        public async Task<Root> GetDataFromDocument(ObjectId id, CancellationToken cancellationToken)
+        {
+            if (id == ObjectId.Empty) throw new ServiceException(nameof(GetById), id, "Id is not correct or not found");
+            var result = await _processedDataRepository.GetDataByDocId(id, cancellationToken);
+
+            var rootelement = JsonSerializer.Deserialize<Root>(result.StructuredData);
+            return rootelement;
+        }
+
+        public async Task<IEnumerable<BaseDocument>> GetDocuments(CancellationToken cancellationToken)
+        {
             return await _documentRepository.GetAll(cancellationToken);
         }
 
-        private async void UpdateDocumentState(CancellationToken cancellationToken, DocumentState state){
+        private async void UpdateDocumentState(CancellationToken cancellationToken, DocumentState state)
+        {
             _docstatus.Status = state;
             _docstatus.UpdatedAt = DateTime.Now;
             await _processingStatusRepository.Update(_docstatus, cancellationToken);

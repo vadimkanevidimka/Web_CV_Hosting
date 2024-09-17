@@ -10,8 +10,8 @@ public class GenericRepository<T> : IRepository<T> where T : BaseEntity
 {
     private readonly IMongoClient _mdbclient;
     protected KeyValuePair<string, string> _database_collection;
-    private IMongoDatabase _db;
-    private IMongoCollection<T> _collection;
+    protected IMongoDatabase _db;
+    protected IMongoCollection<T> _collection;
 
     public GenericRepository(IMongoClient client)
     {
@@ -74,7 +74,7 @@ public class GenericRepository<T> : IRepository<T> where T : BaseEntity
         return 1;
     }
 
-    private void GetDataBaseContext()
+    protected void GetDataBaseContext()
     {
         if (DataBaseMap.Map.TryGetValue(typeof(T), out _database_collection))
             _db = _mdbclient.GetDatabase(_database_collection.Key);

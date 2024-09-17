@@ -1,73 +1,80 @@
-﻿using CSharpFunctionalExtensions;
+﻿using CVRecognizingService.Application.Commands.Document;
 using CVRecognizingService.Application.Commands.Document.Create;
-using CVRecognizingService.Application.Services.Implementation;
+using CVRecognizingService.Application.Queries.Documents;
+using CVRecognizingService.Application.Queries.Root;
 using CVRecognizingService.Application.Services.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace CVRecognizingService.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class DocumentController : Controller
+    public class DocumentsController : Controller
     {
         private readonly ILogger _logger;
-        private readonly DocumentService _documentService;
         private readonly IMediator _mediator;
-        public DocumentController(
-            ILogger<DocumentController> logger,
+        public DocumentsController(
+            ILogger<DocumentsController> logger,
             IService documentService, IMediator mediator)
         {
             _logger = logger;
-            _documentService = (DocumentService)documentService;
             _mediator = (Mediator)mediator;
         }
 
         [HttpPost("upload")]
-        public async Task<IActionResult> Upload([FromForm]CreateDocumentCommand command, CancellationToken cancellationToken = default)
+        public async Task<IActionResult> Upload(
+            [FromForm]CreateDocumentCommand command, 
+            CancellationToken cancellationToken = default)
         {
             var result = await _mediator.Send(command, cancellationToken);
-            return result.IsSuccess ? Ok() : BadRequest();
+
+            _logger.LogInformation("Document has been sucessfully uploaded");
+
+            return result.IsSuccess ? Created() : BadRequest();
+        }
+
+        [HttpGet("getall")]
+        public async Task<IActionResult> GetAll(
+            [FromQuery]GetAllDocumentsQuery query,
+            CancellationToken cancellationToken = default)
+        {
+            var result = await _mediator.Send(query, cancellationToken);
+
+            _logger.LogInformation("Documents were obtained");
+
+            return result.Count() != 0 ? Ok(result) : NotFound();
         }
 
         [HttpGet("get")]
-        public async Task<IActionResult> GetAll(CancellationToken cancellationToken = default)
+        public async Task<IActionResult> Get(
+            [FromQuery]GetDocumentByIdQuery query,
+            CancellationToken cancellationToken = default)
         {
-            try
-            {
-                return Ok(await _documentService.GetDocuments(cancellationToken));
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            var result = await _mediator.Send(query, cancellationToken);
+
+            _logger.LogInformation("Extended Document was obtained");
+
+            return result!=null ? Ok(result) : NotFound();
         }
 
-        [HttpGet("get/{id:length(24)}")]
-        public async Task<IActionResult> Get(string id, CancellationToken cancellationToken = default)
+        [HttpDelete("delete")]
+        public async Task<IActionResult> Delete(
+            [FromQuery]DeleteDocumentCommand command, 
+            CancellationToken cancellationToken = default)
         {
-            try
-            {
-                return Ok(await _documentService.GetById(ObjectId.Parse(id) ,cancellationToken));
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            var result = await _mediator.Send(command, cancellationToken);
+            return result ? Ok() : BadRequest();
         }
 
-        [HttpDelete("delete{id:length(24)}")]
-        public async Task<IActionResult> Delete(string id, CancellationToken cancellationToken = default)
+        [HttpGet("getfull")]
+        public async Task<IActionResult> GetFull(
+            [FromQuery]GetRootQuery query,
+            CancellationToken cancellationToken = default)
         {
-            try
-            {
-                return Ok(await _documentService.Delete(ObjectId.Parse(id),cancellationToken));
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            var result = await _mediator.Send(query, cancellationToken);
+            return result != null ? Ok(result) : BadRequest();
         }
     }
 }

@@ -13,7 +13,7 @@ public static class ServiceCollectionExctension
     public static IServiceCollection AddValidation(this IServiceCollection services)
     {
         services.AddScoped<IValidator<IFormFile>, FileValidator>();
-        services.AddScoped<IValidator<RootDocumentDto>, RootDocumentDtoValidator>();
+        services.AddScoped<IValidator<DocumentDto>, DocumentDtoValidator>();
         return services;
     }
 

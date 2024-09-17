@@ -1,16 +1,27 @@
-﻿using FluentValidation;
-using CVRecognizingService.Domain.DTOs.Outgoing;
+﻿using CVRecognizingService.Domain.DTOs.Outgoing;
+using FluentValidation;
 
 namespace CVRecognizingService.Application.FluentValidation
 {
-    internal class RootDocumentDtoValidator : AbstractValidator<RootDocumentDto>
+    internal class DocumentDtoValidator : AbstractValidator<DocumentDto>
     {
-        public RootDocumentDtoValidator() 
+        public DocumentDtoValidator() 
         {
-            RuleFor(x=>x.Document).NotNull().NotEmpty();
-            RuleFor(x=>x.ProcessedData).NotNull().NotEmpty();
-            RuleFor(x=>x.ProcessingLog).NotNull().NotEmpty();
-            RuleFor(x=>x.ProcessingStatus).NotNull().NotEmpty();
+            RuleFor(x=>x.Document)
+                .NotNull()
+                .NotEmpty();
+
+            RuleFor(x => x.ProcessedData)
+                .NotNull()
+                .NotEmpty();
+
+            RuleFor(x=>x.ProcessingLog)
+                .NotNull()
+                .NotEmpty();
+
+            RuleFor(x=>x.ProcessingStatus)
+                .NotNull()
+                .NotEmpty();
         }
     }
 }
