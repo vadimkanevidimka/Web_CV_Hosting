@@ -1,7 +1,6 @@
-﻿using CVRecognizingService.Application.Commands.Document;
-using CVRecognizingService.Application.Commands.Document.Create;
-using CVRecognizingService.Application.Queries.Documents;
-using CVRecognizingService.Application.Queries.Root;
+﻿using CVRecognizingService.Application.UseCases.Commands.Document;
+using CVRecognizingService.Application.UseCases.Queries.Documents;
+using CVRecognizingService.Application.UseCases.Queries.Root;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;

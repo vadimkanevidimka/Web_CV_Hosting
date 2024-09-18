@@ -14,10 +14,10 @@ D:\Web CV Hosting\src\Services\CVRecognizingService\bin\Debug\Swashbuckle.AspNet
 D:\Web CV Hosting\src\Services\CVRecognizingService\bin\Debug\Swashbuckle.AspNetCore.SwaggerUI.dll
 D:\Web CV Hosting\src\Services\CVRecognizingService\bin\Debug\Newtonsoft.Json.dll
 D:\Web CV Hosting\src\Services\CVRecognizingService\bin\Debug\MediatR.Contracts.dll
+D:\Web CV Hosting\src\Services\CVRecognizingService\bin\Debug\MongoDB.Bson.dll
 D:\Web CV Hosting\src\Services\CVRecognizingService\bin\Debug\CVRecognizingService.Infrastructure.dll
 D:\Web CV Hosting\src\Services\CVRecognizingService\bin\Debug\DotnetGeminiSDK.dll
 D:\Web CV Hosting\src\Services\CVRecognizingService\bin\Debug\FluentValidation.dll
-D:\Web CV Hosting\src\Services\CVRecognizingService\bin\Debug\MongoDB.Bson.dll
 D:\Web CV Hosting\src\Services\CVRecognizingService\bin\Debug\MongoDB.Driver.dll
 D:\Web CV Hosting\src\Services\CVRecognizingService\bin\Debug\UglyToad.PdfPig.DocumentLayoutAnalysis.dll
 D:\Web CV Hosting\src\Services\CVRecognizingService\bin\Debug\UglyToad.PdfPig.dll

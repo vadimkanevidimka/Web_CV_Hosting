@@ -1,8 +1,8 @@
 using CVRecognizingService.Application.ServiceExctensions;
 using CVRecognizingService.API.Midleware.Exceptions;
-using CVRecognizingService.Application.Commands.Document.Create;
 using CVRecognizingService.Application.Mappings;
 using System;
+using CVRecognizingService.Application.UseCases.Commands.Document;
 
 var builder = WebApplication.CreateBuilder(args);
 

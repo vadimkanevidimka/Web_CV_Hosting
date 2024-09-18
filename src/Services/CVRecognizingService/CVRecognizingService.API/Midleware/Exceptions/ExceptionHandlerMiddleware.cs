@@ -28,7 +28,16 @@ public class ExceptionHandlerMiddleware
         Exception exception)
     {
         context.Response.ContentType = "application/json";
-        int statusCode = (int)HttpStatusCode.InternalServerError;
+        int statusCode = 0;
+        switch (exception.Message)
+        {
+            case "Sequence contains no elements":
+                statusCode = (int)HttpStatusCode.NotFound;
+                break;
+            default:
+                statusCode = (int)HttpStatusCode.InternalServerError;
+                break;
+        }
 
         var result = JsonConvert.SerializeObject(new
         {
