@@ -1,0 +1,64 @@
+name: dockercompose4250425613545801051
+services:
+  cvrecognizingservice.api:
+    build:
+      context: D:\Web CV Hosting\src\Services\CVRecognizingService
+      dockerfile: CVRecognizingService.API/Dockerfile
+    container_name: cvrecognizingservice
+    depends_on:
+      mongodb:
+        condition: service_started
+        required: true
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    image: cvrecognizingservice
+    links:
+      - mongodb:mdb
+    networks:
+      cvrecognizing-web: null
+    ports:
+      - mode: ingress
+        target: 8080
+        published: "5000"
+        protocol: tcp
+      - mode: ingress
+        target: 8081
+        published: "5001"
+        protocol: tcp
+    volumes:
+      - type: bind
+        source: C:\Users\VadimkaNevidimka\AppData\Roaming/Microsoft/UserSecrets
+        target: /home/app/.microsoft/usersecrets
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: bind
+        source: C:\Users\VadimkaNevidimka\AppData\Roaming/ASP.NET/Https
+        target: /home/app/.aspnet/https
+        read_only: true
+        bind:
+          create_host_path: true
+  mongodb:
+    container_name: mongodb
+    environment:
+      MONGO_INITDB_ROOT_PASSWORD: admin
+      MONGO_INITDB_ROOT_USERNAME: admin
+    image: mongo:latest
+    networks:
+      cvrecognizing-web: null
+    ports:
+      - mode: ingress
+        target: 27017
+        published: "27017"
+        protocol: tcp
+    restart: always
+    volumes:
+      - type: bind
+        source: D:\Web CV Hosting\src\Services\CVRecognizingService\docker_data\mongodb
+        target: /data/db
+        bind:
+          create_host_path: true
+networks:
+  cvrecognizing-web:
+    name: dockercompose4250425613545801051_cvrecognizing-web
+    driver: bridge

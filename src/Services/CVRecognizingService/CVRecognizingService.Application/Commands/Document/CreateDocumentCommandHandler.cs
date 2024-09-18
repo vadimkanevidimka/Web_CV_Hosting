@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 namespace CVRecognizingService.Application.Commands.Document.Create;
 
 public class CreateDocumentCommandHandler 
-    : IRequestHandler<CreateDocumentCommand, Result>
+    : IRequestHandler<CreateDocumentCommand, string>
 {
     private readonly ILogger<CreateDocumentCommandHandler> _logger;
     private readonly DocumentService _documentService;
@@ -21,19 +21,20 @@ public class CreateDocumentCommandHandler
         _documentService = (DocumentService)documentService;
     }
 
-    public async Task<Result> Handle(
+    public async Task<string> Handle(
         CreateDocumentCommand request,
         CancellationToken cancellationToken)
     {
         try
         {
             _logger.LogInformation($"{request.File.FileName} started recognizing");
-            return Result.Success(await _documentService.AddDocument(request.File, cancellationToken));
+            var result = await _documentService.AddDocument(request.File, cancellationToken);
+            return result.Id.ToString();
         }
         catch (ServiceException ex)
         {
             _logger.LogInformation($"{request.File.FileName} finished recognizing with error: {ex.Value}");
-            return Result.Failure($"Failed service operation: {ex.Operation}, error: {ex.Message} with value: {ex.Value}");
+            return $"Failed service operation: {ex.Operation}, error: {ex.Message} with value: {ex.Value}";
         }
     }
 }

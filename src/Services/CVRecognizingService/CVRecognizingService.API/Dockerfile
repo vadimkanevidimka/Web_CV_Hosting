@@ -9,10 +9,13 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["*.csproj", "."]
-RUN dotnet restore
+COPY ["CVRecognizingService.API/CVRecognizingService.API.csproj", "CVRecognizingService.API/"]
+COPY ["CVRecognizingService.Application/CVRecognizingService.Application.csproj", "CVRecognizingService.Application/"]
+COPY ["CVRecognizingService.Domain/CVRecognizingService.Domain.csproj", "CVRecognizingService.Domain/"]
+COPY ["CVRecognizingService.Infrastructure/CVRecognizingService.Infrastructure.csproj", "CVRecognizingService.Infrastructure/"]
+RUN dotnet restore "./CVRecognizingService.API/./CVRecognizingService.API.csproj"
 COPY . .
-WORKDIR "/src/."
+WORKDIR "/src/CVRecognizingService.API"
 RUN dotnet build "./CVRecognizingService.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish

@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "jCd7J+mSNz+qOgehTZraU8JyROxBGuOBr0FJ0I4BUGbTNOHtb7keQ2hzeC9LFUj2qOUazVNSriCqQ1PUso6JHg==",
+  "dgSpecHash": "NFeD+ccajwOzJol3NQSGKtmlGIQYLwLujRq22o3sV2p+6kcMdx8paRsLvvGB+FNDQBlAvSIcbIiUBfMGRc2PQw==",
   "success": true,
   "projectFilePath": "D:\\Web CV Hosting\\src\\Services\\CVRecognizingService\\CVRecognizingService.API\\CVRecognizingService.API.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
     "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",
     "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\csharpfunctionalextensions\\3.0.0\\csharpfunctionalextensions.3.0.0.nupkg.sha512",
@@ -18,6 +19,8 @@
     "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\9.0.0-rc.1.24431.7\\microsoft.extensions.dependencyinjection.9.0.0-rc.1.24431.7.nupkg.sha512",
     "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\9.0.0-rc.1.24431.7\\microsoft.extensions.dependencyinjection.abstractions.9.0.0-rc.1.24431.7.nupkg.sha512",
     "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\2.0.0\\microsoft.extensions.logging.abstractions.2.0.0.nupkg.sha512",
+    "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
+    "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
     "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\microsoft.netcore.platforms\\5.0.0\\microsoft.netcore.platforms.5.0.0.nupkg.sha512",
     "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.19.5\\microsoft.visualstudio.azure.containers.tools.targets.1.19.5.nupkg.sha512",
@@ -36,7 +39,7 @@
     "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.4.0\\swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512",
     "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\system.memory\\4.5.5\\system.memory.4.5.5.nupkg.sha512",
-    "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512",
+    "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\system.security.accesscontrol\\5.0.0\\system.security.accesscontrol.5.0.0.nupkg.sha512",
     "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\system.security.principal.windows\\5.0.0\\system.security.principal.windows.5.0.0.nupkg.sha512",
     "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\zstdsharp.port\\0.7.3\\zstdsharp.port.0.7.3.nupkg.sha512"

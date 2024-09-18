@@ -1,8 +1,8 @@
-using DotnetGeminiSDK;
 using CVRecognizingService.Application.ServiceExctensions;
-using CVRecognizingService.Infrastructure.DataAccess.ServiceExctensions;
 using CVRecognizingService.API.Midleware.Exceptions;
 using CVRecognizingService.Application.Commands.Document.Create;
+using CVRecognizingService.Application.Mappings;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,10 +18,7 @@ if(!string.IsNullOrEmpty(mongoConnectionString))
 
 ///Config AI service
 ///
-builder.Services.AddGeminiClient(config =>
-{
-    config.ApiKey = builder.Configuration.GetSection("API_KEY").Value;
-});
+builder.Services.AddGeminiAI(builder.Configuration.GetSection("API_KEY").Value);
 
 
 ///Confin validation services
@@ -33,13 +30,19 @@ builder.Services.AddValidation();
 ///
 builder.Services.AddServices();
 
+///Config AutoMapper
+///
+builder.Services.AddAutoMapper(config =>
+{
+    config.AddProfile<MappingProfile>();
+});
+
 
 
 ///Config CQRS
 ///
 builder.Services.AddMediatR(config => 
     config.RegisterServicesFromAssembly(typeof(CreateDocumentCommandHandler).Assembly));
-
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();

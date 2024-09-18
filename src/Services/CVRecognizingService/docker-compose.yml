@@ -1,0 +1,42 @@
+version: "3.8"
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+    # volumes:
+    #   - ./docker_data/mongodb:/data/db
+    ports:
+      - "27017:27017"
+    restart: always
+    networks:
+      - cvrecognizing-web
+
+  cvrecognizingservice.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    # volumes:
+    #   - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+    #   - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+    image: ${DOCKER_REGISTRY-}cvrecognizingservice
+    build:
+      context: .
+      dockerfile: CVRecognizingService.API/Dockerfile
+    container_name: cvrecognizingservice
+    ports:
+      - "5000:8080"
+      - "5001:8081"
+    links:  
+      - "mongodb:mdb"
+    depends_on: 
+      - mongodb
+    networks:
+      - cvrecognizing-web
+
+
+networks:
+  cvrecognizing-web:
+    driver: bridge
