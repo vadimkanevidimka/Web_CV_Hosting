@@ -40,3 +40,5 @@ D:\Web CV Hosting\src\Services\CVRecognizingService\bin\Debug\CVRecognizingServi
 D:\Web CV Hosting\src\Services\CVRecognizingService\obj\Debug\docker-compose.dcproj.AssemblyReference.cache
 D:\Web CV Hosting\src\Services\CVRecognizingService\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache
 D:\Web CV Hosting\src\Services\CVRecognizingService\obj\Debug\docker-compose.dcproj.CopyComplete
+D:\Web CV Hosting\src\Services\CVRecognizingService\bin\Debug\Microsoft.Extensions.Options.dll
+D:\Web CV Hosting\src\Services\CVRecognizingService\bin\Debug\Microsoft.Extensions.Primitives.dll

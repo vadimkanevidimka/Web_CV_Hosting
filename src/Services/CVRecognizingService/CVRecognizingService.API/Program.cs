@@ -1,8 +1,7 @@
 using CVRecognizingService.Application.ServiceExctensions;
 using CVRecognizingService.API.Midleware.Exceptions;
 using CVRecognizingService.Application.Mappings;
-using System;
-using CVRecognizingService.Application.UseCases.Commands.Document;
+using CVRecognizingService.Application.UseCases.Commands.Documents;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,10 +10,10 @@ builder.Services.AddRepositories();
 
 var mongoConnectionString = builder.Configuration.GetConnectionString("MongoDb");
 
-if(!string.IsNullOrEmpty(mongoConnectionString))
-    builder.Services.AddMongoDB(mongoConnectionString);
-
-
+//if(!string.IsNullOrEmpty(mongoConnectionString))
+//    builder.Services.AddMongoDB(mongoConnectionString);
+builder.Services.AddDbConnectionSettings(builder.Configuration);
+builder.Services.AddDbContext();
 
 ///Config AI service
 ///

@@ -8,7 +8,7 @@ public static class RepositoriesExtension
 {
     public static IServiceCollection AddRepositories(this IServiceCollection services)
     {
-        services.AddScoped<IRepository<BaseDocument>, DocumentRepository>();
+        services.AddScoped<IRepository<Document>, DocumentRepository>();
         services.AddScoped<IRepository<ProcessingStatus>, ProcessingStatusRepository>();
         services.AddScoped<IRepository<ProcessedData>, ProcessedDataRepository>();
         services.AddScoped<IRepository<ProcessingLog>, ProcessingLogRepository>();

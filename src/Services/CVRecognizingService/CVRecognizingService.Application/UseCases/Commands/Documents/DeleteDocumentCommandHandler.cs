@@ -5,18 +5,18 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using MongoDB.Bson;
 
-namespace CVRecognizingService.Application.UseCases.Commands.Document
+namespace CVRecognizingService.Application.UseCases.Commands.Documents
 {
-    internal class DeleteDocumentCommandHandler
+    public class DeleteDocumentCommandHandler
         : IRequestHandler<DeleteDocumentCommand, bool>
     {
 
         private readonly ILogger<DeleteDocumentCommandHandler> _logger;
-        private readonly IRepository<BaseDocument> _documentRepository;
+        private readonly IRepository<Domain.Entities.Document> _documentRepository;
 
         public DeleteDocumentCommandHandler(
             ILogger<DeleteDocumentCommandHandler> logger,
-            IRepository<BaseDocument> documentRepository)
+            IRepository<Domain.Entities.Document> documentRepository)
         {
             _logger = logger;
             _documentRepository = documentRepository;

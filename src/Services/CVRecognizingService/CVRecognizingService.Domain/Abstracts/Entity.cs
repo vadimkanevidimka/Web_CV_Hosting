@@ -3,7 +3,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace CVRecognizingService.Domain.Abstracts
 {
-    public class BaseEntity 
+    public abstract class Entity : IEntity
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]

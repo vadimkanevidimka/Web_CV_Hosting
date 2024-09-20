@@ -15,7 +15,7 @@ using DotnetGeminiSDK.Client.Interfaces;
 using FluentValidation.Results;
 using FluentValidation;
 
-namespace CVRecognizingService.Application.UseCases.Commands.Document;
+namespace CVRecognizingService.Application.UseCases.Commands.Documents;
 
 public class CreateDocumentCommandHandler
     : IRequestHandler<CreateDocumentCommand, string>
@@ -35,14 +35,14 @@ public class CreateDocumentCommandHandler
 
     private event Update OnUpdate;
     private delegate void Update(CancellationToken cancellationToken, DocumentState state);
-    private BaseDocument? _document;
+    private Document? _document;
     private ProcessingStatus? _docstatus;
 
     public CreateDocumentCommandHandler(
         IGeminiClient geminiClient,
         IValidator<IFormFile> fileValidator,
         ILogger<CreateDocumentCommandHandler> logger,
-        IRepository<BaseDocument> documentRepository,
+        IRepository<Document> documentRepository,
         IRepository<ProcessingStatus> processingStatusRepository,
         IRepository<ProcessedData> processedDataRepository,
         IRepository<ProcessingLog> processedLogRepository)
@@ -74,7 +74,7 @@ public class CreateDocumentCommandHandler
         }
     }
 
-    private async Task<long> AddFileToDataBase(BaseDocument document, CancellationToken cancellationToken)
+    private async Task<long> AddFileToDataBase(Document document, CancellationToken cancellationToken)
     {
         if (document == null) throw new NullObjectException(nameof(document));
 
@@ -122,7 +122,7 @@ public class CreateDocumentCommandHandler
         await _processingStatusRepository.Update(_docstatus, cancellationToken);
     }
 
-    public async Task<BaseDocument> AddDocument(IFormFile file, CancellationToken cancellationToken)
+    public async Task<Document> AddDocument(IFormFile file, CancellationToken cancellationToken)
     {
         try
         {
@@ -134,7 +134,7 @@ public class CreateDocumentCommandHandler
             }
 
 
-            _document = new BaseDocument(file.ContentType, file.FileName, file.Name, file.Length, DateTime.Now, new User());
+            _document = new Document(file.ContentType, file.FileName, file.Name, file.Length, DateTime.Now, new User());
             _docstatus = new ProcessingStatus(_document.Id, DateTime.Now);
 
             await _processingStatusRepository.Add(_docstatus, cancellationToken);

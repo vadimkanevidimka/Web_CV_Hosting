@@ -1,4 +1,4 @@
-﻿using CVRecognizingService.Application.UseCases.Commands.Document;
+﻿using CVRecognizingService.Application.UseCases.Commands.Documents;
 using CVRecognizingService.Application.UseCases.Queries.Documents;
 using CVRecognizingService.Application.UseCases.Queries.Root;
 using MediatR;

@@ -9,7 +9,7 @@ public class MappingProfile
 {
     public MappingProfile()
     {
-        CreateMap<BaseDocumentDto, BaseDocument>()
+        CreateMap<BaseDocumentDto, Document>()
             .ReverseMap()
             .ForMember(docDto => docDto.Id, ops => ops.MapFrom(doc => doc.Id.ToString()))
             .ForMember(docDto => docDto.UserId, ops => ops.MapFrom(doc => doc.User.Id.ToString()));

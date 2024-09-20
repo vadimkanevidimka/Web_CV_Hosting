@@ -4,7 +4,7 @@ using CVRecognizingService.Domain.Abstracts;
 namespace CVRecognizingService.Domain.Entities;
 
 public class ProcessedData 
-    : BaseEntity
+    : Entity, IEntity
 {
     public ProcessedData(ObjectId documentId, string? structuredData, DateTime processedAt)
     {

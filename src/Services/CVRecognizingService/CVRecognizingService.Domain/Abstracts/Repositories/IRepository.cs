@@ -2,7 +2,7 @@
 
 namespace CVRecognizingService.Domain.Abstracts.Repo;
 
-public interface IRepository<T> where T : class
+public interface IRepository<T> where T : IEntity
 {
     public Task<IEnumerable<T>> GetAll(CancellationToken cancellationToken);
     public Task<T> Get(ObjectId id, CancellationToken cancellationToken);

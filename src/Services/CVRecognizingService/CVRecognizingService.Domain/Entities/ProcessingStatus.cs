@@ -4,7 +4,8 @@ using CVRecognizingService.Domain.Abstracts;
 
 namespace CVRecognizingService.Domain.Entities;
 
-public class ProcessingStatus : BaseEntity
+public class ProcessingStatus 
+    : Entity, IEntity
 {
     public ProcessingStatus(ObjectId documentId, DateTime updatedAt)
     {

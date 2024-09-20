@@ -137,3 +137,5 @@ D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Tests\o
 D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Tests\obj\Debug\net8.0\CVRecognizingService.Tests.pdb
 D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Tests\obj\Debug\net8.0\CVRecognizingService.Tests.genruntimeconfig.cache
 D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Tests\obj\Debug\net8.0\ref\CVRecognizingService.Tests.dll
+D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Tests\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Tests\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll

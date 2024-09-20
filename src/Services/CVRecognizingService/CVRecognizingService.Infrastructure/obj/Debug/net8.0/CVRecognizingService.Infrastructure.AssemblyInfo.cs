@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CVRecognizingService.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+127254a854eb382db0023fcda08e15029a98d1b7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e0723753b374272584d227628b921ff39c5e8abc")]
 [assembly: System.Reflection.AssemblyProductAttribute("CVRecognizingService.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CVRecognizingService.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

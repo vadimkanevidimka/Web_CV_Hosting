@@ -2,10 +2,10 @@
 
 namespace CVRecognizingService.Domain.Entities;
 
-public class BaseDocument 
-    : BaseEntity
+public class Document 
+    : Entity, IEntity
 {
-    public BaseDocument(
+    public Document(
         string contentType,
         string fileName,
         string filePath,

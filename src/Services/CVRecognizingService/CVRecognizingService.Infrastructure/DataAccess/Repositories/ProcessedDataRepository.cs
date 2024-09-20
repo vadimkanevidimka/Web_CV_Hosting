@@ -1,21 +1,21 @@
 ﻿using CVRecognizingService.Domain.Abstracts.Repo;
 using CVRecognizingService.Domain.Entities;
+using CVRecognizingService.Infrastructure.DataAccess.DBContext;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace CVRecognizingService.Infrastructure.DataAccess.Repositories;
 public class ProcessedDataRepository : GenericRepository<ProcessedData>, IRepository<ProcessedData>
 {
-    public ProcessedDataRepository(IMongoClient client) : base(client) {}
+    private readonly DbContext _dbContext;
+    public ProcessedDataRepository(DbContext dbContext) : base(dbContext) {}
 
     public async Task<ProcessedData> GetDataByDocId(ObjectId id, CancellationToken cancellationToken)
     {
-        GetDataBaseContext();
-
         var builder = Builders<ProcessedData>.Filter;
         var findfilter = builder.Eq("DocumentId", id);
 
-        var data = await _collection.Find(findfilter).FirstAsync();
+        var data = await _dbContext.ProcessedDatas.Find(findfilter).FirstAsync();
         return data;
     }
 }

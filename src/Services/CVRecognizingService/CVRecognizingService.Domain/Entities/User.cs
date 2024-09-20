@@ -3,7 +3,7 @@
 namespace CVRecognizingService.Domain.Entities;
 
 public class User 
-    : BaseEntity
+    : Entity, IEntity
 {
     public User(string name, string email, string role)
     {
