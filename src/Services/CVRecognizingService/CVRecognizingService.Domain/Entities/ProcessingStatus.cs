@@ -12,10 +12,7 @@ public class ProcessingStatus
         DocumentId = documentId;
         UpdatedAt = updatedAt;
     }
-
-    //[BsonRepresentation(BsonType.String)]
-    //public Guid Id { get; private set; } = Guid.NewGuid();
     public ObjectId DocumentId { get; private set; }
-    public DocumentState Status { get; set; } = DocumentState.Pending;  // Статус обработки (например, "Pending", "Processing", "Completed", "Error")
-    public DateTime UpdatedAt { get; set; } = DateTime.UtcNow; // Время последнего обновления статуса
+    public DocumentState Status { get; set; } = DocumentState.Pending;
+    public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
 }

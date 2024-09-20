@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using CVRecognizingService.Domain.Abstracts;
 using CVRecognizingService.Domain.Abstracts.Repo;
 using CVRecognizingService.Domain.DTOs.Outgoing;
 using CVRecognizingService.Domain.Entities;
@@ -17,6 +16,7 @@ internal class GetAllDocumentsQueryHandler
     private readonly IMapper _mapper;
 
     public GetAllDocumentsQueryHandler(
+
         ILogger<GetAllDocumentsQueryHandler> logger,
         IRepository<Document> documentRepository,
         IMapper mapper)
@@ -27,6 +27,6 @@ internal class GetAllDocumentsQueryHandler
     }
     public async Task<IEnumerable<BaseDocumentDto>> Handle(GetAllDocumentsQuery request, CancellationToken cancellationToken)
     {
-        return _mapper.Map<IEnumerable<Document>, IEnumerable<BaseDocumentDto>>(await _documentRepository.GetAll(cancellationToken));
+        return _mapper.Map<IEnumerable<Document>, IEnumerable<BaseDocumentDto>>(await _documentRepository.GetAllAsync(cancellationToken));
     }
 }

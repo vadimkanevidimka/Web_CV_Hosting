@@ -36,6 +36,6 @@ public class GetDocumentByIdQueryHandler
     public async Task<Document> GetById(ObjectId id, CancellationToken cancellationToken)
     {
         if (id == ObjectId.Empty) throw new ServiceException(nameof(GetById), id, "Id is not correct or not found");
-        return await _documentRepository.Get(id, cancellationToken);
+        return await _documentRepository.GetByIdAsync(id, cancellationToken);
     }
 }

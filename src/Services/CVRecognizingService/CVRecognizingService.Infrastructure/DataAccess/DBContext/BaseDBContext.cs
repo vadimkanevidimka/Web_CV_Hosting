@@ -1,7 +1,5 @@
-﻿using CVRecognizingService.Domain.Abstracts;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using MongoDB.Driver;
-using System.Diagnostics.Contracts;
 
 namespace CVRecognizingService.Infrastructure.DataAccess.DBContext
 {

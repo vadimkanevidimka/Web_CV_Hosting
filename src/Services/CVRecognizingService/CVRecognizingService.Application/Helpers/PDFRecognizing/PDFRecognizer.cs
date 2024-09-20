@@ -21,7 +21,6 @@ public class PDFRecognizer
 
                 var rawText = page.Text;
             }
-
         }
     }
 }

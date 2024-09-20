@@ -12,9 +12,7 @@ public class ProcessedData
         StructuredData = structuredData;
         ProcessedAt = processedAt;
     }
-    //[BsonRepresentation(BsonType.String)]
-    //public Guid Id { get; private set; } = Guid.NewGuid();
-    public ObjectId DocumentId { get; private set; }             // Идентификатор документа
-    public string StructuredData { get; private set; } = string.Empty; // Структурированные данные в формате JSON
-    public DateTime ProcessedAt { get; private set; } = DateTime.UtcNow; // Время завершения обработки
+    public ObjectId DocumentId { get; private set; }
+    public string StructuredData { get; private set; } = string.Empty;
+    public DateTime ProcessedAt { get; private set; } = DateTime.UtcNow;
 }
