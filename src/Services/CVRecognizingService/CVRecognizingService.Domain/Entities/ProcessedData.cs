@@ -1,21 +1,18 @@
 ﻿using MongoDB.Bson;
+using CVRecognizingService.Domain.Abstracts;
 
 namespace CVRecognizingService.Domain.Entities
 {
-    public class ProcessedData
+    public class ProcessedData : BaseEntity
     {
-        public ProcessedData(ObjectId documentId, string? structuredData, DateTime processedAt, BaseDocument? document)
+        public ProcessedData(ObjectId documentId, string? structuredData, DateTime processedAt)
         {
             DocumentId = documentId;
             StructuredData = structuredData;
             ProcessedAt = processedAt;
-            Document = document;
         }
-
-        public ObjectId Id { get; private set; } = ObjectId.GenerateNewId();   // Уникальный идентификатор результата обработки
         public ObjectId DocumentId { get; private set; }             // Идентификатор документа
         public string StructuredData { get; private set; } = string.Empty; // Структурированные данные в формате JSON
         public DateTime ProcessedAt { get; private set; } = DateTime.UtcNow; // Время завершения обработки
-        public BaseDocument? Document { get; private set; }
     }
 }
