@@ -1,0 +1,13 @@
+D:\Web CV Hosting\src\Services\JWTAuthenticationManager\bin\Debug\net8.0\JWTAuthenticationManager.deps.json
+D:\Web CV Hosting\src\Services\JWTAuthenticationManager\bin\Debug\net8.0\JWTAuthenticationManager.dll
+D:\Web CV Hosting\src\Services\JWTAuthenticationManager\bin\Debug\net8.0\JWTAuthenticationManager.pdb
+D:\Web CV Hosting\src\Services\JWTAuthenticationManager\obj\Debug\net8.0\JWTAuthenticationManager.csproj.AssemblyReference.cache
+D:\Web CV Hosting\src\Services\JWTAuthenticationManager\obj\Debug\net8.0\JWTAuthenticationManager.GeneratedMSBuildEditorConfig.editorconfig
+D:\Web CV Hosting\src\Services\JWTAuthenticationManager\obj\Debug\net8.0\JWTAuthenticationManager.AssemblyInfoInputs.cache
+D:\Web CV Hosting\src\Services\JWTAuthenticationManager\obj\Debug\net8.0\JWTAuthenticationManager.AssemblyInfo.cs
+D:\Web CV Hosting\src\Services\JWTAuthenticationManager\obj\Debug\net8.0\JWTAuthenticationManager.csproj.CoreCompileInputs.cache
+D:\Web CV Hosting\src\Services\JWTAuthenticationManager\obj\Debug\net8.0\JWTAuthenticationManager.sourcelink.json
+D:\Web CV Hosting\src\Services\JWTAuthenticationManager\obj\Debug\net8.0\JWTAuthenticationManager.dll
+D:\Web CV Hosting\src\Services\JWTAuthenticationManager\obj\Debug\net8.0\refint\JWTAuthenticationManager.dll
+D:\Web CV Hosting\src\Services\JWTAuthenticationManager\obj\Debug\net8.0\JWTAuthenticationManager.pdb
+D:\Web CV Hosting\src\Services\JWTAuthenticationManager\obj\Debug\net8.0\ref\JWTAuthenticationManager.dll

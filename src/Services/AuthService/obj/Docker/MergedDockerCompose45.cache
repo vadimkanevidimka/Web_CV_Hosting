@@ -1,0 +1,127 @@
+name: dockercompose863603208291876537
+services:
+  auth-service:
+    build:
+      context: D:\Web CV Hosting\src\Services\AuthService\AuthService.Presentation
+      dockerfile: Dockerfile
+      args:
+        BUILD_CONFIGURATION: Debug
+      labels:
+        com.microsoft.created-by: visual-studio
+        com.microsoft.visual-studio.project-name: AuthService.Presentation
+      target: base
+    container_name: aspnet-auth-service
+    depends_on:
+      postgres:
+        condition: service_started
+        required: true
+    entrypoint:
+      - tail
+      - -f
+      - /dev/null
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS: "true"
+      ConnectionStrings__Postgres: Host=postgres;Port=5432;Database=identity;Username=admin;Password=admin_password
+      DOTNET_USE_POLLING_FILE_WATCHER: "1"
+      NUGET_FALLBACK_PACKAGES: ""
+    image: authservice:dev
+    labels:
+      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /.nuget/packages  "/app/bin/Debug/net8.0/AuthService.Presentation.dll"'
+      com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof dotnet); then kill $$PID; fi"
+      com.microsoft.visualstudio.debuggee.program: dotnet
+      com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    links:
+      - postgres:pg
+    networks:
+      app-network: null
+    ports:
+      - mode: ingress
+        target: 8080
+        published: "1000"
+        protocol: tcp
+    restart: always
+    tty: true
+    volumes:
+      - type: bind
+        source: D:\Web CV Hosting\src\Services\AuthService\AuthService.Presentation
+        target: /app
+        bind:
+          create_host_path: true
+      - type: bind
+        source: D:\Web CV Hosting\src\Services\AuthService\AuthService.Presentation
+        target: /src
+        bind:
+          create_host_path: true
+      - type: bind
+        source: C:\Users\VadimkaNevidimka\vsdbg\vs2017u5
+        target: /remote_debugger
+        bind:
+          create_host_path: true
+      - type: bind
+        source: C:\Users\VadimkaNevidimka\.nuget\packages\
+        target: /.nuget/packages
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: bind
+        source: C:\Users\VadimkaNevidimka\AppData\Roaming/ASP.NET/Https
+        target: /root/.aspnet/https
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: bind
+        source: C:\Users\VadimkaNevidimka\AppData\Roaming/ASP.NET/Https
+        target: /home/app/.aspnet/https
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: bind
+        source: C:\Users\VadimkaNevidimka\AppData\Roaming/Microsoft/UserSecrets
+        target: /root/.microsoft/usersecrets
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: bind
+        source: C:\Users\VadimkaNevidimka\AppData\Roaming/Microsoft/UserSecrets
+        target: /home/app/.microsoft/usersecrets
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: bind
+        source: D:\VS\MSBuild\Sdks\Microsoft.Docker.Sdk\tools\TokenService.Proxy\linux-x64\net6.0
+        target: /TokenService.Proxy
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: bind
+        source: D:\VS\MSBuild\Sdks\Microsoft.Docker.Sdk\tools\HotReloadProxy\linux-x64\net6.0
+        target: /HotReloadProxy
+        read_only: true
+        bind:
+          create_host_path: true
+      - type: bind
+        source: D:\VS\Common7\IDE\CommonExtensions\Microsoft\HotReload
+        target: /HotReloadAgent
+        read_only: true
+        bind:
+          create_host_path: true
+  postgres:
+    container_name: postgres-db
+    environment:
+      POSTGRES_DB: identity
+      POSTGRES_PASSWORD: admin_password
+      POSTGRES_USER: admin
+    image: postgres:latest
+    networks:
+      app-network: null
+    ports:
+      - mode: ingress
+        target: 5432
+        published: "5432"
+        protocol: tcp
+    restart: always
+networks:
+  app-network:
+    name: dockercompose863603208291876537_app-network
+    driver: bridge

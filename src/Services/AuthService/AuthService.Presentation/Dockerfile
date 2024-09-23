@@ -7,16 +7,18 @@ EXPOSE 8080
 EXPOSE 8081
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
-ARG BUILD_CONFIGURATION=Release
+ARG BUILD_CONFIGURATION=Development
 WORKDIR /src
-COPY ["AuthService.Presentation.csproj", "."]
-RUN dotnet restore "./././AuthService.Presentation.csproj"
+COPY ["/AuthService.Presentation/AuthService.Presentation.csproj", "AuthService.Presentation/"]
+COPY ["/AuthService.Buisness/AuthService.Buisness.csproj", "AuthService.Buisness/"]
+COPY ["/AuthService.DataAccess/AuthService.DataAccess.csproj", "AuthService.DataAccess/"]
+RUN dotnet restore "./AuthService.Presentation/./AuthService.Presentation.csproj"
 COPY . .
-WORKDIR "/src/."
+WORKDIR "/src/AuthService.Presentation"
 RUN dotnet build "./AuthService.Presentation.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
+ARG BUILD_CONFIGURATION=Development
 RUN dotnet publish "./AuthService.Presentation.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final

@@ -1,0 +1,12 @@
+D:\Web CV Hosting\src\Services\AuthService\AuthService.Buisness\bin\Debug\net8.0\AuthService.Buisness.deps.json
+D:\Web CV Hosting\src\Services\AuthService\AuthService.Buisness\bin\Debug\net8.0\AuthService.Buisness.dll
+D:\Web CV Hosting\src\Services\AuthService\AuthService.Buisness\bin\Debug\net8.0\AuthService.Buisness.pdb
+D:\Web CV Hosting\src\Services\AuthService\AuthService.Buisness\obj\Debug\net8.0\AuthService.Buisness.GeneratedMSBuildEditorConfig.editorconfig
+D:\Web CV Hosting\src\Services\AuthService\AuthService.Buisness\obj\Debug\net8.0\AuthService.Buisness.AssemblyInfoInputs.cache
+D:\Web CV Hosting\src\Services\AuthService\AuthService.Buisness\obj\Debug\net8.0\AuthService.Buisness.AssemblyInfo.cs
+D:\Web CV Hosting\src\Services\AuthService\AuthService.Buisness\obj\Debug\net8.0\AuthService.Buisness.csproj.CoreCompileInputs.cache
+D:\Web CV Hosting\src\Services\AuthService\AuthService.Buisness\obj\Debug\net8.0\AuthService.Buisness.sourcelink.json
+D:\Web CV Hosting\src\Services\AuthService\AuthService.Buisness\obj\Debug\net8.0\AuthService.Buisness.dll
+D:\Web CV Hosting\src\Services\AuthService\AuthService.Buisness\obj\Debug\net8.0\refint\AuthService.Buisness.dll
+D:\Web CV Hosting\src\Services\AuthService\AuthService.Buisness\obj\Debug\net8.0\AuthService.Buisness.pdb
+D:\Web CV Hosting\src\Services\AuthService\AuthService.Buisness\obj\Debug\net8.0\ref\AuthService.Buisness.dll

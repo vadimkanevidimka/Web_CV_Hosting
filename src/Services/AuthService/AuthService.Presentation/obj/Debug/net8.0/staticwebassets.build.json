@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "N7+sNwqmWTfdxJuRvv8SfrSMqjrOQUVuiFU47Ub0EaA=",
+  "Source": "AuthService.Presentation",
+  "BasePath": "_content/AuthService.Presentation",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres-db
+    restart: always
+    environment:
+      POSTGRES_DB: identity
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin_password
+    ports:
+      - "5432:5432"
+    # volumes:
+    #   - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  auth-service:
+    build: /AuthService.Presentation
+    container_name: aspnet-auth-service
+    restart: always
+    ports:
+      - "1000:8080"
+    depends_on:
+      - postgres
+    links:
+      - "postgres:pg"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__Postgres: "Host=postgres;Port=5432;Database=identity;Username=admin;Password=admin_password"
+    networks:
+      - app-network
+
+# volumes:
+#   postgres_data:
+
+networks:
+  app-network:
+    driver: bridge

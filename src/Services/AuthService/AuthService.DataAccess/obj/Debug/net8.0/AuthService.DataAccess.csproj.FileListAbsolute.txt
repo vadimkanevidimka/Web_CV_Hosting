@@ -1,0 +1,15 @@
+D:\Web CV Hosting\src\Services\AuthService\AuthService.DataAccess\bin\Debug\net8.0\AuthService.DataAccess.deps.json
+D:\Web CV Hosting\src\Services\AuthService\AuthService.DataAccess\bin\Debug\net8.0\AuthService.DataAccess.runtimeconfig.json
+D:\Web CV Hosting\src\Services\AuthService\AuthService.DataAccess\bin\Debug\net8.0\AuthService.DataAccess.dll
+D:\Web CV Hosting\src\Services\AuthService\AuthService.DataAccess\bin\Debug\net8.0\AuthService.DataAccess.pdb
+D:\Web CV Hosting\src\Services\AuthService\AuthService.DataAccess\obj\Debug\net8.0\AuthService.DataAccess.csproj.AssemblyReference.cache
+D:\Web CV Hosting\src\Services\AuthService\AuthService.DataAccess\obj\Debug\net8.0\AuthService.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+D:\Web CV Hosting\src\Services\AuthService\AuthService.DataAccess\obj\Debug\net8.0\AuthService.DataAccess.AssemblyInfoInputs.cache
+D:\Web CV Hosting\src\Services\AuthService\AuthService.DataAccess\obj\Debug\net8.0\AuthService.DataAccess.AssemblyInfo.cs
+D:\Web CV Hosting\src\Services\AuthService\AuthService.DataAccess\obj\Debug\net8.0\AuthService.DataAccess.csproj.CoreCompileInputs.cache
+D:\Web CV Hosting\src\Services\AuthService\AuthService.DataAccess\obj\Debug\net8.0\AuthService.DataAccess.sourcelink.json
+D:\Web CV Hosting\src\Services\AuthService\AuthService.DataAccess\obj\Debug\net8.0\AuthService.DataAccess.dll
+D:\Web CV Hosting\src\Services\AuthService\AuthService.DataAccess\obj\Debug\net8.0\refint\AuthService.DataAccess.dll
+D:\Web CV Hosting\src\Services\AuthService\AuthService.DataAccess\obj\Debug\net8.0\AuthService.DataAccess.pdb
+D:\Web CV Hosting\src\Services\AuthService\AuthService.DataAccess\obj\Debug\net8.0\AuthService.DataAccess.genruntimeconfig.cache
+D:\Web CV Hosting\src\Services\AuthService\AuthService.DataAccess\obj\Debug\net8.0\ref\AuthService.DataAccess.dll
