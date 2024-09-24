@@ -5,11 +5,10 @@ services:
       context: D:\Web CV Hosting\src\Services\CVRecognizingService
       dockerfile: CVRecognizingService.API/Dockerfile
       args:
-        BUILD_CONFIGURATION: Debug
+        BUILD_CONFIGURATION: Release
       labels:
         com.microsoft.created-by: visual-studio
         com.microsoft.visual-studio.project-name: CVRecognizingService.API
-      target: base
     container_name: cvrecognizingservice
     depends_on:
       mongodb:
@@ -20,13 +19,11 @@ services:
       - -f
       - /dev/null
     environment:
-      ASPNETCORE_ENVIRONMENT: Realease
-      ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS: "true"
-      DOTNET_USE_POLLING_FILE_WATCHER: "1"
-      NUGET_FALLBACK_PACKAGES: ""
-    image: cvrecognizingservice:dev
+      ASPNETCORE_ENVIRONMENT: Development
+    image: cvrecognizingservice
     labels:
-      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /.nuget/packages  "/app/bin/Debug/net8.0/CVRecognizingService.API.dll"'
+      com.microsoft.visual-studio.project-name: CVRecognizingService.API
+      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /.nuget/packages  "/app/CVRecognizingService.API.dll"'
       com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof dotnet); then kill $$PID; fi"
       com.microsoft.visualstudio.debuggee.program: dotnet
       com.microsoft.visualstudio.debuggee.workingdirectory: /app
@@ -46,8 +43,13 @@ services:
     tty: true
     volumes:
       - type: bind
-        source: C:\Users\VadimkaNevidimka\AppData\Roaming/Microsoft/UserSecrets
-        target: /home/app/.microsoft/usersecrets
+        source: C:\Users\VadimkaNevidimka\vsdbg\vs2017u5
+        target: /remote_debugger
+        bind:
+          create_host_path: true
+      - type: bind
+        source: C:\Users\VadimkaNevidimka\AppData\Roaming/ASP.NET/Https
+        target: /root/.aspnet/https
         read_only: true
         bind:
           create_host_path: true
@@ -58,35 +60,14 @@ services:
         bind:
           create_host_path: true
       - type: bind
-        source: D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.API
-        target: /app
-        bind:
-          create_host_path: true
-      - type: bind
-        source: D:\Web CV Hosting\src\Services\CVRecognizingService
-        target: /src
-        bind:
-          create_host_path: true
-      - type: bind
-        source: C:\Users\VadimkaNevidimka\vsdbg\vs2017u5
-        target: /remote_debugger
-        bind:
-          create_host_path: true
-      - type: bind
-        source: C:\Users\VadimkaNevidimka\.nuget\packages\
-        target: /.nuget/packages
-        read_only: true
-        bind:
-          create_host_path: true
-      - type: bind
-        source: C:\Users\VadimkaNevidimka\AppData\Roaming/ASP.NET/Https
-        target: /root/.aspnet/https
+        source: C:\Users\VadimkaNevidimka\AppData\Roaming/Microsoft/UserSecrets
+        target: /root/.microsoft/usersecrets
         read_only: true
         bind:
           create_host_path: true
       - type: bind
         source: C:\Users\VadimkaNevidimka\AppData\Roaming/Microsoft/UserSecrets
-        target: /root/.microsoft/usersecrets
+        target: /home/app/.microsoft/usersecrets
         read_only: true
         bind:
           create_host_path: true
@@ -122,12 +103,6 @@ services:
         published: "27017"
         protocol: tcp
     restart: always
-    volumes:
-      - type: bind
-        source: D:\Web CV Hosting\src\Services\CVRecognizingService\docker_data\mongodb
-        target: /data/db
-        bind:
-          create_host_path: true
 networks:
   cvrecognizing-web:
     name: dockercompose4250425613545801051_cvrecognizing-web

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CVRecognizingService.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a7ffcda2ca6142b1b6e66b38e88257552bb048b6")]
 [assembly: System.Reflection.AssemblyProductAttribute("CVRecognizingService.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CVRecognizingService.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

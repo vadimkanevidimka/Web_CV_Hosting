@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CVRecognizingService.Infras
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{E66253D1-12BE-404B-8193-E9C2C33A0F9C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CVRecognizingService.Tests", "CVRecognizingService.Tests\CVRecognizingService.Tests.csproj", "{27218AD5-69C2-42DB-8D2F-8FB669043C2E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{E66253D1-12BE-404B-8193-E9C2C33A0F9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E66253D1-12BE-404B-8193-E9C2C33A0F9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E66253D1-12BE-404B-8193-E9C2C33A0F9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27218AD5-69C2-42DB-8D2F-8FB669043C2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27218AD5-69C2-42DB-8D2F-8FB669043C2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27218AD5-69C2-42DB-8D2F-8FB669043C2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27218AD5-69C2-42DB-8D2F-8FB669043C2E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
