@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthService.DataAccess", "AuthService.DataAccess\AuthService.DataAccess.csproj", "{34B5AB99-310F-4761-A604-762FC4C7F461}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthService.Buisness", "AuthService.Buisness\AuthService.Buisness.csproj", "{BD0AF386-5C00-4006-AD79-47C4252991DE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{34B5AB99-310F-4761-A604-762FC4C7F461} = {34B5AB99-310F-4761-A604-762FC4C7F461}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthService.Presentation", "AuthService.Presentation\AuthService.Presentation.csproj", "{884742BE-0077-4951-BA6A-89C779028156}"
 	ProjectSection(ProjectDependencies) = postProject

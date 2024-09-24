@@ -1,4 +1,4 @@
-﻿using AuthService.DataAccess.DBContext;
+﻿using AuthService.DataAccess.Persistans.DbContext;
 using Microsoft.EntityFrameworkCore;
 
 namespace AuthService.Presentation.Exstensions

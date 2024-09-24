@@ -44,3 +44,7 @@ D:\Web CV Hosting\src\Services\AuthService\bin\Debug\Microsoft.IdentityModel.Pro
 D:\Web CV Hosting\src\Services\AuthService\bin\Debug\Microsoft.IdentityModel.Logging.dll
 D:\Web CV Hosting\src\Services\AuthService\bin\Debug\Microsoft.IdentityModel.Abstractions.dll
 D:\Web CV Hosting\src\Services\AuthService\bin\Debug\AuthService.Buisness.pdb
+D:\Web CV Hosting\src\Services\AuthService\bin\Debug\FluentValidation.dll
+D:\Web CV Hosting\src\Services\AuthService\bin\Debug\FluentValidation.DependencyInjectionExtensions.dll
+D:\Web CV Hosting\src\Services\AuthService\bin\Debug\FluentValidation.AspNetCore.dll
+D:\Web CV Hosting\src\Services\AuthService\bin\Debug\AutoMapper.dll

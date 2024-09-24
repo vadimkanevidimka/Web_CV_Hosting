@@ -150,3 +150,9 @@ D:\Web CV Hosting\src\Services\AuthService\AuthService.Presentation\bin\Debug\ne
 D:\Web CV Hosting\src\Services\AuthService\AuthService.Presentation\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 D:\Web CV Hosting\src\Services\AuthService\AuthService.Presentation\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
 D:\Web CV Hosting\src\Services\AuthService\AuthService.Presentation\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+D:\Web CV Hosting\src\Services\AuthService\AuthService.Presentation\bin\Debug\net8.0\FluentValidation.dll
+D:\Web CV Hosting\src\Services\AuthService\AuthService.Presentation\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
+D:\Web CV Hosting\src\Services\AuthService\AuthService.Presentation\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll
+D:\Web CV Hosting\src\Services\AuthService\AuthService.Presentation\bin\Debug\net8.0\MediatR.dll
+D:\Web CV Hosting\src\Services\AuthService\AuthService.Presentation\bin\Debug\net8.0\MediatR.Contracts.dll
+D:\Web CV Hosting\src\Services\AuthService\AuthService.Presentation\bin\Debug\net8.0\AutoMapper.dll

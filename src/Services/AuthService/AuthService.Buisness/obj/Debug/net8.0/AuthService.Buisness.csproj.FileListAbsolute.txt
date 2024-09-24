@@ -10,3 +10,7 @@ D:\Web CV Hosting\src\Services\AuthService\AuthService.Buisness\obj\Debug\net8.0
 D:\Web CV Hosting\src\Services\AuthService\AuthService.Buisness\obj\Debug\net8.0\refint\AuthService.Buisness.dll
 D:\Web CV Hosting\src\Services\AuthService\AuthService.Buisness\obj\Debug\net8.0\AuthService.Buisness.pdb
 D:\Web CV Hosting\src\Services\AuthService\AuthService.Buisness\obj\Debug\net8.0\ref\AuthService.Buisness.dll
+D:\Web CV Hosting\src\Services\AuthService\AuthService.Buisness\obj\Debug\net8.0\AuthService.Buisness.csproj.AssemblyReference.cache
+D:\Web CV Hosting\src\Services\AuthService\AuthService.Buisness\bin\Debug\net8.0\AuthService.DataAccess.dll
+D:\Web CV Hosting\src\Services\AuthService\AuthService.Buisness\bin\Debug\net8.0\AuthService.DataAccess.pdb
+D:\Web CV Hosting\src\Services\AuthService\AuthService.Buisness\obj\Debug\net8.0\AuthService.Buisness.csproj.CopyComplete
