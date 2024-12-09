@@ -16,6 +16,21 @@ services:
     networks:
       - app-network
 
+  hangfire:
+    image: postgres:latest
+    container_name: hangfire-db
+    restart: always
+    environment:
+      POSTGRES_DB: hangfire
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin_password
+    ports:
+      - "5433:5432"
+    # volumes:
+    #   - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
   auth-service:
     build: /AuthService.Presentation
     container_name: aspnet-auth-service
@@ -24,11 +39,14 @@ services:
       - "1000:8080"
     depends_on:
       - postgres
+      - hangfire
     links:
       - "postgres:pg"
+      - "hangfire:hf"
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       ConnectionStrings__Postgres: "Host=postgres;Port=5432;Database=identity;Username=admin;Password=admin_password"
+      ConnectionStrings__HangFireDatabse: "Host=hangfire;Port=5432;Database=hangfire;Username=admin;Password=admin_password"
     networks:
       - app-network
 

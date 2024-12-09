@@ -2,52 +2,69 @@ using CVRecognizingService.Application.ServiceExctensions;
 using CVRecognizingService.API.Midleware.Exceptions;
 using CVRecognizingService.Application.Mappings;
 using CVRecognizingService.Application.UseCases.Commands.Documents;
+using Microsoft.AspNetCore.Authentication.BearerToken;
+using CVRecognizingService.API.Policies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Microsoft.AspNetCore.Builder;
 
 var builder = WebApplication.CreateBuilder(args);
 
-///Config database service with Repositories
+//Config database service with Repositories
 builder.Services.AddRepositories();
 
 var mongoConnectionString = builder.Configuration.GetConnectionString("MongoDb");
 
-//if(!string.IsNullOrEmpty(mongoConnectionString))
-//    builder.Services.AddMongoDB(mongoConnectionString);
 builder.Services.AddDbConnectionSettings(builder.Configuration);
 builder.Services.AddDbContext();
 
-///Config AI service
-///
+//Config AI service
 builder.Services.AddGeminiAI(builder.Configuration.GetSection("API_KEY").Value);
 
-
-///Confin validation services
-///
+//Confin validation services
 builder.Services.AddValidation();
 
 
-///Config Controllers Services
-///
+//Config Controllers Services
 builder.Services.AddServices();
 
-///Config AutoMapper
-///
+//Config AutoMapper
 builder.Services.AddAutoMapper(config =>
 {
     config.AddProfile<MappingProfile>();
 });
 
-
-
-///Config CQRS
-///
+//Config CQRS
 builder.Services.AddMediatR(config => 
     config.RegisterServicesFromAssembly(typeof(CreateDocumentCommandHandler).Assembly));
 builder.Services.AddControllers();
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidIssuer = builder.Configuration["JwtSettings:Issuer"],
+        IssuerSigningKey = new SymmetricSecurityKey(
+            Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:AccessTokenSecret"]!)),
+        ValidateActor = true,
+        ValidateIssuer = true,
+        ValidateAudience = false,
+        RequireExpirationTime = true,
+        ValidateIssuerSigningKey = true
+    };
+});
+builder.Services.AddAuthorization(option =>
+{
+    option.AddPolicy(Policies.RequireStaff,
+        policy => policy.Requirements.Add(new RolesRequirement([Roles.Admin])));
+});
 
-
+builder.Services.AddSwagerWithAuth();
 
 var app = builder.Build();
 

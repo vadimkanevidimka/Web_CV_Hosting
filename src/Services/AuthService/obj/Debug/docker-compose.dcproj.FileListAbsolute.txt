@@ -48,3 +48,9 @@ D:\Web CV Hosting\src\Services\AuthService\bin\Debug\FluentValidation.dll
 D:\Web CV Hosting\src\Services\AuthService\bin\Debug\FluentValidation.DependencyInjectionExtensions.dll
 D:\Web CV Hosting\src\Services\AuthService\bin\Debug\FluentValidation.AspNetCore.dll
 D:\Web CV Hosting\src\Services\AuthService\bin\Debug\AutoMapper.dll
+D:\Web CV Hosting\src\Services\AuthService\bin\Debug\Hangfire.Core.dll
+D:\Web CV Hosting\src\Services\AuthService\bin\Debug\Newtonsoft.Json.dll
+D:\Web CV Hosting\src\Services\AuthService\bin\Debug\Hangfire.PostgreSql.dll
+D:\Web CV Hosting\src\Services\AuthService\bin\Debug\Hangfire.NetCore.dll
+D:\Web CV Hosting\src\Services\AuthService\bin\Debug\Hangfire.AspNetCore.dll
+D:\Web CV Hosting\src\Services\AuthService\bin\Debug\Dapper.dll

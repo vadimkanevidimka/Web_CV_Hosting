@@ -2,8 +2,12 @@
 using AuthService.DataAccess.Entities;
 using AuthService.DataAccess.Persistans;
 using AuthService.DataAccess.Persistans.DbContext;
+using AuthService.Presentation.Exstensions.HangFireDashboard;
 using AuthService.Presentation.Middlewares;
 using AuthService.Presentation.Policies;
+using Hangfire;
+using Hangfire.Dashboard;
+using Hangfire.Dashboard.;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
@@ -31,10 +35,20 @@ public static class PresentationExstension
         webApplication.MapControllers();
         webApplication.SwaggerStart();
         webApplication.SeedData();
+        webApplication.UseHangfireDashboard("/dashboard", 
+            new DashboardOptions()
+            {
+                Authorization = new[]{
+                    new LocalRequestsOnlyAuthorizationFilter()
+                }
+            });
+
         webApplication.UseMiddleware<ExceptionHandlingMiddleware>();
         webApplication.Run();
 
         return webApplication;
+
+
     }
 
     private static WebApplication DbInitialize(this WebApplication webApplication)

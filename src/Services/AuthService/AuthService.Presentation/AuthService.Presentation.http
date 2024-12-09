@@ -1,0 +1,5 @@
+﻿@AuthService.Presentation_HostAddress = http://localhost:5000
+
+GET {{AuthService.Presentation_HostAddress}}/Add-Deletion-Of-Unused-Tokens
+
+###

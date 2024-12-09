@@ -5,9 +5,8 @@ using AuthService.Buisness.Services.Implementations;
 using AuthService.Buisness.Services.Algorithms;
 using AuthService.Buisness.Validators;
 using AuthService.Buisness.MappingProfiles;
-using AuthService.DataAccess.Entities;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
+using Hangfire;
+using Hangfire.PostgreSql;
 
 namespace AuthService.Presentation.Exstensions;
 
@@ -19,6 +18,7 @@ public static class BusinessLogicExstension
         services.AddServices();
         services.AutoMapperConfigure();
         services.ValidationConfigure();
+        services.AddHangfireService(configuration);
 
         return services;
     }
@@ -34,6 +34,7 @@ public static class BusinessLogicExstension
     {
         services.AddScoped<TokensGenerator>();
         services.AddScoped<IAccountService, AccountService>();
+        services.AddScoped<IBackgroundRefreshTokenService, BackgroundRefreshTokenService>();
         return services;
     }
 
@@ -44,6 +45,21 @@ public static class BusinessLogicExstension
             typeof(TokenMappingProfile),
             typeof(UserMappingProfile)
         });
+
+        return services;
+    }
+
+    private static IServiceCollection AddHangfireService(this IServiceCollection services,
+        IConfiguration configuration)
+    {
+        services.AddHangfire(options =>
+        {
+            options.UseSimpleAssemblyNameTypeSerializer()
+                .UsePostgreSqlStorage(options =>
+                    options.UseNpgsqlConnection(configuration.GetConnectionString("HangFireDatabase")));
+        });
+        services.AddHangfireServer();
+        services.AddScoped<IBackgroundRefreshTokenService, BackgroundRefreshTokenService>();
 
         return services;
     }

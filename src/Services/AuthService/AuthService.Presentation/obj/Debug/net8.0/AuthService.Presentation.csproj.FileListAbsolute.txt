@@ -156,3 +156,10 @@ D:\Web CV Hosting\src\Services\AuthService\AuthService.Presentation\bin\Debug\ne
 D:\Web CV Hosting\src\Services\AuthService\AuthService.Presentation\bin\Debug\net8.0\MediatR.dll
 D:\Web CV Hosting\src\Services\AuthService\AuthService.Presentation\bin\Debug\net8.0\MediatR.Contracts.dll
 D:\Web CV Hosting\src\Services\AuthService\AuthService.Presentation\bin\Debug\net8.0\AutoMapper.dll
+D:\Web CV Hosting\src\Services\AuthService\AuthService.Presentation\bin\Debug\net8.0\Dapper.dll
+D:\Web CV Hosting\src\Services\AuthService\AuthService.Presentation\bin\Debug\net8.0\Hangfire.AspNetCore.dll
+D:\Web CV Hosting\src\Services\AuthService\AuthService.Presentation\bin\Debug\net8.0\Hangfire.Core.dll
+D:\Web CV Hosting\src\Services\AuthService\AuthService.Presentation\bin\Debug\net8.0\Hangfire.NetCore.dll
+D:\Web CV Hosting\src\Services\AuthService\AuthService.Presentation\bin\Debug\net8.0\Hangfire.PostgreSql.dll
+D:\Web CV Hosting\src\Services\AuthService\AuthService.Presentation\bin\Debug\net8.0\Hangfire.SqlServer.dll
+D:\Web CV Hosting\src\Services\AuthService\AuthService.Presentation\bin\Debug\net8.0\Newtonsoft.Json.dll

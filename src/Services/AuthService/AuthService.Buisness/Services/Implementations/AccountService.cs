@@ -44,13 +44,13 @@ public class AccountService
         var newUser = _mapper.Map<User>(userRegisterDto);
 
         var createUserResult = await _userManager.CreateAsync(newUser, userRegisterDto.Password);
-        var addToRoleResult = await _userManager.AddToRoleAsync(newUser, Roles.User);
-
 
         if (!createUserResult.Succeeded)
         {
             throw new CreationException(createUserResult.Errors.ToString());
         }
+
+        var addToRoleResult = await _userManager.AddToRoleAsync(newUser, Roles.User);
 
         if (!addToRoleResult.Succeeded)
         {

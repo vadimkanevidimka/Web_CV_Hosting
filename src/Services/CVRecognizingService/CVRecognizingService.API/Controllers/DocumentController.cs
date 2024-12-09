@@ -2,13 +2,14 @@
 using CVRecognizingService.Application.UseCases.Queries.Documents;
 using CVRecognizingService.Application.UseCases.Queries.Root;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 
 namespace CVRecognizingService.API.Controllers;
 
-[ApiController]
 [Route("api/[controller]")]
+[ApiController]
 public class DocumentsController : Controller
 {
     private readonly ILogger _logger;
@@ -22,8 +23,9 @@ public class DocumentsController : Controller
     }
 
     [HttpPost("upload")]
+    [Authorize]
     public async Task<IActionResult> Upload(
-        [FromForm]CreateDocumentCommand command, 
+        [FromBody]CreateDocumentCommand command, 
         CancellationToken cancellationToken = default)
     {
         var result = await _mediator.Send(command, cancellationToken);
@@ -60,6 +62,7 @@ public class DocumentsController : Controller
     }
 
     [HttpDelete("delete")]
+    [Authorize]
     public async Task<IActionResult> Delete(
         [FromQuery]DeleteDocumentCommand command, 
         CancellationToken cancellationToken = default)
@@ -69,6 +72,7 @@ public class DocumentsController : Controller
     }
 
     [HttpGet("getfull")]
+    [Authorize]
     public async Task<IActionResult> GetFull(
         [FromQuery]GetRootQuery query,
         CancellationToken cancellationToken = default)

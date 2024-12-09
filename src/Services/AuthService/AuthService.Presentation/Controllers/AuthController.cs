@@ -1,10 +1,8 @@
 ﻿using AuthService.Buisness.Dtos.Tokens;
 using AuthService.Buisness.Dtos.User;
 using AuthService.Buisness.Services.Interfaces;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.IdentityModel.Tokens.Jwt;
 
 namespace AuthService.Presentation.Controllers
 {
@@ -29,7 +27,7 @@ namespace AuthService.Presentation.Controllers
         }
 
         [HttpPost("token/refresh")]
-        [AllowAnonymous]
+        [Authorize]
         public async Task<IActionResult> RefreshToken(TokenRefreshRequest tokenRefreshRequest)
         {
             var token = await accountService.RefreshTokenAsync(tokenRefreshRequest);
