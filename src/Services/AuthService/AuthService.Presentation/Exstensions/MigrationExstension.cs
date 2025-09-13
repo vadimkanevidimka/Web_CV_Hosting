@@ -1,5 +1,7 @@
 ﻿using AuthService.DataAccess.Persistans.DbContext;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace AuthService.Presentation.Exstensions
 {

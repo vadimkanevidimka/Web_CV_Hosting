@@ -10,10 +10,11 @@
         "dependencies": {
           "AuthService.Buisness": "1.0.0",
           "AuthService.DataAccess": "1.0.0",
-          "AutoMapper": "13.0.1",
+          "AutoMapper": "15.0.1",
           "Hangfire": "1.8.14",
+          "Hangfire.Dashboard.Authorization": "3.1.0",
           "Hangfire.PostgreSql": "1.20.9",
-          "MediatR": "12.4.1",
+          "MediatR": "13.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.8",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.8",
           "Microsoft.EntityFrameworkCore.Design": "9.0.0-rc.1.24451.1",
@@ -25,14 +26,16 @@
           "AuthService.Presentation.dll": {}
         }
       },
-      "AutoMapper/13.0.1": {
+      "AutoMapper/15.0.1": {
         "dependencies": {
-          "Microsoft.Extensions.Options": "9.0.0-rc.1.24431.7"
+          "Microsoft.Extensions.Logging": "9.0.0-rc.1.24431.7",
+          "Microsoft.Extensions.Options": "9.0.0-rc.1.24431.7",
+          "Microsoft.IdentityModel.JsonWebTokens": "8.0.2"
         },
         "runtime": {
-          "lib/net6.0/AutoMapper.dll": {
-            "assemblyVersion": "13.0.0.0",
-            "fileVersion": "13.0.1.0"
+          "lib/net8.0/AutoMapper.dll": {
+            "assemblyVersion": "15.0.0.0",
+            "fileVersion": "15.0.1.0"
           }
         }
       },
@@ -44,35 +47,35 @@
           }
         }
       },
-      "FluentValidation/11.5.1": {
+      "FluentValidation/11.11.0": {
         "runtime": {
-          "lib/net7.0/FluentValidation.dll": {
+          "lib/net8.0/FluentValidation.dll": {
             "assemblyVersion": "11.0.0.0",
-            "fileVersion": "11.5.1.0"
+            "fileVersion": "11.11.0.0"
           }
         }
       },
-      "FluentValidation.AspNetCore/11.3.0": {
+      "FluentValidation.AspNetCore/11.3.1": {
         "dependencies": {
-          "FluentValidation": "11.5.1",
-          "FluentValidation.DependencyInjectionExtensions": "11.5.1"
+          "FluentValidation": "11.11.0",
+          "FluentValidation.DependencyInjectionExtensions": "11.11.0"
         },
         "runtime": {
           "lib/net6.0/FluentValidation.AspNetCore.dll": {
             "assemblyVersion": "11.0.0.0",
-            "fileVersion": "11.3.0.0"
+            "fileVersion": "11.3.1.0"
           }
         }
       },
-      "FluentValidation.DependencyInjectionExtensions/11.5.1": {
+      "FluentValidation.DependencyInjectionExtensions/11.11.0": {
         "dependencies": {
-          "FluentValidation": "11.5.1",
+          "FluentValidation": "11.11.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.0-rc.1.24431.7"
         },
         "runtime": {
           "lib/netstandard2.1/FluentValidation.DependencyInjectionExtensions.dll": {
             "assemblyVersion": "11.0.0.0",
-            "fileVersion": "11.5.1.0"
+            "fileVersion": "11.11.0.0"
           }
         }
       },
@@ -102,6 +105,18 @@
           "lib/netstandard2.0/Hangfire.Core.dll": {
             "assemblyVersion": "1.8.14.0",
             "fileVersion": "1.8.14.0"
+          }
+        }
+      },
+      "Hangfire.Dashboard.Authorization/3.1.0": {
+        "dependencies": {
+          "Hangfire.Core": "1.8.14",
+          "Owin": "1.0.0"
+        },
+        "runtime": {
+          "lib/net45/Hangfire.Dashboard.Authorization.dll": {
+            "assemblyVersion": "3.1.0.0",
+            "fileVersion": "3.1.0.0"
           }
         }
       },
@@ -152,15 +167,17 @@
           }
         }
       },
-      "MediatR/12.4.1": {
+      "MediatR/13.0.0": {
         "dependencies": {
           "MediatR.Contracts": "2.0.1",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.0-rc.1.24431.7"
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.0-rc.1.24431.7",
+          "Microsoft.Extensions.Logging": "9.0.0-rc.1.24431.7",
+          "Microsoft.IdentityModel.JsonWebTokens": "8.0.2"
         },
         "runtime": {
-          "lib/net6.0/MediatR.dll": {
-            "assemblyVersion": "12.0.0.0",
-            "fileVersion": "12.4.1.0"
+          "lib/net8.0/MediatR.dll": {
+            "assemblyVersion": "13.0.0.0",
+            "fileVersion": "13.0.0.0"
           }
         }
       },
@@ -848,6 +865,14 @@
           }
         }
       },
+      "Owin/1.0.0": {
+        "runtime": {
+          "lib/net40/Owin.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "Swashbuckle.AspNetCore/6.8.0": {
         "dependencies": {
           "Microsoft.Extensions.ApiDescription.Server": "6.0.5",
@@ -1045,10 +1070,10 @@
       "AuthService.Buisness/1.0.0": {
         "dependencies": {
           "AuthService.DataAccess": "1.0.0",
-          "AutoMapper": "13.0.1",
-          "FluentValidation.AspNetCore": "11.3.0",
+          "AutoMapper": "15.0.1",
+          "FluentValidation.AspNetCore": "11.3.1",
           "Hangfire": "1.8.14",
-          "MediatR": "12.4.1",
+          "MediatR": "13.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.8",
           "Microsoft.IdentityModel.Tokens": "8.0.2",
           "Microsoft.OpenApi": "1.6.21",
@@ -1056,16 +1081,23 @@
           "System.IdentityModel.Tokens.Jwt": "8.0.2"
         },
         "runtime": {
-          "AuthService.Buisness.dll": {}
+          "AuthService.Buisness.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "AuthService.DataAccess/1.0.0": {
         "dependencies": {
+          "Hangfire.Dashboard.Authorization": "3.1.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.8",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "9.0.0-rc.1"
         },
         "runtime": {
-          "AuthService.DataAccess.dll": {}
+          "AuthService.DataAccess.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }
@@ -1076,12 +1108,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "AutoMapper/13.0.1": {
+    "AutoMapper/15.0.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-/Fx1SbJ16qS7dU4i604Sle+U9VLX+WSNVJggk6MupKVkYvvBm4XqYaeFuf67diHefHKHs50uQIS2YEDFhPCakQ==",
-      "path": "automapper/13.0.1",
-      "hashPath": "automapper.13.0.1.nupkg.sha512"
+      "sha512": "sha512-kNo7iIAi4p4XxoEbfif2WUQtc6RTx+UteiRYPqCOKj+4q4+YaWono06qTxoHBy+0N1HdganA//k5p/VmWw2AMA==",
+      "path": "automapper/15.0.1",
+      "hashPath": "automapper.15.0.1.nupkg.sha512"
     },
     "Dapper/2.0.123": {
       "type": "package",
@@ -1090,26 +1122,26 @@
       "path": "dapper/2.0.123",
       "hashPath": "dapper.2.0.123.nupkg.sha512"
     },
-    "FluentValidation/11.5.1": {
+    "FluentValidation/11.11.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-0h1Q5lNOLLyYTWMJmyNoMqhY4CBRvvUWvJP1R4F2CnmmzuWwvB0A8aVmw5+lOuwYnwUwCRrdeMLbc81F38ahNQ==",
-      "path": "fluentvalidation/11.5.1",
-      "hashPath": "fluentvalidation.11.5.1.nupkg.sha512"
+      "sha512": "sha512-cyIVdQBwSipxWG8MA3Rqox7iNbUNUTK5bfJi9tIdm4CAfH71Oo5ABLP4/QyrUwuakqpUEPGtE43BDddvEehuYw==",
+      "path": "fluentvalidation/11.11.0",
+      "hashPath": "fluentvalidation.11.11.0.nupkg.sha512"
     },
-    "FluentValidation.AspNetCore/11.3.0": {
+    "FluentValidation.AspNetCore/11.3.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-jtFVgKnDFySyBlPS8bZbTKEEwJZnn11rXXJ2SQnjDhZ56rQqybBg9Joq4crRLz3y0QR8WoOq4iE4piV81w/Djg==",
-      "path": "fluentvalidation.aspnetcore/11.3.0",
-      "hashPath": "fluentvalidation.aspnetcore.11.3.0.nupkg.sha512"
+      "sha512": "sha512-FjkfrGGwC+25oH8QpX1ti3gxkFjDDtotkAQWyQz2CkwQwEfRKTANjhh77I79kY8dov2ydK1SY+e4jiOWsbbDdQ==",
+      "path": "fluentvalidation.aspnetcore/11.3.1",
+      "hashPath": "fluentvalidation.aspnetcore.11.3.1.nupkg.sha512"
     },
-    "FluentValidation.DependencyInjectionExtensions/11.5.1": {
+    "FluentValidation.DependencyInjectionExtensions/11.11.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-iWM0LS1MDYX06pcjMEQKqHirl2zkjHlNV23mEJSoR1IZI7KQmTa0RcTtGEJpj5+iHvBCfrzP2mYKM4FtRKVb+A==",
-      "path": "fluentvalidation.dependencyinjectionextensions/11.5.1",
-      "hashPath": "fluentvalidation.dependencyinjectionextensions.11.5.1.nupkg.sha512"
+      "sha512": "sha512-viTKWaMbL3yJYgGI0DiCeavNbE9UPMWFVK2XS9nYXGbm3NDMd0/L5ER4wBzmTtW3BYh3SrlSXm9RACiKZ6stlA==",
+      "path": "fluentvalidation.dependencyinjectionextensions/11.11.0",
+      "hashPath": "fluentvalidation.dependencyinjectionextensions.11.11.0.nupkg.sha512"
     },
     "Hangfire/1.8.14": {
       "type": "package",
@@ -1131,6 +1163,13 @@
       "sha512": "sha512-tj/+J8/UdaxydFX6VQr5IEyBtVbAOvkQ8X8tIQKwY9zlpmK83hP4iHEQQQ26zzGUpcE1HlPc6PBUv0NgUDXS3A==",
       "path": "hangfire.core/1.8.14",
       "hashPath": "hangfire.core.1.8.14.nupkg.sha512"
+    },
+    "Hangfire.Dashboard.Authorization/3.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-WSCTw2szdv01arMPRcrzoL56MvooA5+miXlH4xNDJayDNO1fQ1LntHIwl1rMXvrYKfrZhQD46NsxkUggyCxfWw==",
+      "path": "hangfire.dashboard.authorization/3.1.0",
+      "hashPath": "hangfire.dashboard.authorization.3.1.0.nupkg.sha512"
     },
     "Hangfire.NetCore/1.8.14": {
       "type": "package",
@@ -1160,12 +1199,12 @@
       "path": "humanizer.core/2.14.1",
       "hashPath": "humanizer.core.2.14.1.nupkg.sha512"
     },
-    "MediatR/12.4.1": {
+    "MediatR/13.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-0tLxCgEC5+r1OCuumR3sWyiVa+BMv3AgiU4+pz8xqTc+2q1WbUEXFOr7Orm96oZ9r9FsldgUtWvB2o7b9jDOaw==",
-      "path": "mediatr/12.4.1",
-      "hashPath": "mediatr.12.4.1.nupkg.sha512"
+      "sha512": "sha512-gR5vSoIINsXs86we38qdIfG62f6ngxT2sSaePsakJGHJIgLUDA7b41lujGXGWxX0hWyk8suajr2VKcAYSVMtdw==",
+      "path": "mediatr/13.0.0",
+      "hashPath": "mediatr.13.0.0.nupkg.sha512"
     },
     "MediatR.Contracts/2.0.1": {
       "type": "package",
@@ -1516,6 +1555,13 @@
       "sha512": "sha512-4vbkjFA/WlBMQ8+NlexQkw2IMj3Ft0Dni39YWbXUO/M13dV0UAAIYHoPpyVhTAIfR1y5TpaVTX9lx9JCkLRHEw==",
       "path": "npgsql.entityframeworkcore.postgresql/9.0.0-rc.1",
       "hashPath": "npgsql.entityframeworkcore.postgresql.9.0.0-rc.1.nupkg.sha512"
+    },
+    "Owin/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-OseTFniKmyp76mEzOBwIKGBRS5eMoYNkMKaMXOpxx9jv88+b6mh1rSaw43vjBOItNhaLFG3d0a20PfHyibH5sw==",
+      "path": "owin/1.0.0",
+      "hashPath": "owin.1.0.0.nupkg.sha512"
     },
     "Swashbuckle.AspNetCore/6.8.0": {
       "type": "package",

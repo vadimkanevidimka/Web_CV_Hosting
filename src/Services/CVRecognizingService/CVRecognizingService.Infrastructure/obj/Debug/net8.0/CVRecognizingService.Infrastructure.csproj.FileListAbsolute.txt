@@ -9,7 +9,7 @@ D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Infrast
 D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Infrastructure\obj\Debug\net8.0\CVRecognizingService.Infrastructure.AssemblyInfo.cs
 D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Infrastructure\obj\Debug\net8.0\CVRecognizingService.Infrastructure.csproj.CoreCompileInputs.cache
 D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Infrastructure\obj\Debug\net8.0\CVRecognizingService.Infrastructure.sourcelink.json
-D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Infrastructure\obj\Debug\net8.0\CVRecognizingService.Infrastructure.csproj.CopyComplete
+D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Infrastructure\obj\Debug\net8.0\CVRecogn.79AB303E.Up2Date
 D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Infrastructure\obj\Debug\net8.0\CVRecognizingService.Infrastructure.dll
 D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Infrastructure\obj\Debug\net8.0\refint\CVRecognizingService.Infrastructure.dll
 D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Infrastructure\obj\Debug\net8.0\CVRecognizingService.Infrastructure.pdb

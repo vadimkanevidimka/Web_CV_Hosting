@@ -1,14 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "C5JFtbEpOX7RUa+Ch36prI2vbRtVnvNaAcfFw8X+ajOmtXsS2nQPL+GmP76NCh9fsW97C6lLUG6TdN4eRkCpMQ==",
+  "dgSpecHash": "PK/EjR0Q6dU=",
   "success": true,
   "projectFilePath": "D:\\Web CV Hosting\\src\\Services\\AuthService\\AuthService.Presentation\\AuthService.Presentation.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
+    "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\automapper\\15.0.1\\automapper.15.0.1.nupkg.sha512",
     "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
-    "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\fluentvalidation\\11.5.1\\fluentvalidation.11.5.1.nupkg.sha512",
-    "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.0\\fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
-    "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.5.1\\fluentvalidation.dependencyinjectionextensions.11.5.1.nupkg.sha512",
+    "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\fluentvalidation\\11.11.0\\fluentvalidation.11.11.0.nupkg.sha512",
+    "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.1\\fluentvalidation.aspnetcore.11.3.1.nupkg.sha512",
+    "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.11.0\\fluentvalidation.dependencyinjectionextensions.11.11.0.nupkg.sha512",
     "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\hangfire\\1.8.14\\hangfire.1.8.14.nupkg.sha512",
     "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\hangfire.aspnetcore\\1.8.14\\hangfire.aspnetcore.1.8.14.nupkg.sha512",
     "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\hangfire.core\\1.8.14\\hangfire.core.1.8.14.nupkg.sha512",
@@ -17,7 +17,7 @@
     "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\hangfire.postgresql\\1.20.9\\hangfire.postgresql.1.20.9.nupkg.sha512",
     "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\hangfire.sqlserver\\1.8.14\\hangfire.sqlserver.1.8.14.nupkg.sha512",
     "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
-    "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\mediatr\\12.4.1\\mediatr.12.4.1.nupkg.sha512",
+    "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\mediatr\\13.0.0\\mediatr.13.0.0.nupkg.sha512",
     "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
     "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\8.0.8\\microsoft.aspnetcore.authentication.jwtbearer.8.0.8.nupkg.sha512",
     "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\8.0.8\\microsoft.aspnetcore.cryptography.internal.8.0.8.nupkg.sha512",
@@ -100,7 +100,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Пакет \"Hangfire.Dashboard.Authorization 3.1.0\" был восстановлен с помощью \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\", а не целевой платформы проекта \"net8.0\". Этот пакет может быть не полностью совместим с вашим проектом.",
+      "message": "Package 'Hangfire.Dashboard.Authorization 3.1.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
       "libraryId": "Hangfire.Dashboard.Authorization",
       "targetGraphs": [
         "net8.0"
@@ -110,7 +110,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Пакет \"Owin 1.0.0\" был восстановлен с помощью \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1\", а не целевой платформы проекта \"net8.0\". Этот пакет может быть не полностью совместим с вашим проектом.",
+      "message": "Package 'Owin 1.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
       "libraryId": "Owin",
       "targetGraphs": [
         "net8.0"

@@ -7,6 +7,8 @@ using AuthService.Buisness.Validators;
 using AuthService.Buisness.MappingProfiles;
 using Hangfire;
 using Hangfire.PostgreSql;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace AuthService.Presentation.Exstensions;
 
@@ -40,7 +42,10 @@ public static class BusinessLogicExstension
 
     private static IServiceCollection AutoMapperConfigure(this IServiceCollection services)
     {
-        services.AddAutoMapper(new[]
+        services.AddAutoMapper(cfg =>
+        {
+            cfg.AllowNullCollections = true;
+        },new[]
         {
             typeof(TokenMappingProfile),
             typeof(UserMappingProfile)

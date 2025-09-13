@@ -9,6 +9,7 @@ namespace CVRecognizingService.Application.ServiceExctensions
             services.AddGeminiClient(config =>
             {
                 config.ApiKey = API_KEY;
+                config.TextBaseUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash";
             });
             return services;
         }

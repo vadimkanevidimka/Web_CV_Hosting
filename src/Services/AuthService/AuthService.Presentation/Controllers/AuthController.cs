@@ -1,4 +1,5 @@
-﻿using AuthService.Buisness.Dtos.Tokens;
+﻿using System.Threading.Tasks;
+using AuthService.Buisness.Dtos.Tokens;
 using AuthService.Buisness.Dtos.User;
 using AuthService.Buisness.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -23,15 +24,30 @@ namespace AuthService.Presentation.Controllers
         public async Task<IActionResult> Login(UserLoginDto userLoginDto)
         {
             var tokens = await accountService.LoginAsync(userLoginDto);
-            return Ok(tokens);
+            
+            Response.Cookies.Append("key", tokens.AccessToken.Value);
+            Response.Cookies.Append("refreshkey", tokens.RefreshToken.Value);
+            
+            return Ok();
         }
 
         [HttpPost("token/refresh")]
         [Authorize]
-        public async Task<IActionResult> RefreshToken(TokenRefreshRequest tokenRefreshRequest)
+        public async Task<IActionResult> RefreshToken()
         {
-            var token = await accountService.RefreshTokenAsync(tokenRefreshRequest);
-            return Ok(token);
+            if (Request.Cookies.TryGetValue("refreshkey", out var token))
+            {
+                var tokens = await accountService.RefreshTokenAsync(new TokenRefreshRequest()
+                {
+                    RefreshToken = token
+                });
+                
+                Response.Cookies.Append("key", tokens.AccessToken.Value);
+                Response.Cookies.Append("refreshkey", tokens.RefreshToken.Value);
+                return Ok();
+            }
+
+            return ValidationProblem();
         }
 
         [HttpPut]

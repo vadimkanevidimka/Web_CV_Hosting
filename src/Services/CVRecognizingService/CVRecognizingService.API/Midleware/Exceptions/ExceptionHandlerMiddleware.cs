@@ -1,5 +1,8 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using System.Net;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace CVRecognizingService.API.Midleware.Exceptions;
 

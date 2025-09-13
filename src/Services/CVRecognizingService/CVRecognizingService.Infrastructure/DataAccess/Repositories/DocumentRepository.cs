@@ -6,5 +6,8 @@ namespace CVRecognizingService.Infrastructure.DataAccess.Repositories;
 
 public class DocumentRepository : GenericRepository<Document>, IRepository<Document>
 {
-    public DocumentRepository(DbContext dBContext) : base(dBContext) { }
+    public DocumentRepository(DbContext dBContext) : base(dBContext)
+    {
+        
+    }
 }

@@ -65,7 +65,7 @@ public class GenericRepository<TEntity> : IRepository<TEntity> where TEntity : I
         
         var elements = await _dbContext.GetCollection<TEntity>(typeof(TEntity).Name)
             .FindAsync(new BsonDocument());
-        return (IEnumerable<TEntity>) elements;
+        return elements.ToListAsync() as IEnumerable<TEntity>;
     }
 
     public async Task<long> Update(TEntity item, CancellationToken cancellationToken)

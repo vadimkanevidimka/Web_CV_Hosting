@@ -1,9 +1,14 @@
-﻿using CVRecognizingService.Application.UseCases.Commands.Documents;
+﻿using System;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using CVRecognizingService.Application.UseCases.Commands.Documents;
 using CVRecognizingService.Application.UseCases.Queries.Documents;
 using CVRecognizingService.Application.UseCases.Queries.Root;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
 
 namespace CVRecognizingService.API.Controllers;
@@ -25,7 +30,7 @@ public class DocumentsController : Controller
     [HttpPost("upload")]
     [Authorize]
     public async Task<IActionResult> Upload(
-        [FromBody]CreateDocumentCommand command, 
+        [FromForm]CreateDocumentCommand command,
         CancellationToken cancellationToken = default)
     {
         var result = await _mediator.Send(command, cancellationToken);

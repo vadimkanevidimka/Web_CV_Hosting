@@ -1,4 +1,6 @@
-﻿namespace CVRecognizingService.API.Midleware.Exceptions;
+﻿using Microsoft.AspNetCore.Builder;
+
+namespace CVRecognizingService.API.Midleware.Exceptions;
 
 public static class ExceptionHandlerMiddlewareExtensions
 {

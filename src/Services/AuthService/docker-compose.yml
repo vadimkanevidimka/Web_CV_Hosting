@@ -32,7 +32,9 @@ services:
       - app-network
 
   auth-service:
-    build: /AuthService.Presentation
+    build:
+      context: .
+      dockerfile: AuthService.Presentation/Dockerfile
     container_name: aspnet-auth-service
     restart: always
     ports:

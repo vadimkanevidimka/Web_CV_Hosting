@@ -1,13 +1,11 @@
 ﻿using AuthService.DataAccess.Entities;
-using AuthService.DataAccess.Persistans;
 using AuthService.DataAccess.Persistans.DbContext;
 using AuthService.DataAccess.Persistans.Repositories.Implementations;
 using AuthService.DataAccess.Persistans.Repositories.Interfaces;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace AuthService.Presentation.Exstensions;
 

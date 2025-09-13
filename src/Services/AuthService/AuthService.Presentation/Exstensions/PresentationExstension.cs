@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using AuthService.DataAccess.Entities;
 using AuthService.DataAccess.Persistans;
 using AuthService.DataAccess.Persistans.DbContext;
@@ -7,9 +8,12 @@ using AuthService.Presentation.Middlewares;
 using AuthService.Presentation.Policies;
 using Hangfire;
 using Hangfire.Dashboard;
-using Hangfire.Dashboard.;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 
 namespace AuthService.Presentation.Exstensions;
@@ -85,11 +89,20 @@ public static class PresentationExstension
                 RequireExpirationTime = true,
                 ValidateIssuerSigningKey = true
             };
+
+            options.Events = new JwtBearerEvents()
+            {
+                OnMessageReceived = c =>
+                {
+                    c.Token = c.Request.Cookies["key"];
+                    return Task.CompletedTask;
+                }
+            };
         });
         services.AddAuthorization(option =>
         {
             option.AddPolicy(Policies.Policies.RequireStaff,
-                policy => policy.Requirements.Add(new RolesRequirement([Roles.Admin])));
+                policy => policy.Requirements.Add(new RolesRequirement([Roles.Admin, Roles.User])));
         });
 
         return services;

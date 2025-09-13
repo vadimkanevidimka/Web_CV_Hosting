@@ -1,0 +1,7 @@
+db.Documents.find()
+show collections
+use Doocuments
+show dbs
+use admin
+login
+show dbs

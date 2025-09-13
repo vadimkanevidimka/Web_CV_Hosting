@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -57,25 +60,38 @@ builder.Services.AddAuthentication(options =>
         RequireExpirationTime = true,
         ValidateIssuerSigningKey = true
     };
+    options.Events = new JwtBearerEvents()
+    {
+        OnMessageReceived = c =>
+        {
+            c.Token = c.Request.Cookies["key"];
+            return Task.CompletedTask;
+        }
+    };
 });
 builder.Services.AddAuthorization(option =>
 {
     option.AddPolicy(Policies.RequireStaff,
-        policy => policy.Requirements.Add(new RolesRequirement([Roles.Admin])));
+        policy => policy.Requirements.Add(new RolesRequirement([Roles.Admin, Roles.User])));
 });
 
-builder.Services.AddSwagerWithAuth();
+builder.Services.AddSwaggerWithAuth();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
+    app.UseSwagger(c =>
+    {
+        c.OpenApiVersion = Microsoft.OpenApi.OpenApiSpecVersion.OpenApi3_0;
+    });
     app.UseSwaggerUI();
 }
 
 app.UseExceptionHandlerMiddleware();
+
+app.UseRouting();
 
 app.UseHttpsRedirection();
 

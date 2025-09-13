@@ -9,11 +9,11 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["AuthService.Presentation.csproj", "AuthService.Presentation/"]
-#COPY ["../AuthService.Buisness/AuthService.Buisness.csproj", "AuthService.Buisness/"]
-#COPY ["../AuthService.DataAccess/AuthService.DataAccess.csproj", "AuthService.DataAccess/"]
-RUN dotnet restore "./AuthService.Presentation/./AuthService.Presentation.csproj"
+COPY ["./AuthService.Presentation/AuthService.Presentation.csproj", "AuthService.Presentation/"]
 COPY . .
+# COPY ["../AuthService.Buisness/AuthService.Buisness.csproj", "AuthService.Buisness/"]
+# COPY ["../AuthService.DataAccess/AuthService.DataAccess.csproj", "AuthService.DataAccess/"]
+RUN dotnet restore "./AuthService.Presentation/./AuthService.Presentation.csproj"
 WORKDIR "/src/AuthService.Presentation"
 RUN dotnet build "./AuthService.Presentation.csproj" -c $BUILD_CONFIGURATION -o /app/build
 

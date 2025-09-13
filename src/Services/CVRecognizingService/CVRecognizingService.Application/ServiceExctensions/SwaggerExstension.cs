@@ -4,38 +4,41 @@ using Microsoft.OpenApi.Models;
 
 namespace CVRecognizingService.Application.ServiceExctensions
 {
-    public static class SwaggerExstension
+    public static class SwaggerExtension
     {
-        public static IServiceCollection AddSwagerWithAuth(this IServiceCollection services)
+        public static IServiceCollection AddSwaggerWithAuth(this IServiceCollection services)
         {
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
-
-                c.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme, new OpenApiSecurityScheme
-                {
-                    Description = "JWT Authorization header using the Bearer scheme (Example: 'Bearer 12345abcdef')",
-                    Name = "Authorization",
-                    In = ParameterLocation.Header,
-                    Type = SecuritySchemeType.ApiKey,
-                    Scheme = JwtBearerDefaults.AuthenticationScheme
-                });
-
-                c.AddSecurityRequirement(new OpenApiSecurityRequirement
-                {
+                c.SwaggerDoc("v1", new OpenApiInfo 
+                { 
+                    Title = "CV Recognizing Service API", 
+                    Version = "v1",
+                    Contact = new OpenApiContact
                     {
-                        new OpenApiSecurityScheme
-                        {
-                            Reference = new OpenApiReference
-                            {
-                                Type = ReferenceType.SecurityScheme,
-                                Id = JwtBearerDefaults.AuthenticationScheme
-                            }
-                        },
-                        Array.Empty<string>()
+                        Name = "Support",
+                        Email = "support@cvservice.com"
                     }
                 });
+
+                // JWT Authentication
+                var securityScheme = new OpenApiSecurityScheme
+                {
+                    Name = "JWT Authentication",
+                    Description = "Enter JWT Bearer token",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "bearer",
+                    BearerFormat = "JWT",
+                };
+
+                c.AddSecurityDefinition(securityScheme.Name, securityScheme);
+
+                // Важно для .NET 8
+                c.UseAllOfToExtendReferenceSchemas();
+                c.UseOneOfForPolymorphism();
             });
+
             return services;
         }
     }
