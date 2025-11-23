@@ -7,8 +7,8 @@ namespace CVRecognizingService.Application.ServiceExctensions
     public static class DBConnectionSettingExtension
     {
         public static IServiceCollection AddDbConnectionSettings(
-            this IServiceCollection services, 
-            IConfiguration configuration) 
+            this IServiceCollection services,
+            IConfiguration configuration)
         {
             return services.Configure<ConnectionSettings>(
                 options =>

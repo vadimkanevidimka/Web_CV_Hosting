@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OpenApi;
 using Microsoft.OpenApi.Models;
 
 namespace ProfileService.Application.Extensions
@@ -10,9 +9,9 @@ namespace ProfileService.Application.Extensions
         {
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo 
-                { 
-                    Title = "CV Recognizing Service API", 
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "CV Recognizing Service API",
                     Version = "v1",
                     Contact = new OpenApiContact
                     {
@@ -33,7 +32,7 @@ namespace ProfileService.Application.Extensions
                 };
 
                 c.AddSecurityDefinition(securityScheme.Name, securityScheme);
-                
+
                 c.UseAllOfToExtendReferenceSchemas();
                 c.UseOneOfForPolymorphism();
             });

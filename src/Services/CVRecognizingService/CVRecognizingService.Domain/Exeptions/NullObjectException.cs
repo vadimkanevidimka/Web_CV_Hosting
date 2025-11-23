@@ -3,13 +3,13 @@
     [Serializable]
     public class NullObjectException : Exception
     {
-        public NullObjectException() 
+        public NullObjectException()
             : base() { }
 
-        public NullObjectException(string message) 
+        public NullObjectException(string message)
             : base(message) { }
 
-        public NullObjectException(string message, Exception innerException) 
+        public NullObjectException(string message, Exception innerException)
             : base(message, innerException) { }
     }
 }

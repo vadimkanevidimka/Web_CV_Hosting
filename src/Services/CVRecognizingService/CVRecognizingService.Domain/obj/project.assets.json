@@ -305,6 +305,16 @@
         "runtime": {
           "lib/net7.0/ZstdSharp.dll": {}
         }
+      },
+      "CVHosting.Shared.Models/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/CVHosting.Shared.Models.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CVHosting.Shared.Models.dll": {}
+        }
       }
     }
   },
@@ -810,16 +820,23 @@
         "zstdsharp.port.0.7.3.nupkg.sha512",
         "zstdsharp.port.nuspec"
       ]
+    },
+    "CVHosting.Shared.Models/1.0.0": {
+      "type": "project",
+      "path": "../../../CVHosting.Shared.Models/CVHosting.Shared.Models.csproj",
+      "msbuildProject": "../../../CVHosting.Shared.Models/CVHosting.Shared.Models.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
       "CSharpFunctionalExtensions >= 3.0.0",
+      "CVHosting.Shared.Models >= 1.0.0",
       "MongoDB.Driver >= 2.28.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\": {}
+    "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
@@ -830,6 +847,9 @@
       "packagesPath": "C:\\Users\\VadimkaNevidimka\\.nuget\\packages\\",
       "outputPath": "D:\\Web CV Hosting\\src\\Services\\CVRecognizingService\\CVRecognizingService.Domain\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
         "C:\\Users\\VadimkaNevidimka\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
@@ -839,12 +859,18 @@
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Web CV Hosting\\src\\CVHosting.Shared.Models\\CVHosting.Shared.Models.csproj": {
+              "projectPath": "D:\\Web CV Hosting\\src\\CVHosting.Shared.Models\\CVHosting.Shared.Models.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -857,7 +883,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.200"
+      "SdkAnalysisLevel": "10.0.100"
     },
     "frameworks": {
       "net8.0": {
@@ -883,12 +909,26 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[8.0.22, 8.0.22]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[8.0.22, 8.0.22]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[8.0.22, 8.0.22]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

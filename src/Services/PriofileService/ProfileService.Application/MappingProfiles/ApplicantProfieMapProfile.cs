@@ -18,7 +18,7 @@ public class ApplicantProfieMapProfile : Profile
             .ForMember(dest => dest.PortfolioItems, opt => opt.MapFrom(src => src.PortfolioItems))
             .ForMember(dest => dest.SalaryExpectations, opt => opt.MapFrom(src => src.SalaryExpectations))
             .ForMember(dest => dest.EmploymentType, opt => opt.MapFrom(src => src.EmploymentType));
-        
+
         CreateMap<CreateEducationCommand, Education>();
         CreateMap<CreateWorkExperienceCommand, WorkExperience>();
         CreateMap<CreateSkillCommand, Skill>();

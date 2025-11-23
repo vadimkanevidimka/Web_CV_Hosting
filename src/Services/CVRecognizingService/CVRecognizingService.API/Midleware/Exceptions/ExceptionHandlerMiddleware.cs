@@ -1,8 +1,5 @@
-﻿using System;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System.Net;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 
 namespace CVRecognizingService.API.Midleware.Exceptions;
 
@@ -27,7 +24,7 @@ public class ExceptionHandlerMiddleware
         }
     }
     private static Task HandleExceptionMessageAsync(
-        HttpContext context, 
+        HttpContext context,
         Exception exception)
     {
         context.Response.ContentType = "application/json";

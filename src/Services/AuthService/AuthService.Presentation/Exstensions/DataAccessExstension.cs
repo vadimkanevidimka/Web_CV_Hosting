@@ -4,8 +4,6 @@ using AuthService.DataAccess.Persistans.Repositories.Implementations;
 using AuthService.DataAccess.Persistans.Repositories.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace AuthService.Presentation.Exstensions;
 

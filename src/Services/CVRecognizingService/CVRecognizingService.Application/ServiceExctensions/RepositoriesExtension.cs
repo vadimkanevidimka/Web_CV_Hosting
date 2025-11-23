@@ -4,6 +4,7 @@ using CVRecognizingService.Infrastructure.DataAccess.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CVRecognizingService.Application.ServiceExctensions;
+
 public static class RepositoriesExtension
 {
     public static IServiceCollection AddRepositories(this IServiceCollection services)

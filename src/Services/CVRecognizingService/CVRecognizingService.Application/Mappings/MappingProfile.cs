@@ -4,7 +4,7 @@ using CVRecognizingService.Domain.Entities;
 
 namespace CVRecognizingService.Application.Mappings;
 
-public class MappingProfile 
+public class MappingProfile
     : Profile
 {
     public MappingProfile()
@@ -12,6 +12,6 @@ public class MappingProfile
         CreateMap<BaseDocumentDto, Document>()
             .ReverseMap()
             .ForMember(docDto => docDto.Id, ops => ops.MapFrom(doc => doc.Id.ToString()))
-            .ForMember(docDto => docDto.UserId, ops => ops.MapFrom(doc => doc.User.Id.ToString()));
+            .ForMember(docDto => docDto.UserId, ops => ops.MapFrom(doc => doc.User));
     }
 }

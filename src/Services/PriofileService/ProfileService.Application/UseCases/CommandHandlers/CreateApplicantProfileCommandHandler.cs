@@ -1,7 +1,6 @@
 using AutoMapper;
 using ProfileService.Application.UseCases.Commands;
 using ProfileService.Domain.ApplicantProfile;
-using ProfileService.Infastructure.DbAccess;
 using ProfileService.Infastructure.Repositories;
 
 namespace ProfileService.Application.UseCases.CommandHandlers;

@@ -5,7 +5,7 @@ namespace CVRecognizingService.Domain.DTOs.Outgoing
 {
     public class DocumentDto
     {
-        public User User { get; set; }
+        public string UserId { get; set; }
         public Document Document { get; set; }
         public ProcessedData ProcessedData { get; set; }
         public ProcessingLog ProcessingLog { get; set; }

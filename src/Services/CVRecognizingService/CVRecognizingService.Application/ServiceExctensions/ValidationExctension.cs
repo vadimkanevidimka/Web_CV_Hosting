@@ -1,8 +1,8 @@
-﻿using FluentValidation;
+﻿using CVRecognizingService.Application.FluentValidation;
+using CVRecognizingService.Domain.DTOs.Outgoing;
+using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using CVRecognizingService.Domain.DTOs.Outgoing;
-using CVRecognizingService.Application.FluentValidation;
 
 namespace CVRecognizingService.Application.ServiceExctensions;
 

@@ -1,10 +1,11 @@
-﻿using MongoDB.Driver;
+﻿using CVRecognizingService.Domain.Abstracts.Repo;
 using CVRecognizingService.Domain.Entities;
-using CVRecognizingService.Domain.Abstracts.Repo;
-using MongoDB.Bson;
 using CVRecognizingService.Infrastructure.DataAccess.DBContext;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace CVRecognizingService.Infrastructure.DataAccess.Repositories;
+
 public class ProcessingLogRepository : GenericRepository<ProcessingLog>, IRepository<ProcessingLog>
 {
     private readonly DbContext _dbContext;

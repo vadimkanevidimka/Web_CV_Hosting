@@ -1,14 +1,12 @@
-﻿using FluentValidation;
-using FluentValidation.AspNetCore;
-using AuthService.Buisness.Services.Interfaces;
-using AuthService.Buisness.Services.Implementations;
+﻿using AuthService.Buisness.MappingProfiles;
 using AuthService.Buisness.Services.Algorithms;
+using AuthService.Buisness.Services.Implementations;
+using AuthService.Buisness.Services.Interfaces;
 using AuthService.Buisness.Validators;
-using AuthService.Buisness.MappingProfiles;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Hangfire;
 using Hangfire.PostgreSql;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace AuthService.Presentation.Exstensions;
 
@@ -45,7 +43,7 @@ public static class BusinessLogicExstension
         services.AddAutoMapper(cfg =>
         {
             cfg.AllowNullCollections = true;
-        },new[]
+        }, new[]
         {
             typeof(TokenMappingProfile),
             typeof(UserMappingProfile)

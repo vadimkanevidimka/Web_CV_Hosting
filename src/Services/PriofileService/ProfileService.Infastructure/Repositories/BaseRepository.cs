@@ -1,14 +1,13 @@
-using System.Linq.Expressions;
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using ProfileService.Domain.Entities;
 using ProfileService.Infastructure.DbAccess;
 using ProfileService.Infastructure.Extensions;
+using System.Linq.Expressions;
 
 namespace ProfileService.Infastructure.Repositories;
 
-public class BaseRepository<TEntity> : IBaseRepository<TEntity>  where TEntity : class, IBaseEntity
+public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : IBaseEntity
 {
     private readonly ProfileDbContext _dbContext;
     private readonly IMapper _mapper;
@@ -38,9 +37,9 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity>  where TEntity :
         IQueryable<TDestination>? projectedQuery;
 
         projectedQuery = typeof(TDestination) == typeof(TEntity) && exceptIncludes
-            ? (IQueryable<TDestination>)query 
+            ? (IQueryable<TDestination>)query
             : _mapper.ProjectTo<TDestination>(query);
-        
+
         return await projectedQuery.FirstOrDefaultAsync(cancellationToken);
     }
 
@@ -49,11 +48,11 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity>  where TEntity :
         CancellationToken cancellationToken = default)
     {
         var query = _dbContext.Set<TEntity>().Where(predicate);
-        
+
         var projectedQuery = typeof(TDestination) == typeof(TEntity)
             ? query as IQueryable<TDestination>
             : query.ProjectTo<TDestination, TEntity>(_mapper);
-        
+
         return await projectedQuery!
             .ToListAsync(cancellationToken);
     }

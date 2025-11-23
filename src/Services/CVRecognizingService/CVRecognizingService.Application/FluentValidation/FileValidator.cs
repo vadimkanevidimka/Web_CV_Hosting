@@ -1,12 +1,11 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Http;
-using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace CVRecognizingService.Application.FluentValidation
 {
-    public class FileValidator 
+    public class FileValidator
         : AbstractValidator<IFormFile>
     {
         public FileValidator()
@@ -44,8 +43,9 @@ namespace CVRecognizingService.Application.FluentValidation
         public static string ErrorsToString(this List<ValidationFailure> validationFailures)
         {
             StringBuilder errors = new();
-            foreach (var failure in validationFailures){
-                 errors.Append(failure.ToString()+"\n");
+            foreach (var failure in validationFailures)
+            {
+                errors.Append(failure.ToString() + "\n");
             }
             return errors.ToString();
         }

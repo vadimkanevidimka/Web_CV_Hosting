@@ -151,3 +151,9 @@ D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Tests\o
 D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Tests\obj\Debug\net8.0\CVRecognizingService.Tests.pdb
 D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Tests\obj\Debug\net8.0\CVRecognizingService.Tests.genruntimeconfig.cache
 D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Tests\obj\Debug\net8.0\ref\CVRecognizingService.Tests.dll
+D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Tests\bin\Debug\net8.0\Google.Protobuf.dll
+D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Tests\bin\Debug\net8.0\Grpc.Core.Api.dll
+D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Tests\bin\Debug\net8.0\Grpc.Net.Client.dll
+D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Tests\bin\Debug\net8.0\Grpc.Net.Common.dll
+D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Tests\bin\Debug\net8.0\CVHosting.Shared.Models.dll
+D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Tests\bin\Debug\net8.0\CVHosting.Shared.Models.pdb

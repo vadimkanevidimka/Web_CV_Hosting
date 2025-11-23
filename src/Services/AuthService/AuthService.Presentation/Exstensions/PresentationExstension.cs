@@ -1,25 +1,21 @@
-﻿using System;
-using System.Text;
-using AuthService.DataAccess.Entities;
+﻿using AuthService.DataAccess.Entities;
 using AuthService.DataAccess.Persistans;
 using AuthService.DataAccess.Persistans.DbContext;
-using AuthService.Presentation.Exstensions.HangFireDashboard;
 using AuthService.Presentation.Middlewares;
 using AuthService.Presentation.Policies;
 using Hangfire;
 using Hangfire.Dashboard;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace AuthService.Presentation.Exstensions;
 
 public static class PresentationExstension
 {
+    private const string CorsPolicyName = "DefaultCors";
+
     public static IServiceCollection AddPresentationLayer(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddEndpointsApiExplorer();
@@ -28,18 +24,44 @@ public static class PresentationExstension
         services.AddSwagerWithAuth();
         services.AddScoped<ExceptionHandlingMiddleware>();
 
+        // Configure CORS policy from configuration (e.g. Cors:AllowedOrigins)
+        var origins = configuration["Cors:AllowedOrigins"]?.Split(',', StringSplitOptions.RemoveEmptyEntries) ?? new[] { "http://localhost:5173" };
+        services.AddCors(options =>
+        {
+            options.AddPolicy(CorsPolicyName, builder =>
+            {
+                builder.WithOrigins(origins)
+                       .AllowAnyHeader()
+                       .AllowAnyMethod()
+                       .AllowCredentials();
+            });
+        });
+
         return services;
     }
 
     public static WebApplication StartApplication(this WebApplication webApplication)
     {
         webApplication.DbInitialize();
+
+        // Ensure routing is configured before CORS/auth
+        webApplication.UseRouting();
+
+        // Apply CORS policy early so preflight OPTIONS are handled before authentication
+        webApplication.UseCors(CorsPolicyName);
+
+        // Exception handling middleware should be early to catch errors
+        webApplication.UseMiddleware<ExceptionHandlingMiddleware>();
+
         webApplication.UseAuthentication();
         webApplication.UseAuthorization();
+
         webApplication.MapControllers();
+
         webApplication.SwaggerStart();
         webApplication.SeedData();
-        webApplication.UseHangfireDashboard("/dashboard", 
+
+        webApplication.UseHangfireDashboard("/dashboard",
             new DashboardOptions()
             {
                 Authorization = new[]{
@@ -47,7 +69,6 @@ public static class PresentationExstension
                 }
             });
 
-        webApplication.UseMiddleware<ExceptionHandlingMiddleware>();
         webApplication.Run();
 
         return webApplication;
@@ -94,7 +115,20 @@ public static class PresentationExstension
             {
                 OnMessageReceived = c =>
                 {
-                    c.Token = c.Request.Cookies["key"];
+                    // Prefer cookie token, fallback to Authorization header
+                    if (c.Request.Cookies.TryGetValue("key", out var cookieToken) && !string.IsNullOrWhiteSpace(cookieToken))
+                    {
+                        c.Token = cookieToken;
+                    }
+                    else if (c.Request.Headers.TryGetValue("Authorization", out var authHeader))
+                    {
+                        var header = authHeader.ToString();
+                        if (header.StartsWith("Bearer ", StringComparison.OrdinalIgnoreCase))
+                        {
+                            c.Token = header.Substring("Bearer ".Length).Trim();
+                        }
+                    }
+
                     return Task.CompletedTask;
                 }
             };

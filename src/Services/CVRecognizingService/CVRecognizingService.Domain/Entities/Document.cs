@@ -2,7 +2,7 @@
 
 namespace CVRecognizingService.Domain.Entities;
 
-public class Document 
+public class Document
     : Entity, IEntity
 {
     public Document(
@@ -11,20 +11,20 @@ public class Document
         string filePath,
         long fileSize,
         DateTime uploadedAt,
-        User? user)
+        string? userId)
     {
         ContentType = contentType;
         FileName = fileName;
         FilePath = filePath;
         FileSize = fileSize;
         UploadedAt = uploadedAt;
-        User = user;
+        User = userId;
     }
     public string ContentType { get; private set; } = string.Empty;
     public string FileName { get; private set; } = string.Empty;
     public string FilePath { get; private set; } = string.Empty;
     public long FileSize { get; private set; }
     public DateTime UploadedAt { get; private set; } = DateTime.Now;
-    public User? User { get; private set; }
+    public string? User { get; private set; }
     public DateTime UploadedUntil { get; set; }
 }

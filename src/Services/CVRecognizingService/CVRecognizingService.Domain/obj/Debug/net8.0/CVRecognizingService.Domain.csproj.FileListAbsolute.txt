@@ -11,3 +11,6 @@ D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Domain\
 D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Domain\obj\Debug\net8.0\refint\CVRecognizingService.Domain.dll
 D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Domain\obj\Debug\net8.0\CVRecognizingService.Domain.pdb
 D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Domain\obj\Debug\net8.0\ref\CVRecognizingService.Domain.dll
+D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Domain\bin\Debug\net8.0\CVHosting.Shared.Models.dll
+D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Domain\bin\Debug\net8.0\CVHosting.Shared.Models.pdb
+D:\Web CV Hosting\src\Services\CVRecognizingService\CVRecognizingService.Domain\obj\Debug\net8.0\CVRecogn.84B686DF.Up2Date

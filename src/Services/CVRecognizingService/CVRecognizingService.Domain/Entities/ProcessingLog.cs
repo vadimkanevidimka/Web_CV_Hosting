@@ -1,14 +1,14 @@
-﻿using MongoDB.Bson;
-using CVRecognizingService.Domain.Abstracts;
+﻿using CVRecognizingService.Domain.Abstracts;
+using MongoDB.Bson;
 
 namespace CVRecognizingService.Domain.Entities;
 
-public class ProcessingLog 
+public class ProcessingLog
     : Entity, IEntity
 {
     //[BsonRepresentation(BsonType.String)]
     //public Guid Id { get; private set; } = Guid.NewGuid();
-    public ObjectId DocumentId { get; set; }      
+    public ObjectId DocumentId { get; set; }
     public string LogMessage { get; set; } = string.Empty;
     public DateTime LoggedAt { get; set; } = DateTime.UtcNow;
 }

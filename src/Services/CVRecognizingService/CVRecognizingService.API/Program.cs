@@ -1,16 +1,13 @@
-using CVRecognizingService.Application.ServiceExctensions;
 using CVRecognizingService.API.Midleware.Exceptions;
-using CVRecognizingService.Application.Mappings;
-using CVRecognizingService.Application.UseCases.Commands.Documents;
-using Microsoft.AspNetCore.Authentication.BearerToken;
 using CVRecognizingService.API.Policies;
+using CVRecognizingService.Application.Mappings;
+using CVRecognizingService.Application.ServiceExctensions;
+using CVRecognizingService.Application.UseCases.Commands.Documents;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,7 +25,6 @@ builder.Services.AddGeminiAI(builder.Configuration.GetSection("API_KEY").Value);
 //Confin validation services
 builder.Services.AddValidation();
 
-
 //Config Controllers Services
 builder.Services.AddServices();
 
@@ -39,7 +35,21 @@ builder.Services.AddAutoMapper(config =>
 });
 
 //Config CQRS
-builder.Services.AddMediatR(config => 
+
+// Configure CORS policy
+var allowedOrigins = builder.Configuration["Cors:AllowedOrigins"]?.Split(',', StringSplitOptions.RemoveEmptyEntries) ?? new[] { "http://localhost:5173" };
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("DefaultCorsPolicy", policy =>
+    {
+        policy.WithOrigins(allowedOrigins)
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              .AllowCredentials();
+    });
+});
+
+builder.Services.AddMediatR(config =>
     config.RegisterServicesFromAssembly(typeof(CreateDocumentCommandHandler).Assembly));
 builder.Services.AddControllers();
 
@@ -64,7 +74,18 @@ builder.Services.AddAuthentication(options =>
     {
         OnMessageReceived = c =>
         {
-            c.Token = c.Request.Cookies["key"];
+            if (c.Request.Cookies.TryGetValue("key", out var cookieToken) && !string.IsNullOrWhiteSpace(cookieToken))
+            {
+                c.Token = cookieToken;
+            }
+            else if (c.Request.Headers.TryGetValue("Authorization", out var authHeader))
+            {
+                var header = authHeader.ToString();
+                if (header.StartsWith("Bearer ", StringComparison.OrdinalIgnoreCase))
+                {
+                    c.Token = header.Substring("Bearer ".Length).Trim();
+                }
+            }
             return Task.CompletedTask;
         }
     };
@@ -79,6 +100,11 @@ builder.Services.AddSwaggerWithAuth();
 
 var app = builder.Build();
 
+app.UseForwardedHeaders(new ForwardedHeadersOptions
+{
+    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+});
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -89,12 +115,17 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseExceptionHandlerMiddleware();
-
 app.UseRouting();
+
+// Apply named CORS policy
+app.UseCors("DefaultCorsPolicy");
+
+app.UseExceptionHandlerMiddleware();
 
 app.UseHttpsRedirection();
 
+// Ensure authentication is enabled
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

@@ -11,7 +11,7 @@ using RefreshToken = AuthService.DataAccess.Entities.RefreshToken;
 
 namespace AuthService.Buisness.Services.Implementations;
 
-public class AccountService 
+public class AccountService
     : IAccountService
 {
     private readonly UserManager<User> _userManager;

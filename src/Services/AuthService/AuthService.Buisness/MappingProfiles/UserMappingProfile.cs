@@ -6,7 +6,7 @@ namespace AuthService.Buisness.MappingProfiles;
 
 public class UserMappingProfile : Profile
 {
-    public UserMappingProfile() 
+    public UserMappingProfile()
     {
         CreateMap<UserLoginDto, User>()
             .ReverseMap();

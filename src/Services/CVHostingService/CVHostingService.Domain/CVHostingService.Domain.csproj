@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\CVHosting.Shared.Models\CVHosting.Shared.Models.csproj" />
+  </ItemGroup>
+
 </Project>

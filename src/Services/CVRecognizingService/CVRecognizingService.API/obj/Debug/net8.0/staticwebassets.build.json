@@ -1,12 +1,1 @@
-{
-  "Version": 1,
-  "Hash": "yWiSVeiWql9w3FXPJ7Okoz5hbd1XDgO8DHYfrnikb3U=",
-  "Source": "CVRecognizingService.API",
-  "BasePath": "_content/CVRecognizingService.API",
-  "Mode": "Default",
-  "ManifestType": "Build",
-  "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": [],
-  "Endpoints": []
-}
+{"Version":1,"Hash":"UEVo+OvBn3t4vY7pgMq++752xNWP8k1AlJ5QSX1q36o=","Source":"CVRecognizingService.API","BasePath":"/","Mode":"Root","ManifestType":"Build","ReferencedProjectsConfiguration":[],"DiscoveryPatterns":[],"Assets":[],"Endpoints":[]}

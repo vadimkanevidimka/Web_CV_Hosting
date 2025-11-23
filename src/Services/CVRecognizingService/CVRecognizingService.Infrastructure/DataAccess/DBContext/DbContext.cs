@@ -1,6 +1,4 @@
-﻿using CSharpFunctionalExtensions;
-using CVRecognizingService.Domain.Abstracts;
-using CVRecognizingService.Domain.Entities;
+﻿using CVRecognizingService.Domain.Entities;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 

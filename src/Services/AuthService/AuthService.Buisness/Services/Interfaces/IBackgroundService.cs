@@ -1,5 +1,4 @@
-﻿using System;
-namespace AuthService.Buisness.Services.Interfaces
+﻿namespace AuthService.Buisness.Services.Interfaces
 {
     public interface IBackgroundRefreshTokenService
     {

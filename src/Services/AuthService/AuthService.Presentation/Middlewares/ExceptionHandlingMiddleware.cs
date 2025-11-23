@@ -1,10 +1,6 @@
-﻿using System;
-using System.Text.Json;
-using System.Threading.Tasks;
-using AuthService.Buisness.Exceptions;
-using Microsoft.AspNetCore.Http;
+﻿using AuthService.Buisness.Exceptions;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using System.Text.Json;
 
 namespace AuthService.Presentation.Middlewares;
 

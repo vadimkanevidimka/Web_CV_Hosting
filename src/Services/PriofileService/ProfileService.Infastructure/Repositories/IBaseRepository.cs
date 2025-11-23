@@ -3,7 +3,7 @@ namespace ProfileService.Infastructure.Repositories;
 
 using System.Linq.Expressions;
 
-public interface IBaseRepository<TEntity> where TEntity : class, IBaseEntity
+public interface IBaseRepository<TEntity> where TEntity : IBaseEntity
 {
     Task<bool> IsExistingAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default);
 

@@ -13,7 +13,7 @@ public static class QueryableExtensions
 
         return tests.AsNoTracking();
     }
-    
+
     public static IQueryable<TDestination> ProjectTo<TDestination, TSource>(this IQueryable<TSource> queryable, IMapper mapper)
     {
         return mapper.ProjectTo<TDestination>(queryable);

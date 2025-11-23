@@ -1,5 +1,4 @@
 using MediatR;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using ProfileService.Application.UseCases.Commands;
 
@@ -11,7 +10,7 @@ public class ProfileController
 {
     private readonly ILogger _logger;
     private readonly IMediator _mediator;
-    
+
     public ProfileController(
         ILogger<ProfileController> logger,
         IMediator mediator)

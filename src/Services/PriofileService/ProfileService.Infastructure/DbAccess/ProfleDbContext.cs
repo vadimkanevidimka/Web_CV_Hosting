@@ -7,7 +7,7 @@ public class ProfileDbContext : DbContext
 {
     // DbSet для основной сущности профиля соискателя
     public DbSet<ApplicantProfile> ApplicantProfiles { get; set; }
-    
+
     // DbSet для всех вложенных сущностей
     public DbSet<Education> Educations { get; set; }
     public DbSet<WorkExperience> WorkExperiences { get; set; }
@@ -23,13 +23,13 @@ public class ProfileDbContext : DbContext
         : base(options)
     {
     }
-    
+
     public ProfileDbContext() { }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        
+
         modelBuilder.Entity<ApplicantProfile>()
             .HasMany(p => p.Educations)
             .WithOne(e => e.ApplicantProfile)
@@ -59,7 +59,7 @@ public class ProfileDbContext : DbContext
             .WithOne(c => c.ApplicantProfile)
             .HasForeignKey(c => c.ApplicantProfileId)
             .OnDelete(DeleteBehavior.Cascade);
-        
+
         modelBuilder.Entity<ApplicantProfile>()
             .HasMany(p => p.DriverLicenses)
             .WithOne(d => d.ApplicantProfile)

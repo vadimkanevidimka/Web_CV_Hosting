@@ -5,10 +5,11 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace CVRecognizingService.Infrastructure.DataAccess.Repositories;
+
 public class ProcessedDataRepository : GenericRepository<ProcessedData>, IRepository<ProcessedData>
 {
     private readonly DbContext _dbContext;
-    public ProcessedDataRepository(DbContext dbContext) : base(dbContext) {}
+    public ProcessedDataRepository(DbContext dbContext) : base(dbContext) { }
 
     public async Task<ProcessedData> GetDataByDocId(ObjectId id, CancellationToken cancellationToken)
     {

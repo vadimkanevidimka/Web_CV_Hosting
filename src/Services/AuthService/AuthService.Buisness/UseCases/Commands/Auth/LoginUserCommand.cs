@@ -22,7 +22,7 @@
 //    public async Task<AuthenticateResponse> Handle(LoginUserCommand request, CancellationToken cancellationToken)
 //    {
 //        var user = await _userManager.FindByEmailAsync(request.LoginUserRequest.Email);
-        
+
 //        var signInResult =
 //            await _signInManager.PasswordSignInAsync(user, request.LoginUserRequest.Password, false, false);
 //        return await _authenticateService.Authenticate(user, cancellationToken);

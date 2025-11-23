@@ -1,10 +1,10 @@
-﻿using MongoDB.Bson;
+﻿using CVRecognizingService.Domain.Abstracts;
 using CVRecognizingService.Domain.Enums;
-using CVRecognizingService.Domain.Abstracts;
+using MongoDB.Bson;
 
 namespace CVRecognizingService.Domain.Entities;
 
-public class ProcessingStatus 
+public class ProcessingStatus
     : Entity, IEntity
 {
     public ProcessingStatus(ObjectId documentId, DateTime updatedAt)

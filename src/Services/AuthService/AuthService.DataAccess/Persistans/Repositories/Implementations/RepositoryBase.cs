@@ -1,7 +1,7 @@
-﻿using System.Linq.Expressions;
-using AuthService.DataAccess.Persistans.DbContext;
+﻿using AuthService.DataAccess.Persistans.DbContext;
 using AuthService.DataAccess.Persistans.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace AuthService.DataAccess.Persistans.Repositories.Implementations;
 

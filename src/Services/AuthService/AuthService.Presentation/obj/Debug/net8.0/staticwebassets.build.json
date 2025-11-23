@@ -1,12 +1,1 @@
-{
-  "Version": 1,
-  "Hash": "+Liq2153BNQNOqrQG4UR9Ja4q2RIKohtHOE4wCkJLT4=",
-  "Source": "AuthService.Presentation",
-  "BasePath": "_content/AuthService.Presentation",
-  "Mode": "Default",
-  "ManifestType": "Build",
-  "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": [],
-  "Endpoints": []
-}
+{"Version":1,"Hash":"ev1dZIoCrPYnhgNhM7QAi7V4lGw3u+Kfzh1pl+dxpuA=","Source":"AuthService.Presentation","BasePath":"/","Mode":"Root","ManifestType":"Build","ReferencedProjectsConfiguration":[],"DiscoveryPatterns":[],"Assets":[],"Endpoints":[]}

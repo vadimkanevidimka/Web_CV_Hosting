@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using AuthService.Buisness.Services.Implementations;
+﻿using AuthService.Buisness.Services.Implementations;
 using AuthService.Buisness.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

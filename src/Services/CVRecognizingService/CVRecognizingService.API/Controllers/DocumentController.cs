@@ -1,15 +1,11 @@
-﻿using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using CVRecognizingService.Application.UseCases.Commands.Documents;
+﻿using CVRecognizingService.Application.UseCases.Commands.Documents;
 using CVRecognizingService.Application.UseCases.Queries.Documents;
 using CVRecognizingService.Application.UseCases.Queries.Root;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
+using System.Security.Claims;
 
 namespace CVRecognizingService.API.Controllers;
 
@@ -30,46 +26,75 @@ public class DocumentsController : Controller
     [HttpPost("upload")]
     [Authorize]
     public async Task<IActionResult> Upload(
-        [FromForm]CreateDocumentCommand command,
+        [FromForm] CreateDocumentCommandDto commandDto,
         CancellationToken cancellationToken = default)
     {
+        string userId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+        CreateDocumentCommand command = new CreateDocumentCommand(commandDto.File, userId);
         var result = await _mediator.Send(command, cancellationToken);
 
         _logger.LogInformation("Document has been sucessfully uploaded");
 
-        return !result.Contains("Failed", StringComparison.InvariantCultureIgnoreCase) ? Created(result, result) : BadRequest(result);
+        return Created(result.DocumentId, result);
     }
 
     [HttpGet("getall")]
     public async Task<IActionResult> GetAll(
-        [FromQuery]GetAllDocumentsQuery query,
+        [FromQuery] GetAllDocumentsQuery query,
         CancellationToken cancellationToken = default)
     {
         var result = await _mediator.Send(query, cancellationToken);
 
         _logger.LogInformation("Documents were obtained");
 
-        return result.Count() != 0 ? 
-            Ok(result) 
+        return result.Count() != 0 ?
+            Ok(result)
+            : NotFound();
+    }
+
+    [HttpGet("user/getall")]
+    public async Task<IActionResult> GetUserDocs(
+        [FromQuery] GetUserDocumentsQuery query,
+        CancellationToken cancellationToken = default)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+
+        _logger.LogInformation("Documents were obtained");
+
+        return result.Count() != 0 ?
+            Ok(result)
+            : NotFound();
+    }
+
+    [HttpPost("deleteAll")]
+    [Authorize]
+    public async Task<IActionResult> Truncate(
+        DeleteAllDocumentsCommand command,
+        CancellationToken cancellationToken = default)
+    {
+        var result = await _mediator.Send(command, cancellationToken);
+
+        return result > 0 ?
+            Ok(result)
             : NotFound();
     }
 
     [HttpGet("get")]
     public async Task<IActionResult> Get(
-        [FromQuery]GetDocumentByIdQuery query,
+        [FromQuery] GetDocumentByIdQuery query,
         CancellationToken cancellationToken = default)
     {
         var result = await _mediator.Send(query, cancellationToken);
 
         _logger.LogInformation("Extended Document was obtained");
 
-        return result!=null ? Ok(result) : NotFound();
+        return result != null ? Ok(result) : NotFound();
     }
 
     [HttpDelete("delete")]
     [Authorize]
     public async Task<IActionResult> Delete(
-        [FromQuery]DeleteDocumentCommand command, 
+        [FromQuery] DeleteDocumentCommand command,
         CancellationToken cancellationToken = default)
     {
         var result = await _mediator.Send(command, cancellationToken);
@@ -79,7 +104,7 @@ public class DocumentsController : Controller
     [HttpGet("getfull")]
     [Authorize]
     public async Task<IActionResult> GetFull(
-        [FromQuery]GetRootQuery query,
+        [FromQuery] GetRootQuery query,
         CancellationToken cancellationToken = default)
     {
         var result = await _mediator.Send(query, cancellationToken);

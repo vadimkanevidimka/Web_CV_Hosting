@@ -1,11 +1,13 @@
-﻿using UglyToad.PdfPig;
+﻿using System.Text;
+using UglyToad.PdfPig;
 using static UglyToad.PdfPig.DocumentLayoutAnalysis.TextExtractor.ContentOrderTextExtractor;
 
 namespace CVRecognizingService.Application.Helpers.PDFRecognizing;
+
 public class PDFRecognizer
 {
-    private string? _recognizedText;
-    public string? RecognizedText { get => _recognizedText; }
+    private StringBuilder? _recognizedText = new();
+    public string? RecognizedText { get => _recognizedText!.ToString(); }
 
     public PDFRecognizer(byte[] filebytes)
     {
@@ -13,13 +15,13 @@ public class PDFRecognizer
         {
             foreach (var page in pdf.GetPages())
             {
-                _recognizedText += GetText(page, new Options()
-                {
-                    ReplaceWhitespaceWithSpace = true,
-                    SeparateParagraphsWithDoubleNewline = false,
-                });
-
-                var rawText = page.Text;
+                _recognizedText.Append(
+                    GetText(page, new Options()
+                    {
+                        ReplaceWhitespaceWithSpace = true,
+                        SeparateParagraphsWithDoubleNewline = false,
+                    })
+                );
             }
 
         }

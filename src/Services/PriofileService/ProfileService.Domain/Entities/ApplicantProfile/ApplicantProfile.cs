@@ -16,7 +16,7 @@ public class ApplicantProfile : IBaseEntity
     public string? City { get; set; }
     public string? Country { get; set; }
     public string? PhotoUrl { get; set; }
-    
+
     public ICollection<Education> Educations { get; set; }
     public ICollection<WorkExperience> WorkExperiences { get; set; }
     public ICollection<Skill> Skills { get; set; }

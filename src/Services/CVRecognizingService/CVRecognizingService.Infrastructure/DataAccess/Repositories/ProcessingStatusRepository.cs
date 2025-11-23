@@ -5,6 +5,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace CVRecognizingService.Infrastructure.DataAccess.Repositories;
+
 public class ProcessingStatusRepository : GenericRepository<ProcessingStatus>, IRepository<ProcessingStatus>
 {
     private readonly DbContext _dbContext;

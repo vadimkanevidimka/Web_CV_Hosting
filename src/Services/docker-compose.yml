@@ -1,0 +1,169 @@
+version: "3.8"
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+    volumes:
+      - ./docker_data/mongodb:/data/db
+    ports:
+      - "27017:27017"
+    restart: always
+    networks:
+      - cvrecognizing-web
+
+  cvrecognizingservice.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+    image: ${DOCKER_REGISTRY-}cvrecognizingservice
+    build:
+      context: .
+      dockerfile: CVRecognizingService/CVRecognizingService.API/Dockerfile
+    container_name: cvrecognizingservice
+    ports:
+      - "5000:8080"
+      - "5001:8081"
+    links:  
+      - "mongodb:mdb"
+    depends_on: 
+      - mongodb
+    networks:
+      - cvrecognizing-web
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres-db
+    restart: always
+    environment:
+      POSTGRES_DB: identity
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin_password
+    ports:
+      - "5432:5432"
+    # volumes:
+    #    - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  hangfire:
+    image: postgres:latest
+    container_name: hangfire-db
+    restart: always
+    environment:
+      POSTGRES_DB: hangfire
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin_password
+    ports:
+      - "5433:5432"
+    # volumes:
+    #    - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  auth-service:
+    build:
+      context: .
+      dockerfile: AuthService/AuthService.Presentation/Dockerfile
+    container_name: aspnet-auth-service
+    restart: always
+    ports:
+      - "1000:8080"
+    depends_on:
+      - postgres
+      - hangfire
+    links:
+      - "postgres:pg"
+      - "hangfire:hf"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__Postgres: "Host=postgres;Port=5432;Database=identity;Username=admin;Password=admin_password"
+      ConnectionStrings__HangFireDatabse: "Host=hangfire;Port=5432;Database=hangfire;Username=admin;Password=admin_password"
+    networks:
+      - app-network
+    
+  postgresdb:
+    image: postgres:latest
+    container_name: profiledb
+    environment:
+      POSTGRES_DB: profiles
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    ports:
+      - "5430:5432"
+    restart: always
+    networks:
+      - profiles-web
+
+  profileservice.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+    image: ${DOCKER_REGISTRY-}profileservice
+    build:
+      context: .
+      dockerfile: PriofileService/ProfileService.API/Dockerfile
+    container_name: profileservice
+    ports:
+      - "5100:8080"
+      - "5101:8081"
+    links:
+      - "postgresdb:pg"
+    depends_on:
+      - postgresdb
+    networks:
+      - profiles-web
+  
+  cvhosting.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+    image: ${DOCKER_REGISTRY-}cvhosting
+    build:
+      context: .
+      dockerfile: "CVHostingService/CVHostingService.API/Dockerfile"
+    container_name: cvhostingservice
+    ports:
+      - "5200:8080"
+      - "5201:8081"
+    networks:
+      - cvrecognizing-web
+
+  nginx-gateway:
+    image: nginx:latest
+    container_name: nginx-gateway
+    restart: always
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro 
+    ports:
+      - "8080:80" 
+    depends_on:
+      - auth-service
+      - profileservice.api
+      - cvrecognizingservice.api
+      - cvhosting.api
+    networks:
+      - cvrecognizing-web
+      - app-network
+      - profiles-web
+
+
+networks:
+  profiles-web:
+    driver: bridge
+  app-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.23.0.0/16
+  cvrecognizing-web:
+    driver: bridge

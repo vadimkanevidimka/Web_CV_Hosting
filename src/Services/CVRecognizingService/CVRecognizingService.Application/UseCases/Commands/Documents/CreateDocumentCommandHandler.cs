@@ -1,30 +1,29 @@
-﻿using MediatR;
-using Microsoft.Extensions.Logging;
-using Events_Web_application.Application.Services.Exceptions;
+﻿using System.Text.Json;
+using CVHosting.Shared.Models.Entities.ApplicantProfile;
 using CVRecognizingService.Application.FluentValidation;
+using CVRecognizingService.Application.Helpers.AiPdfComanion;
+using CVRecognizingService.Application.Helpers.PDFConverter;
 using CVRecognizingService.Application.Helpers.PDFRecognizing;
+using CVRecognizingService.Domain.Abstracts.Repo;
 using CVRecognizingService.Domain.Entities;
 using CVRecognizingService.Domain.Enums;
 using CVRecognizingService.Domain.Exeptions;
 using CVRecognizingService.Infrastructure.DataAccess.Repositories;
-using Microsoft.AspNetCore.Http;
-using CVRecognizingService.Application.Helpers.AiPdfComanion;
-using CVRecognizingService.Application.Helpers.PDFConverter;
-using CVRecognizingService.Domain.Abstracts.Repo;
 using DotnetGeminiSDK.Client.Interfaces;
-using FluentValidation.Results;
+using Events_Web_application.Application.Services.Exceptions;
 using FluentValidation;
+using FluentValidation.Results;
+using MediatR;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 
 namespace CVRecognizingService.Application.UseCases.Commands.Documents;
 
 public class CreateDocumentCommandHandler
-    : IRequestHandler<CreateDocumentCommand, string>
+    : IRequestHandler<CreateDocumentCommand, CreateDocumentResponse>
 {
     private readonly ILogger<CreateDocumentCommandHandler> _logger;
 
-    /// <summary>
-    /// Repositoies
-    /// </summary>
     private readonly DocumentRepository _documentRepository;
     private readonly ProcessingStatusRepository _processingStatusRepository;
     private readonly ProcessedDataRepository _processedDataRepository;
@@ -33,8 +32,8 @@ public class CreateDocumentCommandHandler
     private readonly GeminiAITextChat _chat;
     private readonly FileValidator _fileValidator;
 
-    private event Update OnUpdate;
-    private delegate void Update(CancellationToken cancellationToken, DocumentState state);
+    private delegate Task Update(CancellationToken cancellationToken, DocumentState state);
+    private event Update? OnUpdate;
     private Document? _document;
     private ProcessingStatus? _docstatus;
 
@@ -57,20 +56,29 @@ public class CreateDocumentCommandHandler
         OnUpdate += UpdateDocumentState;
     }
 
-    public async Task<string> Handle(
+    public async Task<CreateDocumentResponse> Handle(
         CreateDocumentCommand request,
         CancellationToken cancellationToken)
     {
         try
         {
             _logger.LogInformation($"{request.File.FileName} started recognizing");
-            var result = await AddDocument(request.File, cancellationToken);
-            return result.Id.ToString();
+            var result = await AddDocument(request.File, request.UserId, cancellationToken);
+            return result;
         }
         catch (ServiceException ex)
         {
             _logger.LogInformation($"{request.File.FileName} finished recognizing with error: {ex.Value}");
-            return $"Failed service operation: {ex.Operation}, error: {ex.Message} with value: {ex.Value}";
+            throw;
+        }
+    }
+    private async Task InvokeOnUpdateAsync(CancellationToken cancellationToken, DocumentState state)
+    {
+        if (OnUpdate == null) return;
+        var invocationList = OnUpdate.GetInvocationList();
+        foreach (Update handler in invocationList)
+        {
+            await handler(cancellationToken, state);
         }
     }
 
@@ -78,7 +86,7 @@ public class CreateDocumentCommandHandler
     {
         if (document == null) throw new NullObjectException(nameof(document));
 
-        var result = await _documentRepository.Add(document, cancellationToken);
+        var result = await _documentRepository.AddAsync(document, cancellationToken);
 
         _logger.LogInformation($"Document from {document.FileName} was recognized and added to database");
 
@@ -91,7 +99,7 @@ public class CreateDocumentCommandHandler
 
         var result = await _chat.GetFormatedText(nonFormatedText, cancellationToken);
 
-        OnUpdate.Invoke(cancellationToken, DocumentState.Processing);
+        await InvokeOnUpdateAsync(cancellationToken, DocumentState.Processing);
 
         _logger.LogInformation($"Text|\n {nonFormatedText} \n formatted {result.Candidates[0].Content.Parts[0].Text}");
 
@@ -102,7 +110,7 @@ public class CreateDocumentCommandHandler
     {
         var recognizedText = new PDFRecognizer(await file.GetBytesAsync(cancellationToken));
 
-        OnUpdate.Invoke(cancellationToken, DocumentState.Processing);
+        await InvokeOnUpdateAsync(cancellationToken, DocumentState.Processing);
 
         _logger.LogInformation($"Text from {file} recognized {recognizedText.RecognizedText}");
 
@@ -115,14 +123,21 @@ public class CreateDocumentCommandHandler
         return recognizedText.RecognizedText;
     }
 
-    private async void UpdateDocumentState(CancellationToken cancellationToken, DocumentState state)
+    private async Task UpdateDocumentState(CancellationToken cancellationToken, DocumentState state)
     {
         _docstatus.Status = state;
         _docstatus.UpdatedAt = DateTime.Now;
-        await _processingStatusRepository.Update(_docstatus, cancellationToken);
+        try
+        {
+            await _processingStatusRepository.UpdateAsync(_docstatus, CancellationToken.None);
+        }
+        catch (OperationCanceledException ex)
+        {
+            _logger.LogError(ex, ex.Message);
+        }
     }
 
-    public async Task<Document> AddDocument(IFormFile file, CancellationToken cancellationToken)
+    public async Task<CreateDocumentResponse> AddDocument(IFormFile file, string userId, CancellationToken cancellationToken)
     {
         try
         {
@@ -134,23 +149,64 @@ public class CreateDocumentCommandHandler
             }
 
 
-            _document = new Document(file.ContentType, file.FileName, file.Name, file.Length, DateTime.Now, new User());
+            _document = new Document(file.ContentType, file.FileName, file.Name, file.Length, DateTime.Now, userId);
             _docstatus = new ProcessingStatus(_document.Id, DateTime.Now);
 
-            await _processingStatusRepository.Add(_docstatus, cancellationToken);
+            await _processingStatusRepository.AddAsync(_docstatus, cancellationToken);
 
 
-            await _processedDataRepository.Add(new ProcessedData(_document.Id, await GetFormattedText(await RecognizeText(file, cancellationToken), cancellationToken), DateTime.Now), cancellationToken);
+            var data = new ProcessedData(_document.Id, await GetFormattedText(await RecognizeText(file, cancellationToken), cancellationToken), DateTime.Now);
+            await _processedDataRepository.AddAsync(data, cancellationToken);
 
+            // Десериализация data.StructuredData в ApplicantProfile через System.Text.Json
+            ApplicantProfile applicantProfile;
+            if (string.IsNullOrWhiteSpace(data.StructuredData))
+            {
+                _logger.LogWarning("StructuredData is empty or null, creating empty ApplicantProfile");
+                applicantProfile = new ApplicantProfile();
+            }
+            else
+            {
+                try
+                {
+                    var options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true,
+                        AllowTrailingCommas = true
+                    };
+                    string serializedText = data.StructuredData;
+                    if (data.StructuredData.Contains("```json"))
+                    {
+                        serializedText = data.StructuredData.Replace("```json", "").Replace("```", "").Trim();
+                    }
 
-            OnUpdate(cancellationToken, DocumentState.Completed);
+                    _logger.LogInformation($"Serialized text: {serializedText}");
+                    applicantProfile = JsonSerializer.Deserialize<ApplicantProfile>(serializedText, options) ?? new ApplicantProfile();
+                }
+                catch (JsonException jsonEx)
+                {
+                    _logger.LogError(jsonEx, "Failed to deserialize StructuredData into ApplicantProfile. Returning empty ApplicantProfile.");
+                    applicantProfile = new ApplicantProfile();
+                }
+            }
+
+            var response = new CreateDocumentResponse()
+            {
+                UserId = userId,
+                DocumentId = _document.Id.ToString(),
+                ApplicantProfile = applicantProfile
+            };
+
+            _logger.LogInformation($"Processed data for document {data.StructuredData}");
+
+            await InvokeOnUpdateAsync(cancellationToken, DocumentState.Completed);
             _document.UploadedUntil = DateTime.Now;
             await AddFileToDataBase(_document, cancellationToken);
-            return _document;
+            return response;
         }
         catch (Exception ex)
         {
-            OnUpdate(cancellationToken, DocumentState.Error);
+            await InvokeOnUpdateAsync(cancellationToken, DocumentState.Error);
             throw;
         }
     }

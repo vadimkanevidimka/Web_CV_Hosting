@@ -9,7 +9,7 @@ namespace CVRecognizingService.Tests.UseCases.Documents.Commands
 {
     public class DeleteCommandHandlerTests
     {
-        
+
         private readonly DeleteDocumentCommandHandler _handler;
         private readonly Mock<DocumentRepository> _documentRepository;
         private readonly Mock<ILogger<DeleteDocumentCommandHandler>> _logger;

@@ -7,8 +7,8 @@
     <InvariantGlobalization>true</InvariantGlobalization>
     <UserSecretsId>9657bcdf-4ab4-48c5-9347-8db9860bbd18</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <DockerfileContext>.</DockerfileContext>
     <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+    <DockerfileContext>..\..</DockerfileContext>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,6 +25,10 @@
 
   <ItemGroup>
     <Folder Include="Exstensions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="..\..\src\Shared\Protos\cv.proto" GrpcServices="Client" />
   </ItemGroup>
 
 </Project>

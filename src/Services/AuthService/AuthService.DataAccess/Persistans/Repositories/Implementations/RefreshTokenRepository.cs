@@ -5,12 +5,12 @@ using Microsoft.Extensions.Logging;
 
 namespace AuthService.DataAccess.Persistans.Repositories.Implementations;
 
-public class RefreshTokenRepository 
-    : RepositoryBase<RefreshToken>, 
+public class RefreshTokenRepository
+    : RepositoryBase<RefreshToken>,
     IRefreshTokenRepository
 {
     private readonly ILogger _logger;
-    public RefreshTokenRepository(AuthorizationDbContext context, ILogger<RefreshTokenRepository> logger) 
+    public RefreshTokenRepository(AuthorizationDbContext context, ILogger<RefreshTokenRepository> logger)
         : base(context)
     {
         _logger = logger;
@@ -22,7 +22,7 @@ public class RefreshTokenRepository
         _context.RefreshTokens
             .RemoveRange(_context.RefreshTokens
             .Where(token => token.ExpirationTime < DateTime.Now));
-        
+
         _logger.LogInformation($"All expired tokens has been deleted");
     }
 

@@ -1,9 +1,9 @@
-﻿using MongoDB.Bson;
-using CVRecognizingService.Domain.Abstracts;
+﻿using CVRecognizingService.Domain.Abstracts;
+using MongoDB.Bson;
 
 namespace CVRecognizingService.Domain.Entities;
 
-public class ProcessedData 
+public class ProcessedData
     : Entity, IEntity
 {
     public ProcessedData(ObjectId documentId, string? structuredData, DateTime processedAt)

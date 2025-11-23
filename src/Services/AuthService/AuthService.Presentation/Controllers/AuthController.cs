@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using AuthService.Buisness.Dtos.Tokens;
+﻿using AuthService.Buisness.Dtos.Tokens;
 using AuthService.Buisness.Dtos.User;
 using AuthService.Buisness.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -24,10 +23,10 @@ namespace AuthService.Presentation.Controllers
         public async Task<IActionResult> Login(UserLoginDto userLoginDto)
         {
             var tokens = await accountService.LoginAsync(userLoginDto);
-            
+
             Response.Cookies.Append("key", tokens.AccessToken.Value);
             Response.Cookies.Append("refreshkey", tokens.RefreshToken.Value);
-            
+
             return Ok();
         }
 
@@ -41,7 +40,7 @@ namespace AuthService.Presentation.Controllers
                 {
                     RefreshToken = token
                 });
-                
+
                 Response.Cookies.Append("key", tokens.AccessToken.Value);
                 Response.Cookies.Append("refreshkey", tokens.RefreshToken.Value);
                 return Ok();

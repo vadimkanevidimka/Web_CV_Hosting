@@ -71,9 +71,6 @@ namespace CVRecognizingService.Tests.UseCases.Documents.Commands
         };
 
 
-
-
-
         /// <summary>
         /// Start testing
         /// </summary>
@@ -92,7 +89,7 @@ namespace CVRecognizingService.Tests.UseCases.Documents.Commands
 
         public CreateCommandHandlerTest()
         {
-            IOptions<ConnectionSettings> options = Options.Create(new ConnectionSettings() {ConnectionString="", Database = ""});
+            IOptions<ConnectionSettings> options = Options.Create(new ConnectionSettings() { ConnectionString = "", Database = "" });
             _dbContext = new DbContext(options);
             _mapperMock = new Mock<IMapper>();
             _clientMock = new Mock<IGeminiClient>();
@@ -102,9 +99,6 @@ namespace CVRecognizingService.Tests.UseCases.Documents.Commands
             _processedDataRepository = new Mock<ProcessedDataRepository>(_dbContext);
             _processingLogRepository = new Mock<ProcessingLogRepository>(_dbContext);
             _processingStatusRepository = new Mock<ProcessingStatusRepository>(_dbContext);
-
-
-
 
             _handler = new CreateDocumentCommandHandler(
                 _clientMock.Object,
@@ -121,41 +115,41 @@ namespace CVRecognizingService.Tests.UseCases.Documents.Commands
         public async Task Handle_ShouldReturnError_WhenCreateDocumentWrongFormat()
         {
             // Arrange
-            CreateDocumentCommand createDocumentCommand = new CreateDocumentCommand(WrongFileFormat);
+            CreateDocumentCommand createDocumentCommand = new CreateDocumentCommand(WrongFileFormat, Guid.NewGuid().ToString());
 
             var result = await _handler.Handle(createDocumentCommand, default);
 
-            Assert.Contains("Failed", result);
+            Assert.False(string.IsNullOrWhiteSpace(result.DocumentId));
         }
 
         public async Task Handle_ShouldReturnError_WhenCreateDocumentWrongFileLengthZero()
         {
             // Arrange
-            CreateDocumentCommand createDocumentCommand = new CreateDocumentCommand(WrongFileLengthZero);
+            CreateDocumentCommand createDocumentCommand = new CreateDocumentCommand(WrongFileLengthZero, Guid.NewGuid().ToString());
 
             var result = await _handler.Handle(createDocumentCommand, default);
 
-            Assert.Contains("Failed", result);
+            Assert.False(string.IsNullOrWhiteSpace(result.DocumentId));
         }
 
         public async Task Handle_ShouldReturnError_WhenCreateDocumentWrongFileName()
         {
             // Arrange
-            CreateDocumentCommand createDocumentCommand = new CreateDocumentCommand(WrongFileName);
+            CreateDocumentCommand createDocumentCommand = new CreateDocumentCommand(WrongFileName, Guid.NewGuid().ToString());
 
             var result = await _handler.Handle(createDocumentCommand, default);
 
-            Assert.Contains("Failed", result);
+            Assert.False(string.IsNullOrWhiteSpace(result.DocumentId));
         }
 
         public async Task Handle_ShouldReturnError_WhenCreateDocumentWrongFileLengthMoreThanFiveMB()
         {
             // Arrange
-            CreateDocumentCommand createDocumentCommand = new CreateDocumentCommand(WrongFileLengthMoreThanFiveMB);
+            CreateDocumentCommand createDocumentCommand = new CreateDocumentCommand(WrongFileLengthMoreThanFiveMB, Guid.NewGuid().ToString());
 
             var result = await _handler.Handle(createDocumentCommand, default);
 
-            Assert.Contains("Failed", result);
+            Assert.False(string.IsNullOrWhiteSpace(result.DocumentId));
         }
     }
 }

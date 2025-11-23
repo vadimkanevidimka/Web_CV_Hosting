@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
 namespace CVRecognizingService.Application.ServiceExctensions
@@ -10,9 +9,9 @@ namespace CVRecognizingService.Application.ServiceExctensions
         {
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo 
-                { 
-                    Title = "CV Recognizing Service API", 
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "CV Recognizing Service API",
                     Version = "v1",
                     Contact = new OpenApiContact
                     {

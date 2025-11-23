@@ -1,14 +1,14 @@
 ﻿namespace CVRecognizingService.Domain.Exeptions
 {
     [Serializable]
-    public class AlreadyExistsException 
+    public class AlreadyExistsException
         : Exception
     {
-        public AlreadyExistsException() 
+        public AlreadyExistsException()
             : base() { }
-        public AlreadyExistsException(string message) 
+        public AlreadyExistsException(string message)
             : base(message) { }
-        public AlreadyExistsException(string message, Exception innerException) 
+        public AlreadyExistsException(string message, Exception innerException)
             : base(message, innerException) { }
     }
 }

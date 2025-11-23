@@ -1,4 +1,3 @@
-using System.Linq.Expressions;
 using AutoMapper;
 using ProfileService.Domain.ApplicantProfile;
 using ProfileService.Infastructure.DbAccess;
@@ -9,7 +8,7 @@ public class ProfileRepository : BaseRepository<ApplicantProfile>
 {
     private readonly IMapper _mapper;
     private readonly ProfileDbContext _dbContext;
-    
+
     protected ProfileRepository(ProfileDbContext dbContext, IMapper mapper) : base(dbContext, mapper)
     {
         _dbContext = dbContext;

@@ -1,6 +1,6 @@
 namespace ProfileService.Domain.Entities;
 
-public interface IBaseEntity
+public abstract class IBaseEntity
 {
     public int Id { get; set; }
     public DateTimeOffset CreatedAt { get; set; }
