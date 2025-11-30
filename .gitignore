@@ -15,6 +15,7 @@
 [Rr]elease/
 [Bb]in/
 [Oo]bj/
+.bin/
 
 # Test results
 TestResults/
