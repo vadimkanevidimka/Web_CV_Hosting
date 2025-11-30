@@ -1,4 +1,5 @@
 ﻿using DotnetGeminiSDK;
+using Google.GenAI;
 using Microsoft.Extensions.DependencyInjection;
 namespace CVRecognizingService.Application.ServiceExctensions
 {
@@ -6,11 +7,7 @@ namespace CVRecognizingService.Application.ServiceExctensions
     {
         public static IServiceCollection AddGeminiAI(this IServiceCollection services, string API_KEY)
         {
-            services.AddGeminiClient(config =>
-            {
-                config.ApiKey = API_KEY;
-                config.TextBaseUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash";
-            });
+            services.AddSingleton(_ => new Client(apiKey: API_KEY));
             return services;
         }
     }

@@ -153,6 +153,10 @@
               "target": "Package",
               "version": "[11.3.1, )"
             },
+            "Google.GenAI": {
+              "target": "Package",
+              "version": "[0.6.0, )"
+            },
             "Google.Protobuf": {
               "target": "Package",
               "version": "[3.32.1, )"

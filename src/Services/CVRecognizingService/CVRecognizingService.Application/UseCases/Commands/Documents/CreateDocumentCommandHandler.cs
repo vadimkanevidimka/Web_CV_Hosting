@@ -13,6 +13,7 @@ using DotnetGeminiSDK.Client.Interfaces;
 using Events_Web_application.Application.Services.Exceptions;
 using FluentValidation;
 using FluentValidation.Results;
+using Google.GenAI;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
@@ -38,7 +39,7 @@ public class CreateDocumentCommandHandler
     private ProcessingStatus? _docstatus;
 
     public CreateDocumentCommandHandler(
-        IGeminiClient geminiClient,
+        Client geminiClient,
         IValidator<IFormFile> fileValidator,
         ILogger<CreateDocumentCommandHandler> logger,
         IRepository<Document> documentRepository,
@@ -96,31 +97,46 @@ public class CreateDocumentCommandHandler
     private async Task<string> GetFormattedText(string nonFormatedText, CancellationToken cancellationToken)
     {
         if (string.IsNullOrEmpty(nonFormatedText)) throw new ArgumentException(nameof(nonFormatedText));
+        try
+        {
+            var result = await _chat.GetFormatedText(nonFormatedText, cancellationToken);
 
-        var result = await _chat.GetFormatedText(nonFormatedText, cancellationToken);
+            await InvokeOnUpdateAsync(cancellationToken, DocumentState.Processing);
 
-        await InvokeOnUpdateAsync(cancellationToken, DocumentState.Processing);
+            _logger.LogInformation($"Text|\n {nonFormatedText} \n formatted {result.Candidates[0].Content.Parts[0].Text}");
 
-        _logger.LogInformation($"Text|\n {nonFormatedText} \n formatted {result.Candidates[0].Content.Parts[0].Text}");
-
-        return result.Candidates[0].Content.Parts[0].Text;
+            return result.Candidates[0].Content.Parts[0].Text;
+        }
+        catch(Exception ex)
+        {
+            _logger.LogError(ex, ex.Message);
+            return "";
+        }
     }
 
     private async Task<string> RecognizeText(IFormFile file, CancellationToken cancellationToken)
     {
-        var recognizedText = new PDFRecognizer(await file.GetBytesAsync(cancellationToken));
-
-        await InvokeOnUpdateAsync(cancellationToken, DocumentState.Processing);
-
-        _logger.LogInformation($"Text from {file} recognized {recognizedText.RecognizedText}");
-
-        var isFileCV = await _chat.IsCV(recognizedText.RecognizedText, cancellationToken);
-        if (isFileCV.Candidates[0].Content.Parts[0].Text.Contains("false", StringComparison.OrdinalIgnoreCase)
-            || recognizedText.RecognizedText.Length == 0)
+        try
         {
-            throw new ServiceException(nameof(this.RecognizeText), recognizedText.RecognizedText, "File is not Cover Leter or Resume");
+            var recognizedText = new PDFRecognizer(await file.GetBytesAsync(cancellationToken));
+
+            await InvokeOnUpdateAsync(cancellationToken, DocumentState.Processing);
+
+            _logger.LogInformation($"Text from {file} recognized\n {recognizedText.RecognizedText}");
+
+            var isFileCV = await _chat.IsCV(recognizedText.RecognizedText, cancellationToken);
+            if (isFileCV.Candidates[0].Content.Parts[0].Text.Contains("false", StringComparison.OrdinalIgnoreCase)
+                || recognizedText.RecognizedText.Length == 0)
+            {
+                throw new ServiceException(nameof(this.RecognizeText), recognizedText.RecognizedText, "File is not Cover Leter or Resume");
+            }
+            return recognizedText.RecognizedText;
         }
-        return recognizedText.RecognizedText;
+        catch(Exception ex)
+        {
+            _logger.LogError(ex, ex.Message);
+            return "";
+        }
     }
 
     private async Task UpdateDocumentState(CancellationToken cancellationToken, DocumentState state)

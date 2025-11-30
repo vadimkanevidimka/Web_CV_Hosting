@@ -45,6 +45,7 @@ packages/
 appsettings.Development.json
 appsettings.Production.json
 appsettings.Staging.json
+appsettings.json
 
 # Rider
 .idea/
