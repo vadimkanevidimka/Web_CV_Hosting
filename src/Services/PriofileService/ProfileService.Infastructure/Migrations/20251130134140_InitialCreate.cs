@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
@@ -15,8 +16,7 @@ namespace ProfileService.Infastructure.Migrations
                 name: "ApplicantProfiles",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
                     CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
                     LastModifiedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
                     FirstName = table.Column<string>(type: "text", nullable: false),
@@ -40,7 +40,7 @@ namespace ProfileService.Infastructure.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    ApplicantProfileId = table.Column<int>(type: "integer", nullable: false),
+                    ApplicantProfileId = table.Column<Guid>(type: "uuid", nullable: false),
                     Country = table.Column<string>(type: "text", nullable: false),
                     City = table.Column<string>(type: "text", nullable: false),
                     State = table.Column<string>(type: "text", nullable: false),
@@ -63,7 +63,7 @@ namespace ProfileService.Infastructure.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    ApplicantProfileId = table.Column<int>(type: "integer", nullable: false),
+                    ApplicantProfileId = table.Column<Guid>(type: "uuid", nullable: false),
                     Category = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
@@ -83,7 +83,7 @@ namespace ProfileService.Infastructure.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    ApplicantProfileId = table.Column<int>(type: "integer", nullable: false),
+                    ApplicantProfileId = table.Column<Guid>(type: "uuid", nullable: false),
                     InstitutionName = table.Column<string>(type: "text", nullable: false),
                     Specialization = table.Column<string>(type: "text", nullable: true),
                     Degree = table.Column<string>(type: "text", nullable: false),
@@ -107,7 +107,7 @@ namespace ProfileService.Infastructure.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    ApplicantProfileId = table.Column<int>(type: "integer", nullable: false),
+                    ApplicantProfileId = table.Column<Guid>(type: "uuid", nullable: false),
                     Type = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
@@ -127,7 +127,7 @@ namespace ProfileService.Infastructure.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    ApplicantProfileId = table.Column<int>(type: "integer", nullable: false),
+                    ApplicantProfileId = table.Column<Guid>(type: "uuid", nullable: false),
                     LanguageName = table.Column<string>(type: "text", nullable: false),
                     ProficiencyLevel = table.Column<string>(type: "text", nullable: false)
                 },
@@ -148,7 +148,7 @@ namespace ProfileService.Infastructure.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    ApplicantProfileId = table.Column<int>(type: "integer", nullable: false),
+                    ApplicantProfileId = table.Column<Guid>(type: "uuid", nullable: false),
                     ProjectName = table.Column<string>(type: "text", nullable: false),
                     Url = table.Column<string>(type: "text", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: true)
@@ -170,7 +170,7 @@ namespace ProfileService.Infastructure.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    ApplicantProfileId = table.Column<int>(type: "integer", nullable: false),
+                    ApplicantProfileId = table.Column<Guid>(type: "uuid", nullable: false),
                     Amount = table.Column<decimal>(type: "numeric", nullable: true),
                     Currency = table.Column<string>(type: "text", nullable: false),
                     Type = table.Column<string>(type: "text", nullable: true)
@@ -192,7 +192,7 @@ namespace ProfileService.Infastructure.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    ApplicantProfileId = table.Column<int>(type: "integer", nullable: false),
+                    ApplicantProfileId = table.Column<Guid>(type: "uuid", nullable: false),
                     SkillName = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
@@ -212,7 +212,7 @@ namespace ProfileService.Infastructure.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    ApplicantProfileId = table.Column<int>(type: "integer", nullable: false),
+                    ApplicantProfileId = table.Column<Guid>(type: "uuid", nullable: false),
                     CompanyName = table.Column<string>(type: "text", nullable: false),
                     City = table.Column<string>(type: "text", nullable: true),
                     Position = table.Column<string>(type: "text", nullable: false),

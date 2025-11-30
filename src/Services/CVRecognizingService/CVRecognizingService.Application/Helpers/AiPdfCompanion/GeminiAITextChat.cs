@@ -19,7 +19,12 @@ public class GeminiAITextChat
             MaxOutputTokens = 4096,
             Temperature = 0,
             TopP = 1,
-            TopK = 0
+            TopK = 0,
+            CandidateCount = 1,
+            ThinkingConfig = new ThinkingConfig()
+            {
+                ThinkingBudget = 0
+            }
         };
     }
 
@@ -27,9 +32,11 @@ public class GeminiAITextChat
         string ask,
         CancellationToken cancellationToken)
     {
-        return await _geminiClient.Models.GenerateContentAsync(
+        var response = await _geminiClient.Models.GenerateContentAsync(
             model: MODEL, contents: BASE_FORMATING_SYSTEM_PROMPT + ask, _generationConfig
         );
+
+        return response;
     }
 
     public async Task<GenerateContentResponse> IsCV(

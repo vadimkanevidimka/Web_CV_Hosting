@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CVHostingService.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d4af8747a222f6db0d4578bd8d1bf855440f4582")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+15758923c0065fc9782b27ef9a49a3079a4efeb2")]
 [assembly: System.Reflection.AssemblyProductAttribute("CVHostingService.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CVHostingService.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

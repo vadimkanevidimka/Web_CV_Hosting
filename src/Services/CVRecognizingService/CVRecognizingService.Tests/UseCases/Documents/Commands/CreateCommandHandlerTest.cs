@@ -5,6 +5,7 @@ using CVRecognizingService.Application.UseCases.Commands.Documents;
 using CVRecognizingService.Infrastructure.DataAccess.DBContext;
 using CVRecognizingService.Infrastructure.DataAccess.Repositories;
 using DotnetGeminiSDK.Client.Interfaces;
+using Google.GenAI;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -81,7 +82,7 @@ namespace CVRecognizingService.Tests.UseCases.Documents.Commands
         private readonly Mock<ProcessedDataRepository> _processedDataRepository;
         private readonly Mock<ProcessingLogRepository> _processingLogRepository;
         private readonly Mock<ILogger<CreateDocumentCommandHandler>> _logger;
-        private readonly Mock<IGeminiClient> _clientMock;
+        private readonly Mock<Client> _clientMock;
         private readonly DbContext _dbContext;
 
         private readonly GeminiAITextChat _chat;
@@ -92,7 +93,7 @@ namespace CVRecognizingService.Tests.UseCases.Documents.Commands
             IOptions<ConnectionSettings> options = Options.Create(new ConnectionSettings() { ConnectionString = "", Database = "" });
             _dbContext = new DbContext(options);
             _mapperMock = new Mock<IMapper>();
-            _clientMock = new Mock<IGeminiClient>();
+            _clientMock = new Mock<Client>();
             _fileValidatorMock = new Mock<FileValidator>();
             _logger = new Mock<ILogger<CreateDocumentCommandHandler>>();
             _documentRepository = new Mock<DocumentRepository>(_dbContext);

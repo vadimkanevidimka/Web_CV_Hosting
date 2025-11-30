@@ -23,6 +23,7 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
 import CreateProfile from './pages/CreateProfile';
+import Profiles from './pages/Profiles';
 
 const AppContent = () => {
   const navigate = useNavigate();
@@ -100,9 +101,13 @@ const AppContent = () => {
                     </Button>
                     <Button 
                       color="inherit"
-                      sx={{ fontWeight: 400 }}
+                      onClick={() => navigate('/candidates')}
+                      sx={{ 
+                        fontWeight: location.pathname === '/candidates' ? 600 : 400,
+                        borderBottom: location.pathname === '/candidates' ? '2px solid white' : 'none'
+                      }}
                     >
-                      Мои CV
+                      Кандидаты
                     </Button>
                   </>
                 )}
@@ -176,6 +181,7 @@ const AppContent = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/profiles" element={<Profile />} />
           <Route path="/create-profile" element={<CreateProfile />} />
+          <Route path="/candidates" element={<Profiles />} />
           <Route path="/" element={<Login />} />
         </Routes>
       </Box>

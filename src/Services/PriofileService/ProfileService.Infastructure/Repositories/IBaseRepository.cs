@@ -3,7 +3,7 @@ namespace ProfileService.Infastructure.Repositories;
 
 using System.Linq.Expressions;
 
-public interface IBaseRepository<TEntity> where TEntity : IBaseEntity
+public interface IRepository<TEntity> where TEntity : IBaseEntity
 {
     Task<bool> IsExistingAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default);
 
@@ -16,7 +16,7 @@ public interface IBaseRepository<TEntity> where TEntity : IBaseEntity
 
     Task<TEntity> UpdateAsync(TEntity entity, CancellationToken cancellationToken = default);
 
-    Task DeleteAsync(int id, CancellationToken cancellationToken = default);
+    Task DeleteAsync(Guid id, CancellationToken cancellationToken = default);
 
     IQueryable<TDestination> Search<TDestination>(Expression<Func<TEntity, bool>> predicate);
 

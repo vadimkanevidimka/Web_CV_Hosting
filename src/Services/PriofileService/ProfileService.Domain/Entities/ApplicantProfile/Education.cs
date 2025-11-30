@@ -3,7 +3,7 @@ namespace ProfileService.Domain.ApplicantProfile;
 public class Education
 {
     public int Id { get; set; }
-    public int ApplicantProfileId { get; set; }
+    public Guid ApplicantProfileId { get; set; }
     public string InstitutionName { get; set; }
     public string? Specialization { get; set; }
     public string Degree { get; set; } // Например, "Бакалавр", "Магистр"

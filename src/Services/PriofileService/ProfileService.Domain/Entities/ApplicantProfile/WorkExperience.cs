@@ -3,7 +3,7 @@ namespace ProfileService.Domain.ApplicantProfile;
 public class WorkExperience
 {
     public int Id { get; set; }
-    public int ApplicantProfileId { get; set; }
+    public Guid ApplicantProfileId { get; set; }
     public string CompanyName { get; set; }
     public string? City { get; set; }
     public string Position { get; set; }

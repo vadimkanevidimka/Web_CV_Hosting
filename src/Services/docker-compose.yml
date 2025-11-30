@@ -81,9 +81,9 @@ services:
     networks:
       - app-network
     
-  postgresdb:
+  profilesdb:
     image: postgres:latest
-    container_name: profiledb
+    container_name: profilesdb
     environment:
       POSTGRES_DB: profiles
       POSTGRES_USER: admin
@@ -97,9 +97,6 @@ services:
   profileservice.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-    volumes:
-      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
-      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
     image: ${DOCKER_REGISTRY-}profileservice
     build:
       context: .
@@ -109,9 +106,9 @@ services:
       - "5100:8080"
       - "5101:8081"
     links:
-      - "postgresdb:pg"
+      - "profilesdb:pg"
     depends_on:
-      - postgresdb
+      - profilesdb
     networks:
       - profiles-web
   

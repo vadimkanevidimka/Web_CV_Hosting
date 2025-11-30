@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 namespace ProfileService.Infastructure.Repositories;
 
-public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : IBaseEntity
+public class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : IBaseEntity
 {
     private readonly ProfileDbContext _dbContext;
     private readonly IMapper _mapper;
@@ -131,7 +131,7 @@ public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : 
         await _dbContext.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task DeleteAsync(int id, CancellationToken cancellationToken = default)
+    public async Task DeleteAsync(Guid id, CancellationToken cancellationToken = default)
     {
         var entity = await _dbContext.Set<TEntity>().FirstAsync(e => e.Id == id, cancellationToken);
         _dbContext.Remove(entity);

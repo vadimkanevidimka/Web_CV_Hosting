@@ -1,5 +1,6 @@
 // src/pages/CreateProfile.tsx
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
     Container,
     Box,
@@ -112,6 +113,7 @@ interface CVProfile {
 const steps = ['Загрузка файла', 'Редактирование данных', 'Подтверждение'];
 
 const CreateProfile = () => {
+    const navigate = useNavigate();
     const [activeStep, setActiveStep] = useState(0);
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const [uploading, setUploading] = useState(false);
@@ -358,10 +360,15 @@ const CreateProfile = () => {
     const handleSubmit = async () => {
         setUploading(true);
         try {
-            await axiosInstance.post('/api/cv/create', profileData);
+            await axiosInstance.post('/api/profiles/api/Profiles/create', profileData);
             setSuccess('Профиль успешно создан!');
             setOpenSnackbar(true);
             setActiveStep(2);
+            
+            // Переход на страницу со всеми профилями через 1.5 секунды
+            setTimeout(() => {
+                navigate('/profiles');
+            }, 1500);
         } catch (err: any) {
             setError(err.response?.data?.message || 'Ошибка при создании профиля');
             setOpenSnackbar(true);

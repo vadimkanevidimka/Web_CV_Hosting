@@ -20,7 +20,6 @@ namespace ProfileService.Application.Extensions
                     }
                 });
 
-                // JWT Authentication
                 var securityScheme = new OpenApiSecurityScheme
                 {
                     Name = "JWT Authentication",

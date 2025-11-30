@@ -8,7 +8,7 @@ namespace ProfileService.Infastructure.DbAccess
         public ProfileDbContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<ProfileDbContext>();
-            optionsBuilder.UseNpgsql("Host=localhost;Port=5430;Database=profiles;Username=admin;Password=admin");
+            optionsBuilder.UseNpgsql("Host=profilesdb;Port=5432;Database=profiles;Username=admin;Password=admin");
 
             return new ProfileDbContext(optionsBuilder.Options);
         }

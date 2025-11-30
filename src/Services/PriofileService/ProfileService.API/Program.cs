@@ -5,19 +5,23 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using ProfileService.Application.Extensions;
 using ProfileService.Application.MappingProfiles;
+using ProfileService.Application.UseCases.CommandHandlers;
 using ProfileService.Application.Validators;
 using ProfileService.Infastructure.DbAccess;
 using System.Text;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+        options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+    });
 
-builder.Services.AddMediatR(cfg =>
-{
-    cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
-    cfg.AddOpenBehavior(typeof(ValidationBehavior<,>));
-});
+builder.Services.AddMediatR(config =>
+    config.RegisterServicesFromAssembly(typeof(CreateApplicantProfileCommandHandler).Assembly));
 
 builder.Services.AddAuthentication(options =>
 {
@@ -46,6 +50,8 @@ builder.Services.AddValidatorsFromAssembly(typeof(Program).Assembly);
 builder.Services.AddDbContext<ProfileDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+builder.Services.AddRepositories();
+
 builder.Services.AddCors();
 builder.Services.AddAutoMapper(cfg =>
 {
@@ -54,6 +60,61 @@ builder.Services.AddAutoMapper(cfg =>
 typeof(ApplicantProfieMapProfile));
 
 var app = builder.Build();
+
+// Apply migrations automatically
+using (var scope = app.Services.CreateScope())
+{
+    var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+    var dbContext = scope.ServiceProvider.GetRequiredService<ProfileDbContext>();
+    
+    try
+    {
+        logger.LogInformation("Starting database migration...");
+        
+        // Check if ApplicantProfiles table exists
+        var canConnect = await dbContext.Database.CanConnectAsync();
+        logger.LogInformation($"Can connect to database: {canConnect}");
+        
+        if (canConnect)
+        {
+            // Check if the main table exists
+            var tableExists = false;
+            try
+            {
+                tableExists = await dbContext.ApplicantProfiles.AnyAsync();
+            }
+            catch
+            {
+                // Table doesn't exist, this is expected
+                tableExists = false;
+            }
+            
+            if (!tableExists)
+            {
+                logger.LogInformation("ApplicantProfiles table does not exist. Creating database schema...");
+                
+                // Delete migration history table if it exists
+                await dbContext.Database.ExecuteSqlRawAsync(
+                    "DROP TABLE IF EXISTS \"__EFMigrationsHistory\"");
+                
+                // Create all tables
+                await dbContext.Database.EnsureCreatedAsync();
+                logger.LogInformation("Database schema created successfully.");
+            }
+            else
+            {
+                logger.LogInformation("Database tables already exist.");
+            }
+        }
+        
+        logger.LogInformation("Database migration completed successfully.");
+    }
+    catch (Exception ex)
+    {
+        logger.LogError(ex, "An error occurred while migrating the database.");
+        throw;
+    }
+}
 
 app.UseForwardedHeaders(new ForwardedHeadersOptions
 {

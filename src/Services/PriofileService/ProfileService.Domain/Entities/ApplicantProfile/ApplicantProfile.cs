@@ -4,7 +4,6 @@ namespace ProfileService.Domain.ApplicantProfile;
 
 public class ApplicantProfile : IBaseEntity
 {
-    public int Id { get; set; }
     public DateTimeOffset CreatedAt { get; set; }
     public DateTimeOffset LastModifiedAt { get; set; }
     public string FirstName { get; set; }

@@ -2,7 +2,7 @@ using MediatR;
 
 namespace ProfileService.Application.UseCases.Commands;
 
-public class CreateApplicantProfileCommand : IRequest
+public class CreateApplicantProfileCommand : IRequest<Guid>
 {
     public string FirstName { get; set; }
     public string LastName { get; set; }

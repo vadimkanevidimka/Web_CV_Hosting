@@ -12,7 +12,7 @@ using ProfileService.Infastructure.DbAccess;
 namespace ProfileService.Infastructure.Migrations
 {
     [DbContext(typeof(ProfileDbContext))]
-    [Migration("20250907132532_InitialCreate")]
+    [Migration("20251130134140_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -27,11 +27,9 @@ namespace ProfileService.Infastructure.Migrations
 
             modelBuilder.Entity("ProfileService.Domain.ApplicantProfile.ApplicantProfile", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                        .HasColumnType("uuid");
 
                     b.Property<string>("City")
                         .HasColumnType("text");
@@ -83,8 +81,8 @@ namespace ProfileService.Infastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ApplicantProfileId")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("ApplicantProfileId")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("City")
                         .IsRequired()
@@ -117,8 +115,8 @@ namespace ProfileService.Infastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ApplicantProfileId")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("ApplicantProfileId")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Category")
                         .IsRequired()
@@ -139,8 +137,8 @@ namespace ProfileService.Infastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ApplicantProfileId")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("ApplicantProfileId")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Degree")
                         .IsRequired()
@@ -174,8 +172,8 @@ namespace ProfileService.Infastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ApplicantProfileId")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("ApplicantProfileId")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Type")
                         .IsRequired()
@@ -197,8 +195,8 @@ namespace ProfileService.Infastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ApplicantProfileId")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("ApplicantProfileId")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("LanguageName")
                         .IsRequired()
@@ -223,8 +221,8 @@ namespace ProfileService.Infastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ApplicantProfileId")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("ApplicantProfileId")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Description")
                         .HasColumnType("text");
@@ -255,8 +253,8 @@ namespace ProfileService.Infastructure.Migrations
                     b.Property<decimal?>("Amount")
                         .HasColumnType("numeric");
 
-                    b.Property<int>("ApplicantProfileId")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("ApplicantProfileId")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Currency")
                         .IsRequired()
@@ -281,8 +279,8 @@ namespace ProfileService.Infastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ApplicantProfileId")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("ApplicantProfileId")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("SkillName")
                         .IsRequired()
@@ -303,8 +301,8 @@ namespace ProfileService.Infastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ApplicantProfileId")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("ApplicantProfileId")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("City")
                         .HasColumnType("text");
