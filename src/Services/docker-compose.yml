@@ -7,8 +7,6 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=admin
-    volumes:
-      - ./docker_data/mongodb:/data/db
     ports:
       - "27017:27017"
     restart: always
@@ -46,8 +44,6 @@ services:
       POSTGRES_PASSWORD: admin_password
     ports:
       - "5432:5432"
-    # volumes:
-    #    - postgres_data:/var/lib/postgresql/data
     networks:
       - app-network
 
@@ -61,8 +57,6 @@ services:
       POSTGRES_PASSWORD: admin_password
     ports:
       - "5433:5432"
-    # volumes:
-    #    - postgres_data:/var/lib/postgresql/data
     networks:
       - app-network
 
